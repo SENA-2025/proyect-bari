@@ -1,0 +1,20 @@
+{
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": true,
+	"editor.formatOnSave": true,
+	"prettier.singleQuote": false,
+	"prettier.trailingComma": "es5",
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	"prettier.semi": true,
+	"prettier.arrowParens": "avoid",
+	"prettier.jsxSingleQuote": false,
+	"prettier.bracketSpacing": true,
+	"prettier.endOfLine": "lf",
+	"prettier.printWidth": 200,
+	"prettier.bracketSameLine": false,
+	"prettier.insertPragma": false,
+	"prettier.quoteProps": "as-needed",
+	"prettier.singleAttributePerLine": false
+}
