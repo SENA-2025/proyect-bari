@@ -7,7 +7,6 @@ import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import prettier from "eslint-plugin-prettier";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
-import tailwindcss from "eslint-plugin-tailwindcss";
 import unusedImports from "eslint-plugin-unused-imports";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,7 +21,7 @@ const compat = new FlatCompat({
 const eslintConfig = [
 	// Ignorar archivos y carpetas innecesarias
 	{
-		ignores: ["**/pnpm-lock.yaml", "**/node_modules/", "**/.next/"],
+		ignores: ["**/pnpm-lock.yaml", "**/node_modules/", "**/.next/", "**/eslint.config.mjs", "**/postcss.config.mjs"],
 	},
 
 	// Extensiones base de Next.js, TypeScript y Prettier
@@ -34,7 +33,6 @@ const eslintConfig = [
 			"@typescript-eslint": typescriptEslint,
 			prettier,
 			"unused-imports": unusedImports,
-			tailwindcss,
 			"simple-import-sort": simpleImportSort,
 		},
 
@@ -87,9 +85,6 @@ const eslintConfig = [
 			// ✅ Importación y orden
 			"simple-import-sort/imports": "error",
 			"simple-import-sort/exports": "error",
-
-			// 🚀 Tailwind CSS
-			"tailwindcss/no-custom-classname": "off",
 
 			// ❌ Desactivar reglas conflictivas o innecesarias
 			"import/no-extraneous-dependencies": "off",
