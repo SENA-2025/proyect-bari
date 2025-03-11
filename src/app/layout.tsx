@@ -26,7 +26,9 @@ export default function Root_Layout({ children }: Readonly<{ children: React.Rea
 	return (
 		<html lang="es-CO">
 			<body className={`${poppins.className} antialiased`}>
-				<main className="flex min-h-screen max-w-full">{children}</main>
+				<main className="flex min-h-screen max-w-full">
+					<div className="w-full grow">{children}</div>
+				</main>
 			</body>
 		</html>
 	);
