@@ -18,25 +18,27 @@ export default function Login_Page() {
 	return (
 		<div className="bg-white size-full">
 			{/* Formulario */}
-			<div className="flex items-center justify-center h-full">
-				<div className="backdrop-blur-sm shadow-lg p-8 rounded-xl bg-white/90">
-					<div className="flex flex-col items-center gap-4">
-						{/* Logo & Título */}
+			<div className="flex items-center justify-center size-full">
+				<div className="w-full m-4 flex justify-center">
+					<div className="w-full md:w-md backdrop-blur-sm shadow-lg p-8 rounded-xl bg-white/90">
 						<div className="flex flex-col items-center gap-8">
-							<Image className="shadow-xs rounded-full select-none" src={"/logo.webp"} alt="Logo del SENA" width={100} height={100} priority />
-							<h1 className="font-semibold text-2xl lg:text-3xl select-none">Iniciar Sesión</h1>
+							{/* Logo & Título */}
+							<div className="flex flex-col items-center gap-6">
+								<Image className="shadow-xs rounded-full select-none" src={"/logo.webp"} alt="Logo del SENA" width={100} height={100} priority />
+								<h1 className="font-semibold text-2xl lg:text-3xl select-none">Iniciar Sesión</h1>
+							</div>
+
+							{/* Formulario */}
+							<Form />
+
+							{/* Registro */}
+							<p className="text-xs lg:text-sm text-secondary-600 select-none">
+								¿No tienes una cuenta?{" "}
+								<Link href="/registrarse" className="text-tertiary-600 hover:text-primary-400 font-medium ease-in-out duration-300 transition-colors">
+									Regístrate aquí
+								</Link>
+							</p>
 						</div>
-
-						{/* Formulario */}
-						<Form />
-
-						{/* Registro */}
-						<p className="text-xs lg:text-sm text-secondary-600 select-none">
-							¿No tienes una cuenta?{" "}
-							<Link href="/registrarse" className="text-tertiary-600 hover:text-primary-400 font-medium ease-in-out duration-300 transition-colors">
-								Regístrate aquí
-							</Link>
-						</p>
 					</div>
 				</div>
 			</div>
