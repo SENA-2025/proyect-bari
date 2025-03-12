@@ -23,7 +23,7 @@ export default function Login_Page() {
 					<div className="w-full md:w-md backdrop-blur-sm shadow-lg p-8 rounded-xl bg-white/90">
 						<div className="flex flex-col items-center gap-8">
 							{/* Logo & Título */}
-							<div className="flex flex-col items-center gap-6">
+							<div className="flex flex-col items-center gap-8">
 								<Image className="shadow-xs rounded-full select-none" src={"/logo.webp"} alt="Logo del SENA" width={100} height={100} priority />
 								<h1 className="font-semibold text-2xl lg:text-3xl select-none">Iniciar Sesión</h1>
 							</div>
