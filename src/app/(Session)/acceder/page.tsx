@@ -25,7 +25,7 @@ export default function Login_Page() {
 							{/* Logo & Título */}
 							<div className="flex flex-col items-center gap-8">
 								<Image className="shadow-xs rounded-full select-none" src={"/logo.webp"} alt="Logo del SENA" width={100} height={100} priority />
-								<h1 className="font-semibold text-2xl lg:text-3xl select-none">Iniciar Sesión</h1>
+								<h1 className="font-semibold text-gray-800 text-2xl lg:text-3xl select-none">Iniciar Sesión</h1>
 							</div>
 
 							{/* Formulario */}
