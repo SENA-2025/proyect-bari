@@ -3,20 +3,25 @@
 import { ChevronDown, Eye, EyeOff } from "lucide-react";
 import Form from "next/form";
 import Link from "next/link";
-import { startTransition, useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
 // Servicios
 import type { ServiceType } from "@/services/(Session)/acceder/action";
 import { ServiceLogin } from "@/services/(Session)/acceder/action";
 
 // Tipos
-const initialFormState: ServiceType = { error: false, message: null, fields: null };
+const initialFormState: ServiceType = { error: false, message: null };
 async function adapter(state: ServiceType, formData: FormData): Promise<ServiceType> {
 	return await ServiceLogin(formData);
 }
 
 // Componente
 export default function Login_Form() {
+	// Datos
+	const [documentType, setDocumentType] = useState("CC");
+	const [documentNumber, setDocumentNumber] = useState("");
+	const [password, setPassword] = useState("");
+
 	// Estados
 	const [showPassword, setShowPassword] = useState(false);
 	const [showError, setShowError] = useState(false);
@@ -52,10 +57,11 @@ export default function Login_Form() {
 
 						<div className="relative">
 							<select
+								value={documentType}
+								onChange={e => setDocumentType(e.target.value)}
 								className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all"
 								id="document_type"
 								name="document_type"
-								defaultValue="CC"
 								required
 							>
 								<option value="CC">Cédula de Ciudadanía</option>
@@ -77,6 +83,8 @@ export default function Login_Form() {
 						</label>
 
 						<input
+							value={documentNumber}
+							onChange={e => setDocumentNumber(e.target.value)}
 							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 							id="document_number"
 							name="document_number"
@@ -102,6 +110,8 @@ export default function Login_Form() {
 
 						<div className="relative">
 							<input
+								value={password}
+								onChange={e => setPassword(e.target.value)}
 								className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 								id="password"
 								name="password"
