@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 	devIndicators: false, // No mostrar indicadores de desarrollo
 	poweredByHeader: false,
 	experimental: {
-		optimizePackageImports: ["just-debounce-it", "zod"],
+		optimizePackageImports: ["uuid", "zod"],
 	},
 	images: {
 		remotePatterns: [],
