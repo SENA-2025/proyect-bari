@@ -14,6 +14,9 @@ export const metadata: Metadata = {
 		canonical: "/",
 	},
 	category: "Educación",
+	icons: {
+		icon: "/favicon.ico",
+	},
 	robots: {
 		index: false,
 		follow: false,
@@ -23,7 +26,7 @@ export const metadata: Metadata = {
 
 // Configuración de la vista
 export const viewport: Viewport = {
-	colorScheme: "light",
+	themeColor: "#FFFFFF",
 };
 
 // Fuente(s)
