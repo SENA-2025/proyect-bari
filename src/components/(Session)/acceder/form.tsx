@@ -99,6 +99,8 @@ export default function Login_Form() {
 							id="document_number"
 							name="document_number"
 							type="text"
+							inputMode="numeric"
+							pattern="[0-9]+"
 							placeholder="Ingresa tu número de documento"
 							minLength={3}
 							maxLength={20}
