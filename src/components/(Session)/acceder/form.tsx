@@ -3,10 +3,11 @@
 import { ChevronDown, Eye, EyeOff } from "lucide-react";
 import Form from "next/form";
 import Link from "next/link";
-import { useState, useActionState, useEffect, startTransition } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 
 // Servicios
-import { ServiceLogin, ServiceType } from "@/services/(Session)/acceder/action";
+import type { ServiceType } from "@/services/(Session)/acceder/action";
+import { ServiceLogin } from "@/services/(Session)/acceder/action";
 
 // Tipos
 const initialFormState: ServiceType = { error: false, message: null, fields: null };
@@ -45,13 +46,13 @@ export default function Login_Form() {
 				<div className="flex flex-col gap-4">
 					{/* Tipo de Documento */}
 					<div className="flex flex-col gap-1">
-						<label className="select-none text-xs lg:text-sm font-medium text-gray-700" htmlFor="document_type">
+						<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="document_type">
 							Tipo de Documento
 						</label>
 
 						<div className="relative">
 							<select
-								className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all"
+								className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all"
 								id="document_type"
 								name="document_type"
 								defaultValue="CC"
@@ -71,12 +72,12 @@ export default function Login_Form() {
 
 					{/* Numero de Documento */}
 					<div className="flex flex-col gap-1">
-						<label className="select-none text-xs lg:text-sm font-medium text-gray-700" htmlFor="document_number">
+						<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="document_number">
 							Número de Documento
 						</label>
 
 						<input
-							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all"
+							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 							id="document_number"
 							name="document_number"
 							type="text"
@@ -89,7 +90,7 @@ export default function Login_Form() {
 					{/* Contraseña */}
 					<div className="flex flex-col gap-1">
 						<div className="flex justify-between items-center">
-							<label className="select-none text-xs lg:text-sm font-medium text-gray-700" htmlFor="password">
+							<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="password">
 								Contraseña
 							</label>
 
@@ -100,7 +101,7 @@ export default function Login_Form() {
 
 						<div className="relative">
 							<input
-								className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all"
+								className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 								id="password"
 								name="password"
 								type={showPassword ? "text" : "password"}
@@ -113,7 +114,7 @@ export default function Login_Form() {
 
 							{/* Mostrar Contraseña */}
 							<button
-								className="absolute right-3 cursor-pointer top-1/2 text-gray-500 hover:text-gray-700 transform -translate-y-1/2"
+								className="absolute right-3 cursor-pointer top-1/2 text-gray-500 hover:text-gray-700 transform -translate-y-1/2 focus:outline-none"
 								type="button"
 								onClick={() => setShowPassword(!showPassword)}
 							>
