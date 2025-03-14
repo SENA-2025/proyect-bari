@@ -158,17 +158,15 @@ export default function Login_Form() {
 					type="submit"
 					disabled={isPending}
 				>
-					<span className="select-none">
-						{isPending ? (
-							<div className="flex items-center justify-center gap-2 py-1">
-								<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.7s]"></div>
-								<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.3s]"></div>
-								<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.7s]"></div>
-							</div>
-						) : (
-							"Iniciar Sesión"
-						)}
-					</span>
+					{isPending ? (
+						<div className="flex items-center justify-center gap-2 py-1">
+							<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.7s]"></div>
+							<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.3s]"></div>
+							<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.7s]"></div>
+						</div>
+					) : (
+						<span className="select-none">Iniciar Sesión</span>
+					)}
 				</button>
 			</Form>
 
