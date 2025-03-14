@@ -27,6 +27,11 @@ export const metadata: Metadata = {
 // Configuración de la vista
 export const viewport: Viewport = {
 	themeColor: "#FFFFFF",
+	width: "device-width",
+	initialScale: 1,
+	maximumScale: 1,
+	userScalable: false,
+	interactiveWidget: "resizes-visual",
 };
 
 // Fuente(s)
