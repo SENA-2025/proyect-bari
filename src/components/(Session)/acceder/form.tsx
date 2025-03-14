@@ -125,6 +125,7 @@ export default function Login_Form() {
 
 							{/* Mostrar Contraseña */}
 							<button
+								aria-label={showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
 								className="absolute right-3 cursor-pointer top-1/2 text-gray-500 hover:text-gray-700 transform -translate-y-1/2 focus:outline-none"
 								type="button"
 								onClick={() => setShowPassword(!showPassword)}
