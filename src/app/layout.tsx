@@ -33,7 +33,10 @@ export const viewport: Viewport = {
 
 // Fuente(s)
 import { Poppins } from "next/font/google";
-const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] });
+const poppins = Poppins({
+	subsets: ["latin"],
+	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 // Layout
 export default function Root_Layout({ children }: Readonly<{ children: React.ReactNode }>) {

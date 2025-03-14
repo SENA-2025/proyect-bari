@@ -22,8 +22,17 @@ export default function Login_Page() {
 						<div className="flex flex-col items-center gap-8">
 							{/* Logo & Título */}
 							<div className="flex flex-col items-center gap-6">
-								<Image className="shadow-xs rounded-full select-none" src="/logo.webp" alt="Logo del SENA" width={100} height={100} priority />
-								<h1 className="font-bold text-gray-800 text-xl md:text-2xl lg:text-3xl xl:text-4xl select-none">Iniciar Sesión</h1>
+								<Image
+									className="shadow-xs rounded-full select-none"
+									src="/logo.webp"
+									alt="Logo del SENA"
+									width={100}
+									height={100}
+									priority
+								/>
+								<h1 className="font-bold text-gray-800 text-xl md:text-2xl lg:text-3xl xl:text-4xl select-none">
+									Iniciar Sesión
+								</h1>
 							</div>
 
 							{/* Formulario */}
@@ -32,7 +41,10 @@ export default function Login_Page() {
 							{/* Registro */}
 							<p className="text-xs lg:text-sm text-secondary-600 select-none">
 								¿No tienes una cuenta?{" "}
-								<Link href="/registrarse" className="text-tertiary-600 hover:text-primary-400 font-medium ease-in-out duration-300 transition-colors">
+								<Link
+									href="/registrarse"
+									className="text-tertiary-600 hover:text-primary-400 font-medium ease-in-out duration-300 transition-colors"
+								>
 									Regístrate aquí
 								</Link>
 							</p>

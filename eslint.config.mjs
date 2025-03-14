@@ -21,11 +21,22 @@ const compat = new FlatCompat({
 const eslintConfig = [
 	// Ignorar archivos y carpetas innecesarias
 	{
-		ignores: ["**/pnpm-lock.yaml", "**/node_modules/", "**/.next/", "**/eslint.config.mjs", "**/postcss.config.mjs"],
+		ignores: [
+			"**/pnpm-lock.yaml",
+			"**/node_modules/",
+			"**/.next/",
+			"**/eslint.config.mjs",
+			"**/postcss.config.mjs",
+		],
 	},
 
 	// Extensiones base de Next.js, TypeScript y Prettier
-	...compat.extends("next/core-web-vitals", "next/typescript", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"),
+	...compat.extends(
+		"next/core-web-vitals",
+		"next/typescript",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended"
+	),
 
 	// Configuración de plugins y parsers
 	{
@@ -80,7 +91,10 @@ const eslintConfig = [
 				},
 			],
 			"@typescript-eslint/no-explicit-any": "error",
-			"@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports", fixStyle: "separate-type-imports" }],
+			"@typescript-eslint/consistent-type-imports": [
+				"error",
+				{ prefer: "type-imports", fixStyle: "separate-type-imports" },
+			],
 
 			// ✅ Importación y orden
 			"simple-import-sort/imports": "error",
