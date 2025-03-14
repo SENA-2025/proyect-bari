@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 	devIndicators: false, // No mostrar indicadores de desarrollo
 	poweredByHeader: false,
 	experimental: {
-		optimizePackageImports: ["uuid", "zod"],
+		optimizePackageImports: ["uuid", "zod", "react-hot-toast"],
 	},
 	images: {
 		remotePatterns: [],
