@@ -82,7 +82,8 @@ export default function Login_Form() {
 							name="document_number"
 							type="text"
 							placeholder="Ingresa tu número de documento"
-							minLength={5}
+							minLength={3}
+							maxLength={20}
 							required
 						/>
 					</div>
@@ -107,8 +108,8 @@ export default function Login_Form() {
 								type={showPassword ? "text" : "password"}
 								placeholder="Ingresa tu contraseña"
 								autoComplete="current-password"
-								minLength={8}
-								maxLength={35}
+								minLength={10}
+								maxLength={38}
 								required
 							/>
 
