@@ -10,7 +10,7 @@ import type { ServiceType } from "@/services/(Session)/acceder/action";
 import { ServiceLogin } from "@/services/(Session)/acceder/action";
 
 // Tipos
-const initialFormState: ServiceType = { error: false, message: null };
+const initialFormState: ServiceType = { error: false };
 async function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
 	return await ServiceLogin(formData);
 }
@@ -37,7 +37,6 @@ export default function Login_Form() {
 			// Esperar 5 segundos para ocultar el mensaje
 			const timer = setTimeout(() => {
 				setShowError(false);
-				state.error = false;
 			}, 5000);
 
 			return () => clearTimeout(timer);
@@ -53,7 +52,10 @@ export default function Login_Form() {
 				<div className="flex flex-col gap-4">
 					{/* Tipo de Documento */}
 					<div className="flex flex-col gap-1">
-						<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="document_type">
+						<label
+							className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700"
+							htmlFor="document_type"
+						>
 							Tipo de Documento
 						</label>
 
@@ -74,13 +76,19 @@ export default function Login_Form() {
 							</select>
 
 							{/* Icono de Flecha */}
-							<ChevronDown className="absolute right-3 top-1/2 text-gray-500 transform -translate-y-1/2 pointer-events-none" size={20} />
+							<ChevronDown
+								className="absolute right-3 top-1/2 text-gray-500 transform -translate-y-1/2 pointer-events-none"
+								size={20}
+							/>
 						</div>
 					</div>
 
 					{/* Numero de Documento */}
 					<div className="flex flex-col gap-1">
-						<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="document_number">
+						<label
+							className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700"
+							htmlFor="document_number"
+						>
 							Número de Documento
 						</label>
 
@@ -101,11 +109,17 @@ export default function Login_Form() {
 					{/* Contraseña */}
 					<div className="flex flex-col gap-1">
 						<div className="flex justify-between items-center">
-							<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="password">
+							<label
+								className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700"
+								htmlFor="password"
+							>
 								Contraseña
 							</label>
 
-							<Link className="select-none text-xs lg:text-sm text-tertiary-600 hover:text-primary-400 transition-colors ease-in-out duration-300" href="/restablecer-clave">
+							<Link
+								className="select-none text-xs lg:text-sm text-tertiary-600 hover:text-primary-400 transition-colors ease-in-out duration-300"
+								href="/restablecer-clave"
+							>
 								¿Olvidaste tu contraseña?
 							</Link>
 						</div>
@@ -160,8 +174,8 @@ export default function Login_Form() {
 
 			{/* Mensaje de Error */}
 			{showError && state.message && (
-				<div className="fixed -bottom-4 -right-4 bg-red-500 px-4 py-2 rounded-md shadow-lg z-[9999] max-w-max">
-					<span className="text-white select-none">{state.message}</span>
+				<div className="fixed z-50">
+					<span className="text-black select-none">{state.message}</span>
 				</div>
 			)}
 		</div>
