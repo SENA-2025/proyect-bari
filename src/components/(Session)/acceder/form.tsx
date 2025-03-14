@@ -42,6 +42,8 @@ export default function Login_Form() {
 
 			return () => clearTimeout(timer);
 		}
+
+		return undefined;
 	}, [state.error]);
 
 	return (
