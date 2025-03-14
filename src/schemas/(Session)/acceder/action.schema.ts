@@ -12,7 +12,8 @@ export const actionSchema = z
 			.trim()
 			.nonempty("Número de documento requerido")
 			.min(3, "Debe contener al menos 3 caracteres")
-			.max(20, "No debe superar los 20 caracteres"),
+			.max(20, "No debe superar los 20 caracteres")
+			.regex(/^[0-9]+$/, "Solo se permiten números"),
 		password: z
 			.string()
 			.trim()
