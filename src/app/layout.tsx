@@ -1,6 +1,8 @@
 import "./globals.css";
 
+import { CircleX } from "lucide-react";
 import type { Metadata, Viewport } from "next";
+import { Toaster } from "react-hot-toast";
 
 // Metadata
 export const metadata: Metadata = {
@@ -46,6 +48,22 @@ export default function Root_Layout({ children }: Readonly<{ children: React.Rea
 				<main className="flex min-h-screen max-w-full">
 					<div className="w-full grow">{children}</div>
 				</main>
+
+				{/* Toast */}
+				<Toaster
+					position="bottom-right"
+					gutter={-8}
+					toastOptions={{
+						duration: 5000,
+						success: {},
+						loading: {},
+						error: {
+							icon: <CircleX className="text-red-500" size={20} />,
+							className:
+								"flex items-center gap-3 bg-white text-gray-800 border border-red-300 shadow-md rounded-lg px-4 py-3 text-sm lg:text-base font-medium select-none mr-4 mb-4",
+						},
+					}}
+				/>
 			</body>
 		</html>
 	);
