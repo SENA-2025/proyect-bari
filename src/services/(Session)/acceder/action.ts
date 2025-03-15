@@ -24,7 +24,7 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 	} catch (error) {
 		// Error de Validación
 		if (error instanceof ZodError) {
-			return { id: uuidv4(), error: true, message: "Datos inválidos." };
+			return { id: uuidv4(), error: true, message: "Credenciales inválidas." };
 		}
 
 		// Error Interno
