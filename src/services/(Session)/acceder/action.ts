@@ -17,6 +17,9 @@ export type ServiceType = {
 export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 	const data: ActionType = Object.fromEntries(formData.entries()) as ActionType;
 
+	// TODO: Agregar un rate limit para evitar ataques de fuerza bruta
+	// TODO: Agregar un captcha para evitar ataques de fuerza bruta
+
 	try {
 		actionSchema.parse(data);
 
