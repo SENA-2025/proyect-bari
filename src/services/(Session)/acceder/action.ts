@@ -1,24 +1,33 @@
 "use server";
 
+import { v4 as uuidv4 } from "uuid";
+import { ZodError } from "zod";
+
+import type { ActionType } from "@/schemas/(Session)/acceder/action.schema";
+import { actionSchema } from "@/schemas/(Session)/acceder/action.schema";
+
 // Tipos
 export type ServiceType = {
+	id?: string;
 	error: boolean;
-	message: string | null;
+	message?: string;
 };
 
 // Validación de Datos
 export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
-	// Validar: Datos Obligatorios
-	const keysRequired = ["document_type", "document_number", "password"];
-	if (keysRequired !== Array.from(formData.keys())) {
-		return { error: true, message: "Complete los campos" };
+	const data: ActionType = Object.fromEntries(formData.entries()) as ActionType;
+
+	try {
+		actionSchema.parse(data);
+
+		return { id: uuidv4(), error: false, message: "Datos válidos" };
+	} catch (error) {
+		// Error de Validación
+		if (error instanceof ZodError) {
+			return { id: uuidv4(), error: true, message: "Datos inválidos." };
+		}
+
+		// Error Interno
+		return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
 	}
-
-	console.log(formData);
-
-	// Enviar Datos
-	return {
-		error: true,
-		message: "¡Bienvenido!",
-	};
 }
