@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 // Componentes
-const Form = dynamic(() => import("@/components/(Session)/acceder/form"));
+const Form = dynamic(() => import("@/components/(Sesion)/acceder/form"));
 
 // Página
 export default function Login_Page() {

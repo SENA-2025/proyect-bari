@@ -3,8 +3,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
-import type { ActionType } from "@/schemas/(Session)/acceder/action.schema";
-import { actionSchema } from "@/schemas/(Session)/acceder/action.schema";
+import type { ActionType } from "@/schemas/(Sesion)/acceder/action.schema";
+import { actionSchema } from "@/schemas/(Sesion)/acceder/action.schema";
 
 // Tipos
 export type ServiceType = {

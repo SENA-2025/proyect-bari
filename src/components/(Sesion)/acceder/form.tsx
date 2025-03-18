@@ -7,8 +7,8 @@ import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 // Servicios
-import type { ServiceType } from "@/services/(Session)/acceder/action";
-import { ServiceLogin } from "@/services/(Session)/acceder/action";
+import type { ServiceType } from "@/services/(Sesion)/acceder/action";
+import { ServiceLogin } from "@/services/(Sesion)/acceder/action";
 
 // Tipos
 const initialFormState: ServiceType = { error: false };
