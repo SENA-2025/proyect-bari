@@ -1,0 +1,20 @@
+{
+	"recommendations": [
+		"usernamehw.errorlens",
+		"dsznajder.es7-react-js-snippets",
+		"eamodio.gitlens",
+		"sidthesloth.html5-boilerplate",
+		"ecmel.vscode-html-css",
+		"kisstkondoros.vscode-gutter-preview",
+		"wix.vscode-import-cost",
+		"VisualStudioExptTeam.vscodeintellicode",
+		"VisualStudioExptTeam.intellicode-api-usage-examples",
+		"Zignd.html-css-class-completion",
+		"esbenp.prettier-vscode",
+		"YoavBls.pretty-ts-errors",
+		"msjsdiag.vscode-react-native",
+		"bradlc.vscode-tailwindcss",
+		"Gruntfuggly.todo-tree",
+		"pflannery.vscode-versionlens"
+	]
+}
