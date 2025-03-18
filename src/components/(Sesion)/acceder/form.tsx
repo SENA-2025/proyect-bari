@@ -160,7 +160,7 @@ export default function Login_Form() {
 						<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.7s]"></div>
 					</div>
 				) : (
-					<span className="select-none">Iniciar Sesión</span>
+					<span className="select-none">Inicia sesión</span>
 				)}
 			</button>
 		</Form>

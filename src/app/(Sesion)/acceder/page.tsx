@@ -17,8 +17,11 @@ export default function Login_Page() {
 		<div className="bg-white size-full">
 			{/* Formulario */}
 			<div className="flex items-center justify-center size-full">
+				{/* Contenedor  */}
 				<div className="w-full m-4 flex justify-center">
+					{/* Tarjeta */}
 					<div className="w-full md:w-md backdrop-blur-sm shadow-lg p-8 rounded-xl bg-white/90">
+						{/* Contenido */}
 						<div className="flex flex-col items-center gap-8">
 							{/* Logo & Título */}
 							<div className="flex flex-col items-center gap-6">
@@ -45,7 +48,7 @@ export default function Login_Page() {
 									href="/registrarse"
 									className="text-tertiary-600 hover:text-primary-400 font-medium ease-in-out duration-300 transition-colors"
 								>
-									Regístrate aquí
+									Regístrate
 								</Link>
 							</p>
 						</div>
