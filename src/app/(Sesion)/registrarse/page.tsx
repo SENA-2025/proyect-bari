@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 // Componentes
+const Form = dynamic(() => import("@/components/(Sesion)/registrarse/form"));
 
 export default function Register_Page() {
 	return (
@@ -37,6 +38,7 @@ export default function Register_Page() {
 							</div>
 
 							{/* Formulario */}
+							<Form />
 
 							{/* Inicio de sesión */}
 							<p className="text-xs lg:text-sm text-secondary-600 select-none">
