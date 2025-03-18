@@ -25,7 +25,7 @@ export default function Login_Page() {
 								<Image
 									className="shadow-xs rounded-full select-none"
 									src="/logo.webp"
-									alt="Logo del SENA"
+									alt={"Logo del " + process.env.APP_WEB_TITLE}
 									width={100}
 									height={100}
 									priority
