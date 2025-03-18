@@ -42,7 +42,7 @@ export default function Login_Form() {
 	return (
 		<Form action={formAction} className="size-full flex flex-col gap-6">
 			{/* Entrada de Datos */}
-			<div className="flex flex-col gap-4">
+			<fieldset className="flex flex-col gap-4">
 				{/* Tipo de Documento */}
 				<div className="flex flex-col gap-1">
 					<label
@@ -145,7 +145,7 @@ export default function Login_Form() {
 						</button>
 					</div>
 				</div>
-			</div>
+			</fieldset>
 
 			{/* Boton de Acción */}
 			<button
