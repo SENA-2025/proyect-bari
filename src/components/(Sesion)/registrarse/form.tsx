@@ -178,11 +178,11 @@ export default function Register_Form() {
 						checked={userData.terms}
 						onChange={handleChange}
 						required
-						className="size-4 text-tertiary-600 border-gray-300 rounded focus:ring-primary-400 order-1"
+						className="size-4 text-tertiary-600 border-gray-300 rounded focus:ring-primary-400"
 					/>
 
 					{/* TODO: Agregar enlace de las TOS */}
-					<label htmlFor="terms" className="select-none text-xs md:text-sm lg:text-base text-gray-700 order-2">
+					<label htmlFor="terms" className="select-none text-xs md:text-sm lg:text-base text-gray-700">
 						Acepto los{" "}
 						<a
 							href=""
