@@ -49,7 +49,7 @@ export default function Root_Layout({ children }: Readonly<{ children: React.Rea
 					<div className="w-full grow">{children}</div>
 				</main>
 
-				{/* Toast */}
+				{/* Toaster */}
 				<Toaster
 					position="bottom-right"
 					gutter={-8}
