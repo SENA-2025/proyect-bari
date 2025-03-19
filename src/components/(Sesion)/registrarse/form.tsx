@@ -3,10 +3,17 @@
 import { ChevronDown, Eye, EyeOff, ExternalLink } from "lucide-react";
 import Form from "next/form";
 import { useActionState, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 // Servicios
+import type { ServiceType } from "@/services/(Sesion)/registrarse/action";
+import { ServiceRegister } from "@/services/(Sesion)/registrarse/action";
 
 // Tipos
+const initialFormState: ServiceType = { error: false };
+async function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
+	return await ServiceRegister(formData);
+}
 
 // Componente
 export default function Register_Form() {
@@ -21,6 +28,7 @@ export default function Register_Form() {
 	});
 
 	// -- Enviar Formulario
+	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
 
 	// -- Actualizar Formulario
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -41,9 +49,17 @@ export default function Register_Form() {
 	};
 
 	// -- Toast: Mensaje de Error
+	useEffect(() => {
+		if (state.error && state.message) {
+			toast.error(state.message);
+		}
+
+		return undefined;
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [state.id]);
 
 	return (
-		<Form action={""} className="size-full flex flex-col gap-6">
+		<Form action={formAction} className="size-full flex flex-col gap-6">
 			{/* Entrada de Datos */}
 			<fieldset className="flex flex-col gap-4">
 				{/* Tipo de Documento */}
@@ -200,10 +216,21 @@ export default function Register_Form() {
 			{/* Boton de Acción */}
 			<button
 				type="submit"
-				disabled={true}
-				className="w-full h-10 bg-tertiary-600 hover:bg-primary-400 text-white text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-400/50 shadow-md hover:shadow-lg cursor-pointer"
+				disabled={isPending}
+				className={
+					"w-full h-10 bg-tertiary-600 hover:bg-primary-400 text-white text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-400/50 shadow-md hover:shadow-lg" +
+					`${isPending ? " cursor-progress" : " cursor-pointer"}`
+				}
 			>
-				{/* Regístrate */}
+				{isPending ? (
+					<div className="flex items-center justify-center gap-2">
+						<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.7s]"></div>
+						<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.3s]"></div>
+						<div className="size-3 animate-bounce rounded-full bg-white [animation-delay:.7s]"></div>
+					</div>
+				) : (
+					<span className="select-none">Regístrate</span>
+				)}
 			</button>
 		</Form>
 	);
