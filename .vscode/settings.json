@@ -12,7 +12,7 @@
 	"prettier.jsxSingleQuote": false,
 	"prettier.bracketSpacing": true,
 	"prettier.endOfLine": "lf",
-	"prettier.printWidth": 120,
+	"prettier.printWidth": 150,
 	"prettier.bracketSameLine": false,
 	"prettier.insertPragma": false,
 	"prettier.quoteProps": "as-needed",

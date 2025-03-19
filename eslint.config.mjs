@@ -76,7 +76,7 @@ const eslintConfig = [
 					insertPragma: false,
 					quoteProps: "as-needed",
 					singleAttributePerLine: false,
-					printWidth: 120,
+					printWidth: 150,
 				},
 			],
 
