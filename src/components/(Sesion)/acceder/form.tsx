@@ -18,18 +18,35 @@ async function adapter(_state: ServiceType, formData: FormData): Promise<Service
 
 // Componente
 export default function Login_Form() {
-	// Datos
-	const [documentType, setDocumentType] = useState("CC");
-	const [documentNumber, setDocumentNumber] = useState("");
-	const [password, setPassword] = useState("");
+	const [userData, setUserData] = useState({
+		document_type: "CC",
+		document_number: "",
+		password: "",
+		showPassword: false,
+	});
 
-	// Estados
-	const [showPassword, setShowPassword] = useState(false);
-
-	// Enviar Formulario
+	// -- Enviar Formulario
 	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
 
-	// Mostrar Mensaje de Error
+	// -- Actualizar Formulario
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+		const { name, value } = e.target;
+
+		setUserData(prev => ({
+			...prev,
+			[name]: value,
+		}));
+	};
+
+	// -- Mostrar/Ocultar Contraseña
+	const toggleShowPassword = () => {
+		setUserData(prev => ({
+			...prev,
+			showPassword: !prev.showPassword,
+		}));
+	};
+
+	// -- Toast: Mensaje de Error
 	useEffect(() => {
 		if (state.error && state.message) {
 			toast.error(state.message);
@@ -54,8 +71,8 @@ export default function Login_Form() {
 
 					<div className="relative">
 						<select
-							value={documentType}
-							onChange={e => setDocumentType(e.target.value)}
+							value={userData.document_type}
+							onChange={handleChange}
 							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all"
 							id="document_type"
 							name="document_type"
@@ -86,8 +103,8 @@ export default function Login_Form() {
 					</label>
 
 					<input
-						value={documentNumber}
-						onChange={e => setDocumentNumber(e.target.value)}
+						value={userData.document_number}
+						onChange={handleChange}
 						className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 						id="document_number"
 						name="document_number"
@@ -121,12 +138,12 @@ export default function Login_Form() {
 
 					<div className="relative">
 						<input
-							value={password}
-							onChange={e => setPassword(e.target.value)}
+							value={userData.password}
+							onChange={handleChange}
 							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 							id="password"
 							name="password"
-							type={showPassword ? "text" : "password"}
+							type={userData.showPassword ? "text" : "password"}
 							placeholder="Ingresa tu contraseña"
 							autoComplete="current-password"
 							minLength={10}
@@ -136,12 +153,12 @@ export default function Login_Form() {
 
 						{/* Mostrar Contraseña */}
 						<button
-							aria-label={showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
+							aria-label={userData.showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
 							className="absolute right-3 cursor-pointer top-1/2 text-gray-500 hover:text-gray-700 transform -translate-y-1/2 focus:outline-none"
 							type="button"
-							onClick={() => setShowPassword(!showPassword)}
+							onClick={toggleShowPassword}
 						>
-							{showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+							{userData.showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
 						</button>
 					</div>
 				</div>
