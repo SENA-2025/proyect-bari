@@ -156,7 +156,10 @@ export default function Login_Form() {
 			<button
 				type="submit"
 				disabled={isPending}
-				className="w-full h-10 bg-tertiary-600 hover:bg-primary-400 text-white text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-400/50 shadow-md hover:shadow-lg cursor-pointer"
+				className={
+					"w-full h-10 bg-tertiary-600 hover:bg-primary-400 text-white text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-400/50 shadow-md hover:shadow-lg" +
+					`${isPending ? " cursor-progress" : " cursor-pointer"}`
+				}
 			>
 				{isPending ? (
 					<div className="flex items-center justify-center gap-2">
