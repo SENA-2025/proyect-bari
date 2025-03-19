@@ -32,9 +32,7 @@ export default function Register_Page() {
 									height={100}
 									priority
 								/>
-								<h1 className="font-bold text-gray-800 text-xl md:text-2xl lg:text-3xl xl:text-4xl select-none">
-									Registro
-								</h1>
+								<h1 className="font-bold text-gray-800 text-xl md:text-2xl lg:text-3xl xl:text-4xl select-none">Registro</h1>
 							</div>
 
 							{/* Formulario */}

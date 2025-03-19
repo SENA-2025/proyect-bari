@@ -62,10 +62,7 @@ export default function Login_Form() {
 			<fieldset className="flex flex-col gap-4">
 				{/* Tipo de Documento */}
 				<div className="flex flex-col gap-1">
-					<label
-						className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700"
-						htmlFor="document_type"
-					>
+					<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="document_type">
 						Tipo de Documento
 					</label>
 
@@ -86,19 +83,13 @@ export default function Login_Form() {
 						</select>
 
 						{/* Icono de Flecha */}
-						<ChevronDown
-							className="absolute right-3 top-1/2 text-gray-500 transform -translate-y-1/2 pointer-events-none"
-							size={20}
-						/>
+						<ChevronDown className="absolute right-3 top-1/2 text-gray-500 transform -translate-y-1/2 pointer-events-none" size={20} />
 					</div>
 				</div>
 
 				{/* Numero de Documento */}
 				<div className="flex flex-col gap-1">
-					<label
-						className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700"
-						htmlFor="document_number"
-					>
+					<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="document_number">
 						Número de Documento
 					</label>
 
@@ -121,10 +112,7 @@ export default function Login_Form() {
 				{/* Contraseña */}
 				<div className="flex flex-col gap-1">
 					<div className="flex justify-between items-center">
-						<label
-							className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700"
-							htmlFor="password"
-						>
+						<label className="select-none text-xs md:text-sm lg:text-base font-medium text-gray-700" htmlFor="password">
 							Contraseña
 						</label>
 
