@@ -68,12 +68,12 @@ export default function Login_Form() {
 
 					<div className="relative">
 						<select
-							value={userData.document_type}
-							onChange={handleChange}
-							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all"
 							id="document_type"
 							name="document_type"
+							value={userData.document_type}
+							onChange={handleChange}
 							required
+							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all"
 						>
 							<option value="CC">Cédula de Ciudadanía</option>
 							<option value="TI">Tarjeta de Identidad</option>
@@ -94,18 +94,18 @@ export default function Login_Form() {
 					</label>
 
 					<input
-						value={userData.document_number}
-						onChange={handleChange}
-						className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 						id="document_number"
 						name="document_number"
 						type="text"
 						inputMode="numeric"
-						pattern="[0-9]+"
-						placeholder="Ingresa tu número de documento"
+						value={userData.document_number}
+						onChange={handleChange}
+						required
 						minLength={3}
 						maxLength={20}
-						required
+						pattern="[0-9]+"
+						placeholder="Ingresa tu número de documento"
+						className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 					/>
 				</div>
 
@@ -126,25 +126,25 @@ export default function Login_Form() {
 
 					<div className="relative">
 						<input
-							value={userData.password}
-							onChange={handleChange}
-							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 							id="password"
 							name="password"
 							type={userData.showPassword ? "text" : "password"}
-							placeholder="Ingresa tu contraseña"
+							value={userData.password}
+							onChange={handleChange}
 							autoComplete="current-password"
+							required
 							minLength={10}
 							maxLength={38}
-							required
+							placeholder="Ingresa tu contraseña"
+							className="w-full appearance-none px-3 py-2 border border-gray-300 rounded-lg bg-white text-xs md:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent ease-in-out duration-300 transition-all placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-base placeholder:text-gray-400"
 						/>
 
 						{/* Mostrar Contraseña */}
 						<button
-							aria-label={userData.showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
-							className="absolute right-3 cursor-pointer top-1/2 text-gray-500 hover:text-gray-700 transform -translate-y-1/2 focus:outline-none"
 							type="button"
 							onClick={toggleShowPassword}
+							aria-label={userData.showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
+							className="absolute right-3 cursor-pointer top-1/2 text-gray-500 hover:text-gray-700 transform -translate-y-1/2 focus:outline-none"
 						>
 							{userData.showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
 						</button>
@@ -154,9 +154,9 @@ export default function Login_Form() {
 
 			{/* Boton de Acción */}
 			<button
-				className="w-full h-10 bg-tertiary-600 hover:bg-primary-400 text-white text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-400/50 shadow-md hover:shadow-lg cursor-pointer"
 				type="submit"
 				disabled={isPending}
+				className="w-full h-10 bg-tertiary-600 hover:bg-primary-400 text-white text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-400/50 shadow-md hover:shadow-lg cursor-pointer"
 			>
 				{isPending ? (
 					<div className="flex items-center justify-center gap-2">
