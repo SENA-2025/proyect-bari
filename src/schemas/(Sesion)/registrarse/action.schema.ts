@@ -12,7 +12,7 @@ export const actionSchema = z
 			.min(3, "El número de documento debe contener al menos 3 caracteres.")
 			.max(20, "El número de documento no debe superar los 20 caracteres.")
 			.regex(/^[0-9]+$/, "El número de documento solo puede contener números."),
-		email: z.string().trim().email("Por favor, ingresa un correo electrónico válido."),
+		email: z.string().trim().nonempty("El correo electrónico es obligatorio.").email("Por favor, ingresa un correo electrónico válido."),
 		password: z
 			.string()
 			.trim()
@@ -33,9 +33,13 @@ export const actionSchema = z
 			.regex(/[a-z]/, "La contraseña de confirmación debe contener al menos una letra minúscula.")
 			.regex(/[0-9]/, "La contraseña de confirmación debe contener al menos un número.")
 			.regex(/[\W_]/, "La contraseña de confirmación debe contener al menos un símbolo especial."),
-		terms: z.literal(true, {
-			errorMap: () => ({ message: "Debes aceptar los términos y condiciones para continuar." }),
-		}),
+		terms: z
+			.string()
+			.trim()
+			.transform(value => value === "on")
+			.refine(value => value === true, {
+				message: "Debes aceptar los términos y condiciones.",
+			}),
 	})
 	.refine(data => data.password === data.confirm_password, {
 		message: "Las contraseñas no coinciden. Asegúrate de que la contraseña y la confirmación sean idénticas.",
