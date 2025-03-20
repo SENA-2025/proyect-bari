@@ -23,24 +23,12 @@ export const actionSchema = z
 			.regex(/[a-z]/, "La contraseña debe contener al menos una letra minúscula.")
 			.regex(/[0-9]/, "La contraseña debe contener al menos un número.")
 			.regex(/[\W_]/, "La contraseña debe contener al menos un símbolo especial."),
-		confirm_password: z
-			.string()
-			.trim()
-			.nonempty("Por favor, confirma tu contraseña.")
-			.min(10, "La contraseña de confirmación debe contener al menos 10 caracteres.")
-			.max(38, "La contraseña de confirmación no debe superar los 38 caracteres.")
-			.regex(/[A-Z]/, "La contraseña de confirmación debe contener al menos una letra mayúscula.")
-			.regex(/[a-z]/, "La contraseña de confirmación debe contener al menos una letra minúscula.")
-			.regex(/[0-9]/, "La contraseña de confirmación debe contener al menos un número.")
-			.regex(/[\W_]/, "La contraseña de confirmación debe contener al menos un símbolo especial."),
-		terms: z
-			.string()
-			.trim()
-			.transform(value => value === "on")
-			.refine(value => value === true, {
-				message: "Debes aceptar los términos y condiciones.",
-			}),
+		confirm_password: z.string().trim().nonempty("Por favor, confirma tu contraseña."),
+		terms: z.literal("on", {
+			errorMap: () => ({ message: "Debes aceptar los términos y condiciones." }),
+		}),
 	})
+	.strict("")
 	.refine(data => data.password === data.confirm_password, {
 		message: "Las contraseñas no coinciden. Asegúrate de que la contraseña y la confirmación sean idénticas.",
 		path: ["confirm_password"],
