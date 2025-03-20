@@ -28,10 +28,8 @@ export const actionSchema = z
 			errorMap: () => ({ message: "Debes aceptar los términos y condiciones." }),
 		}),
 	})
-	.strict("")
+	.strict("Por favor, completa todos los campos obligatorios.")
 	.refine(data => data.password === data.confirm_password, {
 		message: "Las contraseñas no coinciden. Asegúrate de que la contraseña y la confirmación sean idénticas.",
 		path: ["confirm_password"],
 	});
-
-export type ActionType = z.infer<typeof actionSchema>;
