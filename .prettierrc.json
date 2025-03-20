@@ -14,5 +14,6 @@
 	"quoteProps": "as-needed",
 	"singleAttributePerLine": false,
 	"plugins": ["prettier-plugin-tailwindcss"],
-	"tailwindPreserveWhitespace": false
+	"tailwindPreserveWhitespace": false,
+	"tailwindPreserveDuplicates": false
 }
