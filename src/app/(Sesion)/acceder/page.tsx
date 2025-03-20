@@ -14,37 +14,37 @@ const Form = dynamic(() => import("@/components/(Sesion)/acceder/form"));
 // Página
 export default function Login_Page() {
 	return (
-		<div className="bg-white size-full">
+		<div className="size-full bg-white">
 			{/* Formulario */}
-			<div className="flex items-center justify-center size-full">
+			<div className="flex size-full items-center justify-center">
 				{/* Contenedor  */}
-				<div className="w-full m-4 flex justify-center">
+				<div className="m-4 flex w-full justify-center">
 					{/* Tarjeta */}
-					<div className="w-full md:w-md backdrop-blur-sm shadow-lg p-8 rounded-xl bg-white/90">
+					<div className="w-full rounded-xl bg-white/90 p-8 shadow-lg backdrop-blur-sm md:w-md">
 						{/* Contenido */}
 						<div className="flex flex-col items-center gap-8">
 							{/* Logo & Título */}
 							<div className="flex flex-col items-center gap-6">
 								<Image
-									className="shadow-xs rounded-full select-none"
+									className="rounded-full shadow-xs select-none"
 									src="/logo.webp"
 									alt={"Logo del " + process.env.APP_WEB_TITLE}
 									width={100}
 									height={100}
 									priority
 								/>
-								<h1 className="font-bold text-gray-800 text-xl md:text-2xl lg:text-3xl xl:text-4xl select-none">Iniciar Sesión</h1>
+								<h1 className="text-xl font-bold text-gray-800 select-none md:text-2xl lg:text-3xl xl:text-4xl">Iniciar Sesión</h1>
 							</div>
 
 							{/* Formulario */}
 							<Form />
 
 							{/* Registro */}
-							<p className="text-xs lg:text-sm text-secondary-600 select-none">
+							<p className="text-secondary-600 text-xs select-none lg:text-sm">
 								¿No tienes una cuenta?{" "}
 								<Link
 									href="/registrarse"
-									className="text-tertiary-600 hover:text-primary-400 font-medium ease-in-out duration-300 transition-colors"
+									className="text-tertiary-600 hover:text-primary-400 font-medium transition-colors duration-300 ease-in-out"
 								>
 									Regístrate
 								</Link>
