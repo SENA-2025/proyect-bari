@@ -12,5 +12,6 @@
 	"bracketSameLine": false,
 	"insertPragma": false,
 	"quoteProps": "as-needed",
-	"singleAttributePerLine": false
+	"singleAttributePerLine": false,
+	"plugins": ["prettier-plugin-tailwindcss"]
 }
