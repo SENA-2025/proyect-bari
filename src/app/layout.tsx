@@ -58,9 +58,9 @@ export default function Root_Layout({ children }: Readonly<{ children: React.Rea
 						success: {},
 						loading: {},
 						error: {
-							icon: <CircleX className="text-red-500" size={20} />,
+							icon: <CircleX className="size-5 shrink-0 text-red-500" />,
 							className:
-								"flex items-center gap-3 bg-white text-gray-800 border border-red-300 shadow-md rounded-lg px-4 py-3 text-sm lg:text-base font-medium select-none mr-4 mb-4",
+								"z-50 flex items-center bg-white text-gray-800 border border-red-300 shadow-md rounded-lg px-4 py-3 text-xs lg:text-sm font-medium select-none mx-2 lg:mx-4 mb-2 lg:mb-4",
 						},
 					}}
 				/>
