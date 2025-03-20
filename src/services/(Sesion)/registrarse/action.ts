@@ -21,6 +21,7 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 	// TODO: Agregar un captcha para evitar ataques de fuerza bruta
 
 	try {
+		const data = actionSchema.parse(Object.fromEntries(formData.entries()));
 		actionSchema.parse(data);
 
 		return { id: uuidv4(), error: false, message: "Datos válidos" };
