@@ -60,7 +60,7 @@ export default function Root_Layout({ children }: Readonly<{ children: React.Rea
 						error: {
 							icon: <CircleX className="size-5 shrink-0 text-red-500" />,
 							className:
-								"z-50 flex items-center bg-white text-gray-800 border border-red-300 shadow-md rounded-lg px-4 py-3 text-xs lg:text-sm font-medium select-none mx-2 lg:mx-4 mb-2 lg:mb-4",
+								"z-50 flex items-center gap-2 bg-white text-gray-800 border border-red-300 shadow-md rounded-lg px-4 py-3 text-xs lg:text-sm xl:text-base font-medium select-none mx-2 lg:mx-4 mb-4",
 						},
 					}}
 				/>
