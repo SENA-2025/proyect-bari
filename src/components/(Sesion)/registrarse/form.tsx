@@ -201,7 +201,7 @@ export default function Register_Form() {
 					<label htmlFor="terms" className="text-xs text-gray-700 select-none md:text-sm lg:text-base">
 						Acepto los{" "}
 						<a
-							href=""
+							href="/"
 							target="_blank"
 							rel="noopener"
 							className="text-tertiary-600 hover:text-primary-400 inline-flex items-center gap-1 font-medium transition-colors duration-300 ease-in-out"
