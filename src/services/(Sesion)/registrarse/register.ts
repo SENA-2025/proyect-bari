@@ -3,7 +3,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
-import { actionSchema } from "@/schemas/(Sesion)/registrarse/action.schema";
+import registerSchema from "@/schemas/(Sesion)/registrarse/register.schema";
 
 // Tipos
 export type ServiceType = {
@@ -18,7 +18,7 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 	// TODO: Agregar un captcha para evitar ataques de fuerza bruta
 
 	try {
-		const data = actionSchema.parse(Object.fromEntries(formData.entries()));
+		const data = registerSchema.parse(Object.fromEntries(formData.entries()));
 		console.log(data);
 
 		return { id: uuidv4(), error: false, message: "Datos válidos" };
