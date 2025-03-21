@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const actionSchema = z
+const actionSchema = z
 	.object({
 		document_type: z.enum(["CC", "TI", "CE", "PEP", "PPT"], {
 			message: "Tipo de documento inválido.",
@@ -33,3 +33,5 @@ export const actionSchema = z
 		message: "Las contraseñas no coinciden.",
 		path: ["confirm_password"],
 	});
+
+export default actionSchema;
