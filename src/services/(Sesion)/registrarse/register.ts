@@ -25,8 +25,7 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 	} catch (error) {
 		// Error de Validación
 		if (error instanceof ZodError) {
-			const errorMessage = error.issues.shift()?.message || "Datos inválidos";
-			return { id: uuidv4(), error: true, message: errorMessage };
+			return { id: uuidv4(), error: true, message: error.issues.shift()?.message || "Datos inválidos." };
 		}
 
 		// Error Interno
