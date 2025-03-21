@@ -68,24 +68,15 @@ const eslintConfig = [
 			"@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports", fixStyle: "separate-type-imports" }],
 
 			// ✅ React (buenas prácticas y errores)
-			"react/prop-types": "off", // No es necesario con TypeScript
+			"react/prop-types": "off",
 			"react/jsx-filename-extension": ["warn", { extensions: [".jsx", ".tsx"] }],
 			"react-hooks/rules-of-hooks": "error",
 			"react-hooks/exhaustive-deps": "warn",
 			"react/react-in-jsx-scope": "off", // ✅ React 17+ ya no necesita importar `React`
 
-			// ✅ Importación y orden
-			"simple-import-sort/imports": "error",
-			"simple-import-sort/exports": "error",
-			"import/no-unresolved": "error",
-			"import/order": [
-				"error",
-				{
-					groups: [["builtin", "external"], ["internal"], ["parent", "sibling", "index"]],
-					"newlines-between": "always",
-					alphabetize: { order: "asc", caseInsensitive: true },
-				},
-			],
+			// ✅ Ordenación automática de imports y exports
+			"simple-import-sort/imports": "error", // 👈 Ordena automáticamente las importaciones
+			"simple-import-sort/exports": "error", // 👈 Ordena automáticamente las exportaciones
 
 			// ✅ Promesas (buenas prácticas)
 			"promise/always-return": "off",
@@ -105,12 +96,12 @@ const eslintConfig = [
 			"unused-imports/no-unused-vars": ["warn", { vars: "all", args: "after-used", ignoreRestSiblings: true }],
 
 			// ✅ Desactivar reglas conflictivas o innecesarias
-			"no-param-reassign": "off",
-			"consistent-return": "off",
-			"no-shadow": "off",
-			"@typescript-eslint/no-shadow": "off",
-			"@typescript-eslint/no-use-before-define": "off",
-			"import/no-extraneous-dependencies": "off",
+			"no-param-reassign": "error", // ✅ Mejor activarla para evitar mutaciones directas
+			"consistent-return": "off", // ❌ TypeScript ya maneja esto
+			"no-shadow": "off", // ❌ TypeScript ya maneja esto
+			"@typescript-eslint/no-shadow": "off", // ❌ TypeScript ya maneja esto
+			"@typescript-eslint/no-use-before-define": "off", // ❌ TypeScript ya maneja esto
+			"import/no-extraneous-dependencies": "error", // ✅ Mejor activarla para evitar dependencias no declaradas
 		},
 	},
 
