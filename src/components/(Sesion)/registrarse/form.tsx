@@ -6,13 +6,13 @@ import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 // Servicios
-import type { ServiceType } from "@/services/(Sesion)/registrarse/action";
-import { ServiceRegister } from "@/services/(Sesion)/registrarse/action";
+import type { ServiceType } from "@/services/(Sesion)/registrarse/register";
+import { ServiceRegister } from "@/services/(Sesion)/registrarse/register";
 
 // Tipos
 const initialFormState: ServiceType = { error: false };
-async function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
-	return await ServiceRegister(formData);
+function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
+	return ServiceRegister(formData);
 }
 
 // Componente
