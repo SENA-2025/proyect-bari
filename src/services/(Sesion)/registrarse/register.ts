@@ -19,8 +19,10 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 	// TODO: Agregar un captcha para evitar ataques de fuerza bruta
 
 	try {
+		// Validar Datos
 		const data = registerSchema.parse(Object.fromEntries(formData.entries()));
 
+		// Enviar Datos
 		const { statusCode } = await request(process.env.API_AUTH_URL + "/auth/register", {
 			method: "POST",
 			headersTimeout: 1 * 60 * 1_000,
@@ -33,12 +35,19 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 			body: JSON.stringify(data),
 		});
 
+		// Validar Respuesta
 		if (statusCode === 200) {
 			return { id: uuidv4(), error: false, message: "Registro exitoso." };
 		} else if (statusCode === 409) {
 			return { id: uuidv4(), error: false, message: "El registro ya existe." };
 		}
 
+		// Error Interno
+		if (statusCode >= 500) {
+			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+		}
+
+		// Otros Errores
 		return { id: uuidv4(), error: true, message: "Datos inválidos." };
 	} catch (error) {
 		// Error de Validación
