@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import { CircleX } from "lucide-react";
+import { CircleX, CircleCheck } from "lucide-react";
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "react-hot-toast";
 
@@ -55,7 +55,11 @@ export default function Root_Layout({ children }: Readonly<{ children: React.Rea
 					gutter={-8}
 					toastOptions={{
 						duration: 5000,
-						success: {},
+						success: {
+							icon: <CircleCheck className="size-5 shrink-0 text-green-500" />,
+							className:
+								"z-50 flex items-center gap-2 bg-white text-gray-800 border border-green-300 shadow-md rounded-lg px-4 py-3 text-xs lg:text-sm xl:text-base font-medium select-none mx-2 lg:mx-4 mb-4",
+						},
 						loading: {},
 						error: {
 							icon: <CircleX className="size-5 shrink-0 text-red-500" />,
