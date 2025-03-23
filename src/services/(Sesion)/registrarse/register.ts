@@ -23,9 +23,12 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 
 		const { statusCode } = await request(process.env.API_AUTH_URL + "/auth/register", {
 			method: "POST",
+			headersTimeout: 1 * 60 * 1_000,
 			headers: {
 				Connection: "keep-alive",
 				Authorization: "Bearer " + process.env.API_AUTH_TOKEN,
+				"Content-Type": "application/json",
+				"User-Agent": "NextJS - Register.ts (Node.js " + process.version + ")",
 			},
 			body: JSON.stringify(data),
 		});
