@@ -2,6 +2,7 @@
 
 import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
+import { request } from "undici";
 
 import registerSchema from "@/schemas/(Sesion)/registrarse/register.schema";
 
@@ -19,9 +20,21 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 
 	try {
 		const data = registerSchema.parse(Object.fromEntries(formData.entries()));
-		console.log(data);
 
-		return { id: uuidv4(), error: false, message: "Datos válidos" };
+		const { statusCode } = await request(process.env.API_AUTH_URL + "/auth/register", {
+			method: "POST",
+			headers: {
+				Connection: "keep-alive",
+				Authorization: "Bearer " + process.env.API_AUTH_TOKEN,
+			},
+			body: JSON.stringify(data),
+		});
+
+		if (statusCode === 200) {
+			return { id: uuidv4(), error: false, message: "Registro exitoso." };
+		}
+
+		return { id: uuidv4(), error: true, message: "Datos inválidos." };
 	} catch (error) {
 		// Error de Validación
 		if (error instanceof ZodError) {
