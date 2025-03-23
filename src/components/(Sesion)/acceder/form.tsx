@@ -12,8 +12,8 @@ import { ServiceLogin } from "@/services/(Sesion)/acceder/action";
 
 // Tipos
 const initialFormState: ServiceType = { error: false };
-async function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
-	return await ServiceLogin(formData);
+function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
+	return ServiceLogin(formData);
 }
 
 // Componente
