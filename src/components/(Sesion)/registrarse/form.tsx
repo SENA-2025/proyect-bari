@@ -54,6 +54,20 @@ export default function Register_Form() {
 			toast.error(state.message);
 		}
 
+		if (!state.error && state.message) {
+			toast.success(state.message);
+
+			setUserData({
+				document_type: "CC",
+				document_number: "",
+				email: "",
+				password: "",
+				confirm_password: "",
+				terms: false,
+				showPassword: false,
+			});
+		}
+
 		return undefined;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.id]);
