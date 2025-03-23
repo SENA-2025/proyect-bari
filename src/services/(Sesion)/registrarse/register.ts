@@ -32,6 +32,8 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 
 		if (statusCode === 200) {
 			return { id: uuidv4(), error: false, message: "Registro exitoso." };
+		} else if (statusCode === 409) {
+			return { id: uuidv4(), error: false, message: "El registro ya existe." };
 		}
 
 		return { id: uuidv4(), error: true, message: "Datos inválidos." };
