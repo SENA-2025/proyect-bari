@@ -50,7 +50,7 @@ export default function Register_Form() {
 		}));
 	};
 
-	// -- Toast: Mensaje de Error
+	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
 		if (state.error && state.message) {
 			toast.error(state.message);
