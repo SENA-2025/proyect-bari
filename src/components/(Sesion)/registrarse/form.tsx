@@ -69,9 +69,11 @@ export default function Register_Form() {
 				showPassword: false,
 			});
 
-			setTimeout(() => {
+			const timeout = setTimeout(() => {
 				router.push("/acceder");
 			}, 3000);
+
+			return () => clearTimeout(timeout);
 		}
 
 		return undefined;
