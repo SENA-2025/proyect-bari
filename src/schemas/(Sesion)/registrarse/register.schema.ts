@@ -12,7 +12,13 @@ const actionSchema = z
 			.min(3, "El número debe tener al menos 3 caracteres.")
 			.max(20, "El número debe tener máximo 20 caracteres.")
 			.regex(/^[0-9]+$/, "El número solo puede contener números."),
-		email: z.string().trim().nonempty("Correo requerido.").email("Correo inválido."),
+		email: z
+			.string()
+			.trim()
+			.nonempty("Correo requerido.")
+			.min(6, "El correo debe tener al menos 6 caracteres.")
+			.max(254, "El correo debe tener máximo 254 caracteres.")
+			.email("Correo inválido."),
 		password: z
 			.string()
 			.trim()
