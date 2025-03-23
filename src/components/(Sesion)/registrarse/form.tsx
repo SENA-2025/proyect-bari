@@ -3,6 +3,7 @@
 import { ChevronDown, ExternalLink, Eye, EyeOff } from "lucide-react";
 import Form from "next/form";
 import { useActionState, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 // Servicios
@@ -17,6 +18,7 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 
 // Componente
 export default function Register_Form() {
+	const router = useRouter();
 	const [userData, setUserData] = useState({
 		document_type: "CC",
 		document_number: "",
@@ -55,7 +57,7 @@ export default function Register_Form() {
 		}
 
 		if (!state.error && state.message) {
-			toast.success(state.message);
+			toast.success(state.message, {});
 
 			setUserData({
 				document_type: "CC",
@@ -66,6 +68,10 @@ export default function Register_Form() {
 				terms: false,
 				showPassword: false,
 			});
+
+			setTimeout(() => {
+				router.push("/acceder");
+			}, 3000);
 		}
 
 		return undefined;
