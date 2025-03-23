@@ -57,7 +57,7 @@ export default function Register_Form() {
 		}
 
 		if (!state.error && state.message) {
-			toast.success(state.message, {});
+			toast.success(state.message);
 
 			setUserData({
 				document_type: "CC",
