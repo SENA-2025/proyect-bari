@@ -36,7 +36,7 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 		});
 
 		// Validar Respuesta
-		if (statusCode === 200) {
+		if (statusCode === 201) {
 			return { id: uuidv4(), error: false, message: "Registro exitoso." };
 		} else if (statusCode === 409) {
 			return { id: uuidv4(), error: false, message: "El registro ya existe." };
