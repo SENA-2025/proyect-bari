@@ -145,6 +145,7 @@ export default function Login_Form() {
 							onClick={toggleShowPassword}
 							aria-label={userData.showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
 							className="absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-gray-500 hover:text-gray-700 focus:outline-none"
+							tabIndex={-1}
 						>
 							{userData.showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
 						</button>
