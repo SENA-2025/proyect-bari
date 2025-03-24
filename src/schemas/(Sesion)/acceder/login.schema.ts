@@ -3,7 +3,7 @@ import { z } from "zod";
 const actionSchema = z
 	.object({
 		document_type: z.enum(["CC", "TI", "CE", "PEP", "PPT"], {
-			message: "Tipo de documento inválido",
+			message: "Tipo de documento inválido.",
 		}),
 		document_number: z
 			.string()
