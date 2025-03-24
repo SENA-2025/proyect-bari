@@ -1,9 +1,9 @@
 "use client";
 
-import { ChevronDown, ExternalLink, Eye, EyeOff } from "lucide-react";
+import { ChevronDown, ExternalLink, Eye, EyeOff, TriangleAlert } from "lucide-react";
 import Form from "next/form";
-import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 // Servicios
@@ -57,8 +57,7 @@ export default function Register_Form() {
 		}
 
 		if (!state.error && state.message) {
-			toast.success(state.message);
-
+			// Limpiar Formulario
 			setUserData({
 				document_type: "CC",
 				document_number: "",
@@ -69,6 +68,18 @@ export default function Register_Form() {
 				showPassword: false,
 			});
 
+			if (state.message === "Registro exitoso.") {
+				toast.success(state.message);
+			} else {
+				toast.success(state.message, {
+					duration: 2000,
+					icon: <TriangleAlert className="size-5 shrink-0 text-orange-500" />,
+					className:
+						"z-50 flex items-center gap-2 bg-white text-gray-800 border border-orange-300 shadow-md rounded-lg px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm xl:text-base font-medium select-none mx-2 lg:mx-4 mb-4",
+				});
+			}
+
+			// Redirigir después de 3 segundos
 			const timeout = setTimeout(() => {
 				if (state.message === "Registro exitoso.") {
 					router.push("/verificar-correo");
