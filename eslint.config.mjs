@@ -39,12 +39,9 @@ const eslintConfig = [
 	// ✅ Configuración de plugins y parsers
 	{
 		plugins: {
-			react: react,
 			"react-hooks": reactHooks,
-			"jsx-a11y": jsxA11y,
 			"simple-import-sort": simpleImportSort,
 			"unused-imports": unusedImports,
-			import: importPlugin,
 			promise: promise,
 		},
 
