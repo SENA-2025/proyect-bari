@@ -1,9 +1,8 @@
 "use client";
 
-import { ChevronDown, Eye, EyeOff, TriangleAlert } from "lucide-react";
+import { ChevronDown, Eye, EyeOff } from "lucide-react";
 import Form from "next/form";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -19,7 +18,6 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 
 // Componente
 export default function Login_Form() {
-	const router = useRouter();
 	const [userData, setUserData] = useState({
 		document_type: "CC",
 		document_number: "",
@@ -64,25 +62,7 @@ export default function Login_Form() {
 			});
 
 			// Mostrar Mensaje
-			if (state.message === "Tu cuenta requiere verificación.") {
-				toast.success(state.message, {
-					duration: 2000,
-					icon: <TriangleAlert className="size-5 shrink-0 text-orange-500" />,
-					className:
-						"z-50 flex items-center gap-2 bg-white text-gray-800 border border-orange-300 shadow-md rounded-lg px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm xl:text-base font-medium select-none mx-2 lg:mx-4 mb-4",
-				});
-			} else {
-				toast.success(state.message);
-			}
-
-			// Redirigir después de 3 segundos
-			const timeout = setTimeout(() => {
-				if (state.message === "Tu cuenta requiere verificación.") {
-					router.push("/verificar-correo");
-				}
-			}, 3000);
-
-			return () => clearTimeout(timeout);
+			toast.success(state.message);
 		}
 
 		return undefined;
