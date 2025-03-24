@@ -1,5 +1,8 @@
 "use server";
 
+import net from "node:net";
+
+import { headers } from "next/headers";
 import { request } from "undici";
 import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
@@ -22,6 +25,16 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 		// Validar Datos
 		const data = loginSchema.parse(Object.fromEntries(formData.entries()));
 
+		// Obtener Headers
+		const requestHeaders = await headers();
+		const userAgent = requestHeaders.get("user-agent");
+		const userIp = requestHeaders.get("cf-connecting-ip") || requestHeaders.get("x-forwarded-for") || requestHeaders.get("x-real-ip");
+
+		// Validar IP
+		if (!userIp || !net.isIP(userIp)) {
+			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+		}
+
 		// Enviar Datos
 		const { statusCode, body } = await request(process.env.API_AUTH_URL + "/auth/login", {
 			method: "POST",
@@ -32,7 +45,11 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 				"Content-Type": "application/json",
 				"User-Agent": "NextJS - Login.ts (Node.js " + process.version + ")",
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify({
+				...data,
+				user_agent: userAgent,
+				user_ip: userIp,
+			}),
 		});
 
 		// Validar Respuesta
