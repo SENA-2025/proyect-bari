@@ -37,9 +37,6 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 
 		// Validar Respuesta
 		if (statusCode === 200) {
-		} else if (statusCode === 423) {
-			// Cuenta no verificada
-			return { id: uuidv4(), error: false, message: "Tu cuenta requiere verificación." };
 		} else if (statusCode === 403) {
 			// Cuenta bloqueada
 			return { id: uuidv4(), error: true, message: "Acceso no permitido." };
