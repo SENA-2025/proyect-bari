@@ -82,7 +82,7 @@ export default function Register_Form() {
 
 			// Redirigir después de 3 segundos
 			const timeout = setTimeout(() => {
-				router.push(state.message === "Registro exitoso." ? "/verificar-correo" : "/acceder");
+				router.push("/acceder");
 			}, 3000);
 
 			return () => clearTimeout(timeout);
