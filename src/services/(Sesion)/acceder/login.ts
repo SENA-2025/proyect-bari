@@ -23,7 +23,7 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 		const data = loginSchema.parse(Object.fromEntries(formData.entries()));
 
 		// Enviar Datos
-		const { statusCode } = await request(process.env.API_AUTH_URL + "/auth/login", {
+		const { statusCode, body } = await request(process.env.API_AUTH_URL + "/auth/login", {
 			method: "POST",
 			headersTimeout: 1 * 60 * 1_000,
 			headers: {
@@ -37,6 +37,9 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 
 		// Validar Respuesta
 		if (statusCode === 200) {
+		} else if (statusCode === 423) {
+			// Cambio de contraseña requerido
+			return { id: uuidv4(), error: false, message: "Cambio de contraseña requerido." };
 		} else if (statusCode === 403) {
 			// Cuenta bloqueada
 			return { id: uuidv4(), error: true, message: "Acceso no permitido." };
