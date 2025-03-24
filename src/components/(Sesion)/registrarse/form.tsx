@@ -70,7 +70,11 @@ export default function Register_Form() {
 			});
 
 			const timeout = setTimeout(() => {
-				router.push("/acceder");
+				if (state.message === "Registro exitoso.") {
+					router.push("/verificar-correo");
+				} else {
+					router.push("/acceder");
+				}
 			}, 3000);
 
 			return () => clearTimeout(timeout);
