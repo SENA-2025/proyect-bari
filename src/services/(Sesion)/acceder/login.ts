@@ -1,5 +1,6 @@
 "use server";
 
+import { request } from "undici";
 import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
@@ -21,7 +22,39 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 		// Validar Datos
 		const data = loginSchema.parse(Object.fromEntries(formData.entries()));
 
-		return { id: uuidv4(), error: false, message: "Datos válidos" };
+		// Enviar Datos
+		const { statusCode } = await request(process.env.API_AUTH_URL + "/auth/login", {
+			method: "POST",
+			headersTimeout: 1 * 60 * 1_000,
+			headers: {
+				Connection: "keep-alive",
+				Authorization: "Bearer " + process.env.API_AUTH_TOKEN,
+				"Content-Type": "application/json",
+				"User-Agent": "NextJS - Login.ts (Node.js " + process.version + ")",
+			},
+			body: JSON.stringify(data),
+		});
+
+		// Validar Respuesta
+		if (statusCode === 200) {
+		} else if (statusCode === 423) {
+			// Cuenta no verificada
+			return { id: uuidv4(), error: false, message: "Tu cuenta requiere verificación." };
+		} else if (statusCode === 403) {
+			// Cuenta bloqueada
+			return { id: uuidv4(), error: true, message: "Acceso no permitido." };
+		} else if (statusCode === 404) {
+			// Cuenta no encontrada
+			return { id: uuidv4(), error: true, message: "Credenciales inválidas." };
+		}
+
+		// Error Interno
+		if (statusCode >= 500) {
+			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+		}
+
+		// Otros Errores
+		return { id: uuidv4(), error: true, message: "Credenciales inválidas." };
 	} catch (error) {
 		// Error de Validación
 		if (error instanceof ZodError) {
