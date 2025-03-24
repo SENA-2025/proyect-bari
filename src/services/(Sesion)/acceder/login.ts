@@ -43,9 +43,6 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 		} else if (statusCode === 403) {
 			// Cuenta bloqueada
 			return { id: uuidv4(), error: true, message: "Acceso no permitido." };
-		} else if (statusCode === 404) {
-			// Cuenta no encontrada
-			return { id: uuidv4(), error: true, message: "Credenciales inválidas." };
 		}
 
 		// Error Interno
