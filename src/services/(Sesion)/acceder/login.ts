@@ -3,8 +3,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
-import type { ActionType } from "@/schemas/(Sesion)/acceder/action.schema";
-import { actionSchema } from "@/schemas/(Sesion)/acceder/action.schema";
+import loginSchema from "@/schemas/(Sesion)/acceder/login.schema";
 
 // Tipos
 export type ServiceType = {
@@ -15,13 +14,12 @@ export type ServiceType = {
 
 // Validación de Datos
 export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
-	const data: ActionType = Object.fromEntries(formData.entries()) as ActionType;
-
 	// TODO: Agregar un rate limit para evitar ataques de fuerza bruta
 	// TODO: Agregar un captcha para evitar ataques de fuerza bruta
 
 	try {
-		actionSchema.parse(data);
+		// Validar Datos
+		const data = loginSchema.parse(Object.fromEntries(formData.entries()));
 
 		return { id: uuidv4(), error: false, message: "Datos válidos" };
 	} catch (error) {
