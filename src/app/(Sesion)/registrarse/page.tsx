@@ -13,7 +13,7 @@ const Form = dynamic(() => import("@/components/(Sesion)/registrarse/form"));
 
 export default function Register_Page() {
 	return (
-		<div className="size-full bg-white">
+		<div className="size-full bg-white/95 backdrop-blur-sm">
 			{/* Formulario */}
 			<div className="flex size-full items-center justify-center">
 				{/* Contenedor  */}

@@ -14,7 +14,7 @@ const Form = dynamic(() => import("@/components/(Sesion)/acceder/form"));
 // Página
 export default function Login_Page() {
 	return (
-		<div className="size-full bg-white">
+		<div className="size-full bg-white/95 backdrop-blur-sm">
 			{/* Formulario */}
 			<div className="flex size-full items-center justify-center">
 				{/* Contenedor  */}
