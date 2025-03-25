@@ -54,6 +54,8 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 
 		// Validar Respuesta
 		if (statusCode === 200) {
+			const responseBody = await body.json();
+			console.log(responseBody);
 		} else if (statusCode === 423) {
 			// Cambio de contraseña requerido
 			return { id: uuidv4(), error: false, message: "Cambio de contraseña requerido." };
