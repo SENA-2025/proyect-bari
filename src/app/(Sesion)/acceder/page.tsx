@@ -40,15 +40,23 @@ export default function Login_Page() {
 							<Form />
 
 							{/* Registro */}
-							<p className="text-secondary-600 text-xs select-none lg:text-sm">
-								¿No tienes una cuenta?{" "}
-								<Link
-									href="/registrarse"
-									className="text-tertiary-600 hover:text-primary-400 font-medium transition-colors duration-300 ease-in-out"
-								>
-									Regístrate
-								</Link>
-							</p>
+							<div className="flex w-full flex-col items-center gap-4">
+								<div className="flex w-full items-center gap-2">
+									<hr className="w-full border-t border-gray-200" />
+									<span className="text-xs text-gray-500 select-none lg:text-sm">O</span>
+									<hr className="w-full border-t border-gray-200" />
+								</div>
+
+								<p className="text-secondary-600 text-xs select-none lg:text-sm">
+									¿No tienes una cuenta?{" "}
+									<Link
+										href="/registrarse"
+										className="text-tertiary-600 hover:text-primary-400 font-medium transition-colors duration-300 ease-in-out"
+									>
+										Regístrate
+									</Link>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
