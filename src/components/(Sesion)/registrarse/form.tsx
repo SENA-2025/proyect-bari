@@ -1,10 +1,15 @@
 "use client";
 
-import { ChevronDown, ExternalLink, Eye, EyeOff, TriangleAlert } from "lucide-react";
+import { ExternalLink, Eye, EyeOff, TriangleAlert } from "lucide-react";
+import dynamic from "next/dynamic";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+
+// Componentes
+const DocumentType = dynamic(() => import("@/components/Formularios/(Sesion)/document-type"));
+const DocumentNumber = dynamic(() => import("@/components/Formularios/(Sesion)/document-number"));
 
 // Servicios
 import type { ServiceType } from "@/services/(Sesion)/registrarse/register";
@@ -97,53 +102,10 @@ export default function Register_Form() {
 			{/* Entrada de Datos */}
 			<fieldset className="flex flex-col gap-4">
 				{/* Tipo de Documento */}
-				<div className="flex flex-col gap-1">
-					<label className="text-xs font-medium text-gray-700 select-none md:text-sm lg:text-base" htmlFor="document_type">
-						Tipo de Documento
-					</label>
-
-					<div className="relative">
-						<select
-							id="document_type"
-							name="document_type"
-							value={userData.document_type}
-							onChange={handleChange}
-							required
-							className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out focus:border-transparent focus:ring-2 focus:outline-none md:text-sm lg:text-base"
-						>
-							<option value="CC">Cédula de Ciudadanía</option>
-							<option value="TI">Tarjeta de Identidad</option>
-							<option value="CE">Cédula de Extranjería</option>
-							<option value="PEP">Permiso Especial de Permanencia</option>
-							<option value="PPT">Permiso de Protección Temporal</option>
-						</select>
-
-						{/* Icono de Flecha */}
-						<ChevronDown className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-500" size={20} />
-					</div>
-				</div>
+				<DocumentType value={userData.document_type} onChange={handleChange} />
 
 				{/* Número de Documento */}
-				<div className="flex flex-col gap-1">
-					<label className="text-xs font-medium text-gray-700 select-none md:text-sm lg:text-base" htmlFor="document_number">
-						Número de Documento
-					</label>
-
-					<input
-						id="document_number"
-						name="document_number"
-						type="text"
-						inputMode="numeric"
-						value={userData.document_number}
-						onChange={handleChange}
-						required
-						minLength={3}
-						maxLength={20}
-						pattern="[0-9]+"
-						placeholder="Ingresa tu número de documento"
-						className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out placeholder:text-xs placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:outline-none md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base"
-					/>
-				</div>
+				<DocumentNumber value={userData.document_number} onChange={handleChange} />
 
 				{/* Correo Electrónico */}
 				<div className="flex flex-col gap-1">
