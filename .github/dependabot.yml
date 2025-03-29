@@ -4,7 +4,6 @@ updates:
       directory: "/"
       schedule:
           interval: "daily"
-          time: "03:00"
       target-branch: "develop"
       versioning-strategy: increase-if-necessary
       groups:
