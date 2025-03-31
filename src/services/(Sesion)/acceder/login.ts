@@ -35,6 +35,11 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
 		}
 
+		// Validar User-Agent
+		if (!userAgent) {
+			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+		}
+
 		// Enviar Datos
 		const { statusCode, body } = await request(process.env.API_AUTH_URL + "/auth/login", {
 			method: "POST",
