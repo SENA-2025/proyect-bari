@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
 import loginSchema from "@/schemas/(Sesion)/acceder/login.schema";
+import { setAccessCookie, setRefreshCookie } from "@/lib/cookies";
 
 // Tipos
 export type ServiceType = {
@@ -53,14 +54,26 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 			body: JSON.stringify({
 				...data,
 				user_agent: userAgent,
-				user_ip: userIp,
+				ip: userIp,
 			}),
 		});
 
 		// Validar Respuesta
 		if (statusCode === 200) {
-			const responseBody = await body.json();
-			console.log(responseBody);
+			const responseBody = (await body.json()) as {
+				data: {
+					accessToken: string;
+					accessExpiration: number;
+					refreshToken: string;
+					refreshExpiration: number;
+				};
+			};
+
+			// Guardar Cookies
+			await setAccessCookie(responseBody.data.accessToken, responseBody.data.accessExpiration);
+			await setRefreshCookie(responseBody.data.refreshToken, responseBody.data.refreshExpiration);
+
+			return { id: uuidv4(), error: false, message: "OK" };
 		} else if (statusCode === 423) {
 			// Cambio de contraseña requerido
 			return { id: uuidv4(), error: false, message: "Cambio de contraseña requerido." };
