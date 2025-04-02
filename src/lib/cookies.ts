@@ -16,6 +16,7 @@ export async function setAccessCookie(token: string, expiration: number) {
 		secure: process.env.NODE_ENV === "production",
 		path: "/",
 		maxAge: duration,
+		priority: "high",
 	});
 }
 
@@ -33,5 +34,6 @@ export async function setRefreshCookie(token: string, expiration: number) {
 		secure: process.env.NODE_ENV === "production",
 		path: "/",
 		maxAge: duration,
+		priority: "high",
 	});
 }
