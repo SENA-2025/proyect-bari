@@ -8,16 +8,16 @@ export async function middleware(request: NextRequest) {
 
 	// Validar cookies
 	if (cookieStore.has("__srfk") || cookieStore.has("_sid")) {
-		const refreshToken = cookieStore.get("__srfk")?.value || "";
-		const accessToken = cookieStore.get("_sid")?.value || "";
+		const refreshToken = cookieStore.get("__srfk")?.value;
+		const accessToken = cookieStore.get("_sid")?.value;
 
 		// Refresh token
-		if (refreshToken.length < 350) {
+		if (refreshToken && refreshToken.length < 350) {
 			cookieStore.delete("__srfk");
 		}
 
 		// Access token
-		if (accessToken.length < 350) {
+		if (accessToken && accessToken.length < 350) {
 			cookieStore.delete("_sid");
 		}
 	}
@@ -48,6 +48,7 @@ export async function middleware(request: NextRequest) {
 	}
 	
 	// Regenerar la cookie de sesión
+	console.log(hasRefreshToken, hasAccessToken)
 	if (hasRefreshToken && !hasAccessToken) {
 		console.log("No tiene la sesion.");
 	}
