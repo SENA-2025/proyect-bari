@@ -5,33 +5,51 @@ import { NextResponse } from "next/server";
 export async function middleware(request: NextRequest) {
 	// Obtener las cookies
 	const cookieStore = await cookies();
-	const hasSession = cookieStore.has("__srfk");
+
+	// Validar cookies
+	if (cookieStore.has("__srfk") || cookieStore.has("_sid")) {
+		const refreshToken = cookieStore.get("__srfk")?.value || "";
+		const accessToken = cookieStore.get("_sid")?.value || "";
+
+		// Refresh token
+		if (refreshToken.length < 350) {
+			cookieStore.delete("__srfk");
+		}
+
+		// Access token
+		if (accessToken.length < 350) {
+			cookieStore.delete("_sid");
+		}
+	}
 
 	// Obtener la URL de la solicitud
 	const reqUrl = request.nextUrl.pathname.toLowerCase();
 	const reqUrls = reqUrl.split("/").filter(url => url !== "");
 
+	// Establecer las cookies de acceso y refresco
+	const hasRefreshToken = cookieStore.has("__srfk");
+	const hasAccessToken = cookieStore.has("_sid");
+
 	// Validar sesión
 	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
-		if (hasSession) {
+		if (hasRefreshToken) {
 			// Redirigir a la página de inicio si ya hay sesión
 			return NextResponse.redirect(new URL("/", request.url));
 		} else {
-			if (cookieStore.has("_sid")) {
+			if (hasAccessToken) {
 				cookieStore.delete("_sid");
 			}
 		}
 	} else {
-		if (!hasSession) {
+		if (!hasRefreshToken) {
 			// Redirigir a la página de inicio de sesión si no hay sesión
 			return NextResponse.redirect(new URL("/acceder", request.url));
 		}
 	}
-
-	console.log(reqUrl, reqUrls);
-
+	
 	// Regenerar la cookie de sesión
-	if (hasSession && !cookieStore.has("_sid")) {
+	console.log(reqUrl, reqUrls);
+	if (hasRefreshToken && !cookieStore.has("_sid")) {
 		console.log("No tiene la sesion.");
 	}
 
