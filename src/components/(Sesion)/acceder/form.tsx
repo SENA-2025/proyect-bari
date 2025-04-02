@@ -70,6 +70,7 @@ export default function Login_Form() {
 
 			// Mostrar Mensaje
 			if (state.message === "OK") {
+				router.refresh();
 			} else {
 				toast.success(state.message, {
 					duration: 2000,
