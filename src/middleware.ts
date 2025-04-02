@@ -28,6 +28,13 @@ export async function middleware(request: NextRequest) {
 		}
 	}
 
+	console.log(reqUrl, reqUrls);
+
+	// Regenerar la cookie de sesión
+	if (hasSession && !cookieStore.has("_sid")) {
+		console.log("No tiene la sesion.");
+	}
+
 	// Generar un nonce aleatorio
 	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 	// Construir el CSP
