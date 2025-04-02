@@ -33,12 +33,12 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 
 		// Validar IP
 		if (!userIp || !net.isIP(userIp)) {
-			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+			return { id: uuidv4(), error: true, message: "Error interno. Prueba con otro navegador." };
 		}
 
 		// Validar User-Agent
 		if (!userAgent) {
-			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+			return { id: uuidv4(), error: true, message: "Error interno. Prueba con otro navegador." };
 		}
 
 		// Enviar Datos
