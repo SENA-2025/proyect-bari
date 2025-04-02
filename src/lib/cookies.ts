@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 
+// Establece la cookie de acceso
 export async function setAccessCookie(token: string, expiration: number) {
 	const now = Math.floor(Date.now() / 1000);
 	const duration = Math.max(0, expiration - now);
@@ -19,6 +20,7 @@ export async function setAccessCookie(token: string, expiration: number) {
 	});
 }
 
+// Establece la cookie de refresco
 export async function setRefreshCookie(token: string, expiration: number) {
 	const now = Math.floor(Date.now() / 1000);
 	const duration = Math.max(0, expiration - now);
