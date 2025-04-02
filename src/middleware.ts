@@ -1,12 +1,36 @@
+import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
+	// Obtener las cookies
+	const cookieStore = await cookies();
+	const hasSession = cookieStore.has("__srfk");
+
 	// Obtener la URL de la solicitud
-	const getUrl = request.nextUrl.pathname.toLowerCase();
+	const reqUrl = request.nextUrl.pathname.toLowerCase();
+	const reqUrls = reqUrl.split("/").filter((url) => url !== "");
+
+	// Validar sesión
+	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
+		if (hasSession) {
+			// Redirigir a la página de inicio si ya hay sesión
+			return NextResponse.redirect(new URL("/", request.url));
+		} else {
+			if (cookieStore.has("_sid")) {
+				cookieStore.delete("_sid");
+			}
+		}
+	} else {
+		if (!hasSession) {
+			// Redirigir a la página de inicio de sesión si no hay sesión
+			return NextResponse.redirect(new URL("/acceder", request.url));
+		}
+	}
 
 	// Generar un nonce aleatorio
 	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+	// Construir el CSP
 	const CSP = `
 		default-src 'self';
 		connect-src 'self';
@@ -31,9 +55,6 @@ export function middleware(request: NextRequest) {
 	requestHeaders.set("x-nonce", nonce);
 	requestHeaders.set("Content-Security-Policy", CSP_Header);
 
-	// Validacion de Autenticacion
-	// TODO: Implementar validacion de autenticacion
-
 	// Respuesta de Next.js
 	const response = NextResponse.next({ request: { headers: requestHeaders } });
 
@@ -56,7 +77,7 @@ export function middleware(request: NextRequest) {
 export const config = {
 	matcher: [
 		{
-			source: "/((?!_next/static|_next/image|favicon.ico|robots.txt).*)",
+			source: "/((?!_next/static|_next/image|favicon.ico|logo.webp|robots.txt).*)",
 			missing: [
 				{ type: "header", key: "next-router-prefetch" },
 				{ type: "header", key: "purpose", value: "prefetch" },
