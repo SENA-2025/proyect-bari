@@ -7,8 +7,8 @@ import { request } from "undici";
 import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
-import loginSchema from "@/schemas/(Sesion)/acceder/login.schema";
 import { setAccessCookie, setRefreshCookie } from "@/lib/cookies";
+import loginSchema from "@/schemas/(Sesion)/acceder/login.schema";
 
 // Tipos
 export type ServiceType = {
@@ -69,7 +69,7 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 				};
 			};
 
-			// Guardar Cookies
+			// Establecer Cookies
 			await setAccessCookie(responseBody.data.accessToken, responseBody.data.accessExpiration);
 			await setRefreshCookie(responseBody.data.refreshToken, responseBody.data.refreshExpiration);
 
