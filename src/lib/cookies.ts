@@ -3,11 +3,10 @@
 import { cookies } from "next/headers";
 
 export async function setAccessCookie(token: string, expiration: number) {
-	const cookieStore = await cookies();
-
 	const now = Math.floor(Date.now() / 1000);
 	const duration = Math.max(0, expiration - now);
-
+	
+	const cookieStore = await cookies();
 	cookieStore.set({
 		name: "_sid",
 		value: token,
@@ -21,11 +20,10 @@ export async function setAccessCookie(token: string, expiration: number) {
 }
 
 export async function setRefreshCookie(token: string, expiration: number) {
-	const cookieStore = await cookies();
-
 	const now = Math.floor(Date.now() / 1000);
 	const duration = Math.max(0, expiration - now);
-
+	
+	const cookieStore = await cookies();
 	cookieStore.set({
 		name: "__srfk",
 		value: token,
