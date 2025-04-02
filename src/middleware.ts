@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
 
 	// Obtener la URL de la solicitud
 	const reqUrl = request.nextUrl.pathname.toLowerCase();
-	const reqUrls = reqUrl.split("/").filter((url) => url !== "");
+	const reqUrls = reqUrl.split("/").filter(url => url !== "");
 
 	// Validar sesión
 	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
