@@ -48,8 +48,7 @@ export async function middleware(request: NextRequest) {
 	}
 	
 	// Regenerar la cookie de sesión
-	console.log(reqUrl, reqUrls);
-	if (hasRefreshToken && !cookieStore.has("_sid")) {
+	if (hasRefreshToken && !hasAccessToken) {
 		console.log("No tiene la sesion.");
 	}
 
