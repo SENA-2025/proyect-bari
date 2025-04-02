@@ -109,8 +109,9 @@ export default function Login_Form() {
 						</label>
 
 						<Link
-							className="text-tertiary-600 hover:text-primary-400 text-xs transition-colors duration-300 ease-in-out select-none lg:text-sm"
 							href="/restablecer-clave"
+							prefetch={false}
+							className="text-tertiary-600 hover:text-primary-400 text-xs transition-colors duration-300 ease-in-out select-none lg:text-sm"
 						>
 							¿Olvidaste tu contraseña?
 						</Link>
