@@ -42,6 +42,11 @@ export async function middleware(request: NextRequest) {
 		}
 	}
 
+	// Validar si esta en la página de inicio
+	if (reqUrl === "/") {
+		return NextResponse.redirect(new URL("/app", request.url));
+	}
+
 	// Generar un nonce aleatorio
 	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 	// Construir el CSP
