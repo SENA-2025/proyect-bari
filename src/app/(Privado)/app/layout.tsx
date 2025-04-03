@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 
 import refreshAccessCookie from "@/lib/auth";
 
+// Layout
 export default async function AppLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const cookieStore = await cookies();
 
