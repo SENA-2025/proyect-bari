@@ -43,7 +43,7 @@ const poppins = Poppins({
 const Toaster = dynamic(() => import("@/components/toaster"));
 
 // Layout
-export default function Root_Layout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="es-CO">
 			<body className={`${poppins.className} antialiased`}>
