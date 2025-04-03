@@ -1,3 +1,18 @@
-export default function AppLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+import { cookies } from "next/headers";
+
+import refreshAccessCookie from "@/lib/auth";
+
+export default async function AppLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+	const cookieStore = await cookies();
+
+	// Validar sesión (Access Token)
+	if (!cookieStore.has("_sid")) {
+		const status = await refreshAccessCookie(cookieStore.get("__srfk")?.value as string);
+
+		if (!status) {
+			return null;
+		}
+	}
+
 	return <div>{children}</div>;
 }
