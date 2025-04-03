@@ -2,21 +2,22 @@ import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+import refreshAccessCookie from "@/lib/auth";
+
 export async function middleware(request: NextRequest) {
 	// Obtener las cookies
 	const cookieStore = await cookies();
 
-	// Validar cookies
+	// Validar longitud de las cookies
 	if (cookieStore.has("__srfk") || cookieStore.has("_sid")) {
-		const refreshToken = cookieStore.get("__srfk")?.value;
-		const accessToken = cookieStore.get("_sid")?.value;
-
 		// Refresh token
+		const refreshToken = cookieStore.get("__srfk")?.value;
 		if (refreshToken && refreshToken.length < 350) {
 			cookieStore.delete("__srfk");
 		}
-
+		
 		// Access token
+		const accessToken = cookieStore.get("_sid")?.value;
 		if (accessToken && accessToken.length < 350) {
 			cookieStore.delete("_sid");
 		}
@@ -46,11 +47,14 @@ export async function middleware(request: NextRequest) {
 			return NextResponse.redirect(new URL("/acceder", request.url));
 		}
 	}
-	
-	// Regenerar la cookie de sesión
-	console.log(hasRefreshToken, hasAccessToken)
+
+	// Regenerar la cookie: AccessToken
 	if (hasRefreshToken && !hasAccessToken) {
-		console.log("No tiene la sesion.");
+		const refreshToken = cookieStore.get("__srfk")?.value;
+
+		if (refreshToken) {
+			await refreshAccessCookie(refreshToken);
+		}
 	}
 
 	// Generar un nonce aleatorio
