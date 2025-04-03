@@ -7,9 +7,11 @@ import refreshAccessCookie from "@/lib/auth";
 export async function middleware(request: NextRequest) {
 	// Obtener las cookies
 	const cookieStore = await cookies();
+	const hasRefreshToken = cookieStore.has("__srfk");
+	const hasAccessToken = cookieStore.has("_sid");
 
 	// Validar longitud de las cookies
-	if (cookieStore.has("__srfk") || cookieStore.has("_sid")) {
+	if (hasRefreshToken || hasAccessToken) {
 		// Refresh token
 		const refreshToken = cookieStore.get("__srfk")?.value;
 		if (refreshToken && refreshToken.length < 350) {
@@ -23,13 +25,18 @@ export async function middleware(request: NextRequest) {
 		}
 	}
 
+	// Regenerar la cookie: AccessToken
+	if (hasRefreshToken && !hasAccessToken) {
+		const refreshToken = cookieStore.get("__srfk")?.value;
+
+		if (refreshToken) {
+			await refreshAccessCookie(refreshToken);
+		}
+	}
+
 	// Obtener la URL de la solicitud
 	const reqUrl = request.nextUrl.pathname.toLowerCase();
 	const reqUrls = reqUrl.split("/").filter(url => url !== "");
-
-	// Establecer las cookies de acceso y refresco
-	const hasRefreshToken = cookieStore.has("__srfk");
-	const hasAccessToken = cookieStore.has("_sid");
 
 	// Validar sesión
 	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
@@ -45,15 +52,6 @@ export async function middleware(request: NextRequest) {
 		if (!hasRefreshToken) {
 			// Redirigir a la página de inicio de sesión si no hay sesión
 			return NextResponse.redirect(new URL("/acceder", request.url));
-		}
-	}
-
-	// Regenerar la cookie: AccessToken
-	if (hasRefreshToken && !hasAccessToken) {
-		const refreshToken = cookieStore.get("__srfk")?.value;
-
-		if (refreshToken) {
-			await refreshAccessCookie(refreshToken);
 		}
 	}
 
