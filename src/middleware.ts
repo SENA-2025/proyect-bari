@@ -5,11 +5,9 @@ import { NextResponse } from "next/server";
 export async function middleware(request: NextRequest) {
 	// Obtener las cookies
 	const cookieStore = await cookies();
-	const hasRefreshToken = cookieStore.has("__srfk");
-	const hasAccessToken = cookieStore.has("_sid");
 
 	// Validar longitud de las cookies
-	if (hasRefreshToken || hasAccessToken) {
+	if (cookieStore.has("__srfk") || cookieStore.has("_sid")) {
 		// Refresh token
 		const refreshToken = cookieStore.get("__srfk")?.value;
 		if (refreshToken && refreshToken.length < 350) {
@@ -29,16 +27,16 @@ export async function middleware(request: NextRequest) {
 
 	// Validar sesión
 	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
-		if (hasRefreshToken) {
+		if (cookieStore.has("__srfk")) {
 			// Redirigir a la página de inicio si ya hay sesión
 			return NextResponse.redirect(new URL("/", request.url));
 		} else {
-			if (hasAccessToken) {
+			if (cookieStore.has("_sid")) {
 				cookieStore.delete("_sid");
 			}
 		}
 	} else {
-		if (!hasRefreshToken) {
+		if (!cookieStore.has("__srfk")) {
 			// Redirigir a la página de inicio de sesión si no hay sesión
 			return NextResponse.redirect(new URL("/acceder", request.url));
 		}
