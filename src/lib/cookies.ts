@@ -7,8 +7,7 @@ export async function setAccessCookie(token: string, expiration: number) {
 	const now = Math.floor(Date.now() / 1000);
 	const duration = Math.max(0, expiration - now);
 
-	const cookieStore = await cookies();
-	cookieStore.set({
+	(await cookies()).set({
 		name: "_sid",
 		value: token,
 		httpOnly: true,
@@ -25,8 +24,7 @@ export async function setRefreshCookie(token: string, expiration: number) {
 	const now = Math.floor(Date.now() / 1000);
 	const duration = Math.max(0, expiration - now);
 
-	const cookieStore = await cookies();
-	cookieStore.set({
+	(await cookies()).set({
 		name: "__srfk",
 		value: token,
 		httpOnly: true,
