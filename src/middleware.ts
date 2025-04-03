@@ -29,7 +29,7 @@ export async function middleware(request: NextRequest) {
 	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
 		if (cookieStore.has("__srfk")) {
 			// Redirigir a la página de inicio si ya hay sesión
-			return NextResponse.redirect(new URL("/", request.url));
+			return NextResponse.redirect(new URL("/app", request.url));
 		} else {
 			if (cookieStore.has("_sid")) {
 				cookieStore.delete("_sid");
