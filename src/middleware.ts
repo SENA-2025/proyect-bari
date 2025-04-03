@@ -2,8 +2,6 @@ import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import refreshAccessCookie from "@/lib/auth";
-
 export async function middleware(request: NextRequest) {
 	// Obtener las cookies
 	const cookieStore = await cookies();
@@ -22,15 +20,6 @@ export async function middleware(request: NextRequest) {
 		const accessToken = cookieStore.get("_sid")?.value;
 		if (accessToken && accessToken.length < 350) {
 			cookieStore.delete("_sid");
-		}
-	}
-
-	// Regenerar la cookie: AccessToken
-	if (hasRefreshToken && !hasAccessToken) {
-		const refreshToken = cookieStore.get("__srfk")?.value;
-
-		if (refreshToken) {
-			await refreshAccessCookie(refreshToken);
 		}
 	}
 
