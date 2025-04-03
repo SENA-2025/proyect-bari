@@ -9,6 +9,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 	// Validar sesión (Access Token)
 	if (!cookieStore.has("_sid")) {
 		const status = await refreshAccessCookie();
+		console.log(status);
 
 		if (!status) {
 			return null;

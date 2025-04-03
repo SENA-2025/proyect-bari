@@ -84,7 +84,8 @@ export default async function refreshAccessCookie() {
 		// Fallo de Validación
 		cookieStore.delete("__srfk");
 		redirect("/acceder");
-	} catch {
+	} catch (error) {
+		console.log("2", error)
 		return false;
 	}
 }
