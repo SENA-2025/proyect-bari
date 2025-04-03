@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
 		if (refreshToken && refreshToken.length < 350) {
 			cookieStore.delete("__srfk");
 		}
-		
+
 		// Access token
 		const accessToken = cookieStore.get("_sid")?.value;
 		if (accessToken && accessToken.length < 350) {
