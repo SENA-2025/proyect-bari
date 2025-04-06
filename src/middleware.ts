@@ -47,11 +47,6 @@ export async function middleware(request: NextRequest) {
 		return NextResponse.redirect(new URL("/app", request.url));
 	}
 
-	// Regenerar el Access Token
-	if (cookieStore.has("__srfk") && !cookieStore.has("_sid")) {
-		return NextResponse.redirect(new URL("/api/auth/refresh", request.url));
-	}
-
 	// Generar un nonce aleatorio
 	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 	// Construir el CSP
