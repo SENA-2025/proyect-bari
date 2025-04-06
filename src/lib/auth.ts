@@ -47,7 +47,7 @@ export default async function refreshAccessCookie() {
 		// Enviar Datos
 		const { statusCode, body } = await request(process.env.API_SESSION_URL + "/session/refresh", {
 			method: "POST",
-			headersTimeout: 20 * 1_000,
+			headersTimeout: 30 * 1_000,
 			headers: {
 				Connection: "keep-alive",
 				Authorization: "Bearer " + process.env.API_SESSION_TOKEN,
@@ -84,8 +84,7 @@ export default async function refreshAccessCookie() {
 		// Fallo de Validación
 		cookieStore.delete("__srfk");
 		redirect("/acceder");
-	} catch (error) {
-		console.log("2", error)
+	} catch {
 		return false;
 	}
 }
