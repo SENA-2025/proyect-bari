@@ -8,8 +8,8 @@ import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 // Componentes
-const DocumentType = dynamic(() => import("@/components/Formularios/(Sesion)/document-type"));
-const DocumentNumber = dynamic(() => import("@/components/Formularios/(Sesion)/document-number"));
+const DocumentType = dynamic(() => import("@/components/UI/Formularios/(Sesion)/document-type"));
+const DocumentNumber = dynamic(() => import("@/components/UI/Formularios/(Sesion)/document-number"));
 
 // Servicios
 import type { ServiceType } from "@/services/(Sesion)/registrarse/register";
