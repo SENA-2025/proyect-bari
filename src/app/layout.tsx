@@ -40,7 +40,7 @@ const poppins = Poppins({
 });
 
 // Componentes
-const Toaster = dynamic(() => import("@/components/toaster"));
+const Toaster = dynamic(() => import("@/components/UI/toaster"));
 
 // Layout
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
