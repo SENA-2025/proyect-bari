@@ -1,20 +1,18 @@
+import dynamic from "next/dynamic";
 import { cookies } from "next/headers";
 
-import refreshAccessCookie from "@/lib/auth";
+// Componentes
+const AccessRefresher = dynamic(() => import("@/components/(Privado)/AccessRefresher"));
 
 // Layout
 export default async function AppLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const cookieStore = await cookies();
 
-	// Validar sesión (Access Token)
-	if (!cookieStore.has("_sid")) {
-		const status = await refreshAccessCookie();
-		console.log(status);
+	return (
+		<>
+			{!cookieStore.has("_sid") && <AccessRefresher />}
 
-		if (!status) {
-			return null;
-		}
-	}
-
-	return <div>{children}</div>;
+			<div>{children}</div>
+		</>
+	);
 }
