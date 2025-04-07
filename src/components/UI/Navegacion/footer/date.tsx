@@ -50,14 +50,22 @@ export default function CurrentDate({ initialDate }: { initialDate: string }) {
 		<div className="flex items-center gap-2">
 			{/* Fecha */}
 			<div className="hidden items-center gap-1 text-gray-600 md:flex">
-				<Calendar className="text-gray-400" size={14} />
-				<span className="text-xs lg:text-sm">{dateTime.date}</span>
+				{dateTime.date && (
+					<>
+						<Calendar className="text-gray-400" size={14} />
+						<span className="text-xs lg:text-sm">{dateTime.date}</span>
+					</>
+				)}
 			</div>
 
 			{/* Hora */}
 			<div className="bg-primary-400/5 flex items-center gap-1 rounded-full px-2 py-1">
-				<Clock className="text-tertiary-600" size={14} />
-				<span className="text-xs text-gray-700 lg:text-sm">{dateTime.time}</span>
+				{dateTime.time && (
+					<>
+						<Clock className="text-tertiary-600" size={14} />
+						<span className="text-xs text-gray-700 lg:text-sm">{dateTime.time}</span>
+					</>
+				)}
 			</div>
 		</div>
 	);
