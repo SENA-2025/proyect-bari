@@ -30,7 +30,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 
 						{/* Contenido Principal */}
 						<div className="flex size-full flex-col justify-between">
-							{/* Contenido */}
+							{/* Hijo */}
 							<div className="m-4 size-full">{children}</div>
 
 							{/* Footer */}
