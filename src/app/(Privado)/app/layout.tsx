@@ -10,6 +10,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 
 	return (
 		<>
+			{/* Access Token */}
 			{!cookieStore.has("_sid") && <AccessRefresher />}
 
 			<div>{children}</div>
