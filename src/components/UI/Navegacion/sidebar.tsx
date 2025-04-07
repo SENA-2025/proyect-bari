@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 export default function Sidebar() {
-	return <div></div>;
+	return <aside className="hidden lg:block">T</aside>;
 }
