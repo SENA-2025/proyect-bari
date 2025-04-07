@@ -47,7 +47,7 @@ export default function CurrentDate({ initialDate }: { initialDate: string }) {
 	}, [initialTimestamp, dateOptions, timeOptions]);
 
 	return (
-		<div className="flex items-center gap-4">
+		<div className="flex items-center gap-2">
 			{/* Fecha */}
 			<div className="hidden items-center gap-1 text-gray-600 md:flex">
 				<Calendar className="text-gray-400" size={14} />
