@@ -4,7 +4,7 @@ export default function Header() {
 	return (
 		<header className="h-16 w-full bg-white shadow-sm">
 			<div className="flex size-full items-center">
-				<div className="mx-2 flex items-center justify-between lg:mx-4">
+				<div className="mx-4 flex items-center justify-between">
 					{/* Mobile Nav + Título */}
 					<Link href="/app" className="select-none">
 						{/* Mobile */}
