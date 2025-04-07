@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
 // Metadata
 export const metadata: Metadata = {
@@ -36,7 +37,26 @@ export default function Register_Page() {
 							</div>
 
 							{/* Formulario */}
-							<Form />
+							<Suspense
+								fallback={
+									<div className="flex size-full flex-col gap-6">
+										<div className="flex size-full flex-col gap-4">
+											{Array(5)
+												.fill(0)
+												.map((_, index) => (
+													<div className="flex w-full flex-col gap-1" key={index}>
+														<div className="h-4 w-1/3 animate-pulse rounded bg-gray-200"></div>
+														<div className="h-10 w-full animate-pulse rounded-lg bg-gray-200"></div>
+													</div>
+												))}
+										</div>
+
+										<div className="h-10 w-full animate-pulse rounded-lg bg-gray-300"></div>
+									</div>
+								}
+							>
+								<Form />
+							</Suspense>
 
 							{/* Inicio de sesión */}
 							<div className="flex w-full flex-col items-center gap-4">
