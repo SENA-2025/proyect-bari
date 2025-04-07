@@ -71,7 +71,7 @@ export function middleware(request: NextRequest) {
 		}
 	}
 
-	// Cookies: Validar la existencia
+	// Validar la existencia
 	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
 		if (request.cookies.has("__srfk")) {
 			// Redirigir a la página de inicio si ya hay sesión
