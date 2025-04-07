@@ -48,7 +48,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 		<html lang="es-CO">
 			<body className={`${poppins.className} antialiased`}>
 				<main className="flex min-h-screen max-w-full">
-					<div className="w-full grow">{children}</div>
+					<div className="w-full grow transition-all duration-300 ease-in-out">{children}</div>
 				</main>
 
 				<Toaster />
