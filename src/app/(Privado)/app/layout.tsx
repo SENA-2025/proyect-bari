@@ -16,12 +16,9 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 	}
 
 	return (
-		<div className="size-full">
-			{/* Regenerate: Access Token */}
-			{!cookieStore.has("_sid") && <AccessRefresher />}
-
+		<div className="size-full bg-gray-50 transition-all duration-300 ease-in-out">
 			{/* Layout */}
-			<div className="flex size-full flex-col bg-gray-50 transition-all duration-300 ease-in-out">
+			<div className="flex size-full flex-col">
 				{/* Header */}
 				<Header />
 
@@ -34,7 +31,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 						{/* Contenido Principal */}
 						<div className="flex size-full flex-col justify-between">
 							{/* Contenido */}
-							<div className="m-4 size-full">{cookieStore.has("_sid") && children}</div>
+							<div className="m-4 size-full">{children}</div>
 
 							{/* Footer */}
 							<Footer />
