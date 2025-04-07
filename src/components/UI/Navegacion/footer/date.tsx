@@ -59,7 +59,7 @@ export default function CurrentDate({ initialDate }: { initialDate: string }) {
 			</div>
 
 			{/* Hora */}
-			<div className="bg-primary-400/5 flex items-center gap-1 rounded-full px-2 py-1">
+			<div className="bg-primary-400/10 flex items-center gap-1 rounded-full px-3 py-1">
 				{dateTime.time && (
 					<>
 						<Clock className="text-tertiary-600" size={14} />
