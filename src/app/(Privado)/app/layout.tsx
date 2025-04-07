@@ -15,12 +15,12 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 			{!cookieStore.has("_sid") && <AccessRefresher />}
 
 			{/* Layout */}
-			<div className="flex size-full flex-col">
+			<div className="flex size-full flex-col bg-white/95 backdrop-blur-sm">
 				{/* Header */}
 				<Header />
 
 				{/* Contenido */}
-				<div className="h-full grow bg-black">
+				<div className="h-full grow overflow-hidden">
 					<div>{children}</div>
 				</div>
 			</div>
