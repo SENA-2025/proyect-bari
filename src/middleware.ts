@@ -1,48 +1,12 @@
-import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
-	// Obtener las cookies
-	const cookieStore = await cookies();
-
-	// Validar longitud de las cookies
-	if (cookieStore.has("__srfk") || cookieStore.has("_sid")) {
-		// Refresh token
-		const refreshToken = cookieStore.get("__srfk")?.value;
-		if (refreshToken && refreshToken.length < 350) {
-			cookieStore.delete("__srfk");
-		}
-
-		// Access token
-		const accessToken = cookieStore.get("_sid")?.value;
-		if (accessToken && accessToken.length < 350) {
-			cookieStore.delete("_sid");
-		}
-	}
-
-	// Obtener la URL de la solicitud
+export function middleware(request: NextRequest) {
+	// Request URL
 	const reqUrl = request.nextUrl.pathname.toLowerCase();
 	const reqUrls = reqUrl.split("/").filter(url => url !== "");
 
-	// Validar sesión
-	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
-		if (cookieStore.has("__srfk")) {
-			// Redirigir a la página de inicio si ya hay sesión
-			return NextResponse.redirect(new URL("/app", request.url));
-		} else {
-			if (cookieStore.has("_sid")) {
-				cookieStore.delete("_sid");
-			}
-		}
-	} else {
-		if (!cookieStore.has("__srfk")) {
-			// Redirigir a la página de inicio de sesión si no hay sesión
-			return NextResponse.redirect(new URL("/acceder", request.url));
-		}
-	}
-
-	// Validar si esta en la página de inicio
+	// Sesión: Validar el acceso
 	if (reqUrl === "/") {
 		return NextResponse.redirect(new URL("/app", request.url));
 	}
@@ -89,6 +53,42 @@ export async function middleware(request: NextRequest) {
 	response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
 	response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
 	response.headers.set("Cross-Origin-Embedder-Policy", "require-corp");
+
+	// Cookies --------- -----------------
+
+	// Validar la longitud
+	if (request.cookies.has("__srfk") || request.cookies.has("_sid")) {
+		// Refresh token
+		const refreshToken = request.cookies.get("__srfk")?.value;
+		if (refreshToken && refreshToken.length < 350) {
+			response.cookies.delete("__srfk");
+		}
+
+		// Access token
+		const accessToken = request.cookies.get("_sid")?.value;
+		if (accessToken && accessToken.length < 350) {
+			response.cookies.delete("_sid");
+		}
+	}
+
+	// Cookies: Validar la existencia
+	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
+		if (request.cookies.has("__srfk")) {
+			// Redirigir a la página de inicio si ya hay sesión
+			return NextResponse.redirect(new URL("/app", request.url));
+		} else {
+			if (request.cookies.has("_sid")) {
+				response.cookies.delete("_sid");
+			}
+		}
+	} else {
+		if (!request.cookies.has("__srfk")) {
+			// Redirigir a la página de inicio de sesión si no hay sesión
+			return NextResponse.redirect(new URL("/acceder", request.url));
+		}
+	}
+
+	// --------------------------------
 
 	return response;
 }
