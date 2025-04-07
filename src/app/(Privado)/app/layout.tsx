@@ -17,7 +17,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 			{!cookieStore.has("_sid") && <AccessRefresher />}
 
 			{/* Layout */}
-			<div className="flex size-full flex-col bg-gray-50">
+			<div className="flex size-full flex-col bg-gray-50 transition-all duration-300 ease-in-out">
 				{/* Header */}
 				<Header />
 
