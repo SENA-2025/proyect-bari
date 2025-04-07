@@ -11,6 +11,10 @@ const AccessRefresher = dynamic(() => import("@/components/(Privado)/AccessRefre
 export default async function AppLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const cookieStore = await cookies();
 
+	if (!cookieStore.has("_sid")) {
+		return <AccessRefresher />;
+	}
+
 	return (
 		<div className="size-full">
 			{/* Regenerate: Access Token */}
