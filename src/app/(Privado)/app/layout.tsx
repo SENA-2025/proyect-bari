@@ -12,14 +12,6 @@ const AccessRefresher = dynamic(() => import("@/components/(Privado)/AccessRefre
 export default async function AppLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const cookieStore = await cookies();
 
-	if (!cookieStore.has("_sid")) {
-		return (
-			<Suspense>
-				<AccessRefresher />
-			</Suspense>
-		);
-	}
-
 	return (
 		<div className="size-full bg-gray-50 transition-all duration-300 ease-in-out">
 			{/* Layout */}
@@ -36,7 +28,15 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 						{/* Contenido Principal */}
 						<div className="flex size-full flex-col justify-between">
 							{/* Hijo */}
-							<div className="m-4 size-full">{children}</div>
+							<div className="m-4 size-full">
+								{cookieStore.has("_sid") ? (
+									children
+								) : (
+									<Suspense>
+										<AccessRefresher />
+									</Suspense>
+								)}
+							</div>
 
 							{/* Footer */}
 							<Footer />
