@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Form from "next/form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useActionState, useEffect, useState } from "react";
+import { Suspense, useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 // Componentes
@@ -97,10 +97,14 @@ export default function Login_Form() {
 			{/* Entrada de Datos */}
 			<fieldset className="flex flex-col gap-4">
 				{/* Tipo de Documento */}
-				<DocumentType value={userData.document_type} onChange={handleChange} />
+				<Suspense>
+					<DocumentType value={userData.document_type} onChange={handleChange} />
+				</Suspense>
 
 				{/* Numero de Documento */}
-				<DocumentNumber value={userData.document_number} onChange={handleChange} />
+				<Suspense>
+					<DocumentNumber value={userData.document_number} onChange={handleChange} />
+				</Suspense>
 
 				{/* Contraseña */}
 				<div className="flex flex-col gap-1">

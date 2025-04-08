@@ -4,7 +4,7 @@ import { ExternalLink, Eye, EyeOff, TriangleAlert } from "lucide-react";
 import dynamic from "next/dynamic";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
-import { useActionState, useEffect, useState } from "react";
+import { Suspense,useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 // Componentes
@@ -102,10 +102,14 @@ export default function Register_Form() {
 			{/* Entrada de Datos */}
 			<fieldset className="flex flex-col gap-4">
 				{/* Tipo de Documento */}
-				<DocumentType value={userData.document_type} onChange={handleChange} />
+				<Suspense>
+					<DocumentType value={userData.document_type} onChange={handleChange} />
+				</Suspense>
 
 				{/* Número de Documento */}
-				<DocumentNumber value={userData.document_number} onChange={handleChange} />
+				<Suspense>
+					<DocumentNumber value={userData.document_number} onChange={handleChange} />
+				</Suspense>
 
 				{/* Correo Electrónico */}
 				<div className="flex flex-col gap-1">
