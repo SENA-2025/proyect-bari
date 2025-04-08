@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
 
 // Componentes
 const Header = dynamic(() => import("@/components/UI/Navegacion/header"));
@@ -12,7 +13,11 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 	const cookieStore = await cookies();
 
 	if (!cookieStore.has("_sid")) {
-		return <AccessRefresher />;
+		return (
+			<Suspense>
+				<AccessRefresher />
+			</Suspense>
+		);
 	}
 
 	return (
