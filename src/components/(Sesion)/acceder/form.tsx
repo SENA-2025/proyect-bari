@@ -71,6 +71,8 @@ export default function Login_Form() {
 			// Mostrar Mensaje
 			if (state.message === "OK") {
 				router.refresh();
+			} else if (state.message === "Datos Faltantes") {
+				router.replace("/datos-faltantes");
 			} else {
 				toast.success(state.message, {
 					duration: 2000,
@@ -81,7 +83,7 @@ export default function Login_Form() {
 
 				// Redirigir después de 3 segundos
 				const timeout = setTimeout(() => {
-					router.push("/restablecer-clave");
+					router.replace("/restablecer-clave");
 				}, 3000);
 
 				return () => clearTimeout(timeout);
