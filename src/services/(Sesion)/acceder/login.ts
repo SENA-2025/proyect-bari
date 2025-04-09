@@ -59,7 +59,7 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 		});
 
 		// Validar Respuesta
-		if (statusCode === 200) {
+		if ([200, 202].includes(statusCode)) {
 			const responseBody = (await body.json()) as {
 				data: {
 					accessToken: string;
@@ -73,7 +73,7 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 			await setAccessCookie(responseBody.data.accessToken, responseBody.data.accessExpiration);
 			await setRefreshCookie(responseBody.data.refreshToken, responseBody.data.refreshExpiration);
 
-			return { id: uuidv4(), error: false, message: "OK" };
+			return { id: uuidv4(), error: false, message: statusCode === 200 ? "OK" : "Datos Faltantes" };
 		} else if (statusCode === 423) {
 			// Cambio de contraseña requerido
 			return { id: uuidv4(), error: false, message: "Cambio de contraseña requerido." };
