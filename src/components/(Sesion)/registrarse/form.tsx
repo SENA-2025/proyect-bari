@@ -25,7 +25,7 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 export default function Register_Form() {
 	const router = useRouter();
 	const [userData, setUserData] = useState({
-		document_type: "CC",
+		document_type: "",
 		document_number: "",
 		email: "",
 		password: "",
@@ -64,7 +64,7 @@ export default function Register_Form() {
 		if (!state.error && state.message) {
 			// Limpiar Formulario
 			setUserData({
-				document_type: "CC",
+				document_type: "",
 				document_number: "",
 				email: "",
 				password: "",
