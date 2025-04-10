@@ -25,25 +25,25 @@ export default async function refreshAccessCookie() {
 		redirect("/acceder");
 	}
 
+	// Obtener Headers
+	const requestHeaders = await headers();
+	const userAgent = requestHeaders.get("user-agent");
+	const userIp = requestHeaders.get("cf-connecting-ip") || requestHeaders.get("x-forwarded-for") || requestHeaders.get("x-real-ip");
+
+	// Validar IP
+	if (!userIp || !net.isIP(userIp)) {
+		cookieStore.delete("__srfk");
+		redirect("/acceder");
+	}
+
+	// Validar User-Agent
+	if (!userAgent) {
+		cookieStore.delete("__srfk");
+		redirect("/acceder");
+	}
+
 	// Generar el Access Token
 	try {
-		// Obtener Headers
-		const requestHeaders = await headers();
-		const userAgent = requestHeaders.get("user-agent");
-		const userIp = requestHeaders.get("cf-connecting-ip") || requestHeaders.get("x-forwarded-for") || requestHeaders.get("x-real-ip");
-
-		// Validar IP
-		if (!userIp || !net.isIP(userIp)) {
-			cookieStore.delete("__srfk");
-			redirect("/acceder");
-		}
-
-		// Validar User-Agent
-		if (!userAgent) {
-			cookieStore.delete("__srfk");
-			redirect("/acceder");
-		}
-
 		// Enviar Datos
 		const { statusCode, body } = await request(process.env.API_SESSION_URL + "/session/refresh", {
 			method: "POST",
@@ -55,7 +55,6 @@ export default async function refreshAccessCookie() {
 				"User-Agent": "NextJS - Lib/Auth.ts (Node.js " + process.version + ")",
 			},
 			body: JSON.stringify({
-				refresh_token: refreshToken,
 				user_agent: userAgent,
 				ip: userIp,
 			}),
@@ -83,8 +82,9 @@ export default async function refreshAccessCookie() {
 
 		// Fallo de Validación
 		cookieStore.delete("__srfk");
-		redirect("/acceder");
 	} catch {
 		return false;
 	}
+
+	redirect("/acceder");
 }
