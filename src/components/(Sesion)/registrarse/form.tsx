@@ -58,6 +58,11 @@ export default function Register_Form() {
 	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
 		if (state.error && state.message) {
+			setUserData(prev => ({
+				...prev,
+				document_type: "",
+			}));
+
 			toast.error(state.message);
 		}
 
