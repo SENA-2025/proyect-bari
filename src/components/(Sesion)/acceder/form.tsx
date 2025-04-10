@@ -26,7 +26,7 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 export default function Login_Form() {
 	const router = useRouter();
 	const [userData, setUserData] = useState({
-		document_type: "CC",
+		document_type: "",
 		document_number: "",
 		password: "",
 		showPassword: false,
@@ -62,7 +62,7 @@ export default function Login_Form() {
 		if (!state.error && state.message) {
 			// Limpiar Formulario
 			setUserData({
-				document_type: "CC",
+				document_type: "",
 				document_number: "",
 				password: "",
 				showPassword: false,
