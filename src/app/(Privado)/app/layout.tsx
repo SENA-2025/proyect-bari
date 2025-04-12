@@ -13,7 +13,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 	const cookieStore = await cookies();
 
 	return (
-		<div className="size-full bg-gray-50 transition-all duration-300 ease-in-out">
+		<div className="size-full bg-gray-50">
 			{/* Layout */}
 			<div className="flex size-full flex-col">
 				{/* Header */}
