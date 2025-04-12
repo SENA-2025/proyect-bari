@@ -21,7 +21,7 @@ export default function Login_Page() {
 				{/* Contenedor  */}
 				<div className="m-4 flex w-full justify-center">
 					{/* Tarjeta */}
-					<div className="w-full rounded-xl bg-white/90 p-8 shadow-lg backdrop-blur-sm md:w-md">
+					<div className="w-full rounded-xl bg-white/90 p-8 shadow-lg backdrop-blur-sm transition-shadow duration-300 ease-in-out hover:shadow-xl md:w-md">
 						{/* Contenido */}
 						<div className="flex flex-col items-center gap-8">
 							{/* Logo & Título */}
