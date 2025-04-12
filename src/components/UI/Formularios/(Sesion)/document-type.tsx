@@ -7,7 +7,7 @@ interface DocumentTypeProps {
 
 export default function DocumentType_Select({ value, onChange }: DocumentTypeProps) {
 	return (
-		<div className="flex flex-col gap-1">
+		<div className="group flex flex-col gap-1">
 			<label className="text-xs font-medium text-gray-700 select-none md:text-sm lg:text-base" htmlFor="document_type">
 				Tipo de Documento
 			</label>
@@ -32,7 +32,10 @@ export default function DocumentType_Select({ value, onChange }: DocumentTypePro
 				</select>
 
 				{/* Icono de Flecha */}
-				<ChevronDown className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-500" size={20} />
+				<ChevronDown
+					className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-500 transition-transform duration-300 ease-in-out group-focus-within:rotate-180 group-hover:rotate-90 group-focus-visible:bg-black"
+					size={20}
+				/>
 			</div>
 		</div>
 	);
