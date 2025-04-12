@@ -51,6 +51,7 @@ export default async function refreshAccessCookie() {
 			headers: {
 				Connection: "keep-alive",
 				Authorization: "Bearer " + process.env.API_SESSION_TOKEN,
+				Cookie: `__srfk=${refreshToken}`,
 				"Content-Type": "application/json",
 				"User-Agent": "NextJS - Lib/Auth.ts (Node.js " + process.version + ")",
 			},
