@@ -26,7 +26,7 @@ export default function Register_Page() {
 							{/* Logo & Título */}
 							<div className="flex flex-col items-center gap-6">
 								<Image
-									className="rounded-full shadow-xs select-none"
+									className="rounded-full select-none"
 									src="/logo.webp"
 									alt={"Logo del " + process.env.APP_WEB_TITLE}
 									width={100}
