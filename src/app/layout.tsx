@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 // Metadata
 export const metadata: Metadata = {
@@ -51,7 +52,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 					<div className="w-full grow">{children}</div>
 				</main>
 
-				<Toaster />
+				<Suspense>
+					<Toaster />
+				</Suspense>
 			</body>
 		</html>
 	);
