@@ -20,7 +20,7 @@ export default async function refreshAccessCookie() {
 	const refreshToken = cookieStore.get("__srfk")?.value;
 
 	// Validar el Refresh Token
-	if (refreshToken && refreshToken.length < 350) {
+	if (refreshToken && refreshToken.length < 200) {
 		cookieStore.delete("__srfk");
 		redirect("/acceder");
 	}

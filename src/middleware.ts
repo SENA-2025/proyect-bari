@@ -60,13 +60,13 @@ export function middleware(request: NextRequest) {
 	if (request.cookies.has("__srfk") || request.cookies.has("_sid")) {
 		// Refresh token
 		const refreshToken = request.cookies.get("__srfk")?.value;
-		if (refreshToken && refreshToken.length < 350) {
+		if (refreshToken && refreshToken.length < 200) {
 			response.cookies.delete("__srfk");
 		}
 
 		// Access token
 		const accessToken = request.cookies.get("_sid")?.value;
-		if (accessToken && accessToken.length < 350) {
+		if (accessToken && accessToken.length < 250) {
 			response.cookies.delete("_sid");
 		}
 	}
