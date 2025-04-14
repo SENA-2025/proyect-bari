@@ -17,13 +17,17 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 			{/* Layout */}
 			<div className="flex size-full flex-col">
 				{/* Header */}
-				<Header />
+				<Suspense>
+					<Header />
+				</Suspense>
 
 				{/* Contenido */}
 				<div className="h-full grow overflow-hidden">
 					<div className="flex size-full">
 						{/* Sidebar */}
-						<Sidebar />
+						<Suspense>
+							<Sidebar />
+						</Suspense>
 
 						{/* Contenido Principal */}
 						<div className="flex size-full flex-col justify-between">
@@ -39,7 +43,9 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 							</div>
 
 							{/* Footer */}
-							<Footer />
+							<Suspense>
+								<Footer />
+							</Suspense>
 						</div>
 					</div>
 				</div>
