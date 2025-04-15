@@ -9,7 +9,7 @@ export default function Sidebar() {
 		<aside className="hidden h-full lg:block">
 			<Suspense
 				fallback={
-					<div className="z-10 flex h-full w-14 flex-col gap-2 bg-white px-2 py-4 shadow-lg">
+					<div className="z-10 flex h-full w-16 flex-col gap-2 bg-white px-2 py-4 shadow-lg">
 						{Array(3)
 							.fill(0)
 							.map((_, index) => (
