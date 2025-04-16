@@ -12,15 +12,16 @@ export default function SidebarDesktop() {
 	const [debouncedWidth] = useDebounce(windowWidth, 200);
 
 	useEffect(() => {
-		// Obtener el ancho de la ventana
-		setWindowWidth(window.innerWidth);
-
-		const handleResize = () => {
+		if (typeof window !== "undefined") {
 			setWindowWidth(window.innerWidth);
-		};
 
-		window.addEventListener("resize", handleResize);
-		return () => window.removeEventListener("resize", handleResize);
+			const handleResize = () => setWindowWidth(window.innerWidth);
+
+			window.addEventListener("resize", handleResize);
+			return () => window.removeEventListener("resize", handleResize);
+		}
+
+		return undefined;
 	}, []);
 
 	if (windowWidth === 0) return null;
