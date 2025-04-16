@@ -4,47 +4,35 @@ import { Calendar, Clock } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 export default function CurrentDate({ initialDate }: { initialDate: string }) {
-	const initialTimestamp = useMemo(() => new Date(initialDate).getTime(), [initialDate]);
 	const [dateTime, setDateTime] = useState({ date: "", time: "" });
 
-	const dateOptions = useMemo<Intl.DateTimeFormatOptions>(
-		() => ({
-			weekday: "long",
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-		}),
-		[]
-	);
-
-	const timeOptions = useMemo<Intl.DateTimeFormatOptions>(
-		() => ({
-			hour: "2-digit",
-			minute: "2-digit",
-			second: "2-digit",
-			hour12: true,
-		}),
-		[]
-	);
+	const dateOptions = useMemo<Intl.DateTimeFormatOptions>(() => ({ weekday: "long", year: "numeric", month: "long", day: "numeric" }), []);
+	const timeOptions = useMemo<Intl.DateTimeFormatOptions>(() => ({ hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true }), []);
 
 	useEffect(() => {
+		const initialTimestamp = new Date(initialDate).getTime();
 		const start = performance.now();
 
 		const updateDateTime = () => {
-			const elapsed = performance.now() - start;
-			const now = new Date(initialTimestamp + elapsed);
+			const now = new Date(initialTimestamp + (performance.now() - start));
 
-			setDateTime({
-				date: now.toLocaleDateString("es-CO", dateOptions),
-				time: now.toLocaleTimeString("es-CO", timeOptions),
+			const newDate = now.toLocaleDateString("es-CO", dateOptions);
+			const newTime = now.toLocaleTimeString("es-CO", timeOptions);
+
+			setDateTime(prev => {
+				if (prev.date === newDate && prev.time === newTime) return prev;
+				return { date: newDate, time: newTime };
 			});
 		};
 
-		updateDateTime();
+		updateDateTime(); // first render
 
-		const interval = setInterval(updateDateTime, 1000);
+		const interval = setInterval(() => {
+			requestAnimationFrame(updateDateTime);
+		}, 1000);
+
 		return () => clearInterval(interval);
-	}, [initialTimestamp, dateOptions, timeOptions]);
+	}, [initialDate, dateOptions, timeOptions]);
 
 	return (
 		<div className="flex items-center gap-2">
