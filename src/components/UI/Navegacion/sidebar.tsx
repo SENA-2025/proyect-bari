@@ -13,7 +13,7 @@ export default function Sidebar() {
 						{Array(3)
 							.fill(0)
 							.map((_, index) => (
-								<div className="h-10 w-full animate-pulse rounded-lg bg-gray-100" key={index}></div>
+								<div className="h-12 w-full animate-pulse rounded-lg bg-gray-100" key={index}></div>
 							))}
 					</div>
 				}
