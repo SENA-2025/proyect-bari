@@ -19,7 +19,7 @@ export default function Footer() {
 					</div>
 
 					{/* Tiempo */}
-					<Suspense>
+					<Suspense fallback={null}>
 						<CurrentDate initialDate={initialDate} />
 					</Suspense>
 				</div>

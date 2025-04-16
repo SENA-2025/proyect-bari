@@ -17,7 +17,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 			{/* Layout */}
 			<div className="flex size-full flex-col">
 				{/* Header */}
-				<Suspense>
+				<Suspense fallback={null}>
 					<Header />
 				</Suspense>
 
@@ -25,7 +25,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 				<div className="h-full grow overflow-hidden">
 					<div className="flex size-full">
 						{/* Sidebar */}
-						<Suspense>
+						<Suspense fallback={null}>
 							<Sidebar />
 						</Suspense>
 
@@ -36,14 +36,14 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 								{cookieStore.has("_sid") ? (
 									children
 								) : (
-									<Suspense>
+									<Suspense fallback={null}>
 										<AccessRefresher />
 									</Suspense>
 								)}
 							</div>
 
 							{/* Footer */}
-							<Suspense>
+							<Suspense fallback={null}>
 								<Footer />
 							</Suspense>
 						</div>
