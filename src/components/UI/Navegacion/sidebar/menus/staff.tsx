@@ -1,4 +1,26 @@
-import { Briefcase, Building, Building2, FileText, Globe, GraduationCap, History, Landmark, Shield, UserCog } from "lucide-react";
+import {
+	BarChart2,
+	BookMarked,
+	BookOpen,
+	Briefcase,
+	Building,
+	Building2,
+	ClipboardCheck,
+	ClipboardList,
+	FileText,
+	GitBranch,
+	Globe,
+	GraduationCap,
+	History,
+	Home,
+	Landmark,
+	Layers,
+	LayoutDashboard,
+	Shield,
+	User,
+	UserCog,
+	Users,
+} from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
@@ -15,7 +37,13 @@ export default function StaffMenu({ collapse, url }: StaffMenuProps) {
 
 	const menu = [
 		{
-			label: "Coordinacion",
+			label: "Inicio",
+			url: "",
+			icon: Home,
+			list: [{ label: "Dashboard", url: "", icon: LayoutDashboard }],
+		},
+		{
+			label: "Coordinación",
 			url: "/c",
 			icon: Building2,
 			list: [
@@ -27,19 +55,42 @@ export default function StaffMenu({ collapse, url }: StaffMenuProps) {
 			],
 		},
 		{
+			label: "Formación",
+			url: "/f",
+			icon: BookOpen,
+			list: [
+				{ label: "Modalidades", url: "/modalidades", icon: Layers },
+				{ label: "Niveles", url: "/niveles", icon: BarChart2 },
+				{ label: "Programas de formación", url: "/programas", icon: BookMarked },
+				{ label: "Fichas", url: "/fichas", icon: ClipboardList },
+				{ label: "Transversales", url: "/transversales", icon: GitBranch },
+			],
+		},
+		{
+			label: "Gestión",
+			url: "/g",
+			icon: Users,
+			list: [{ label: "Usuarios", url: "/usuarios", icon: User }],
+		},
+		{
 			label: "Registros",
 			url: "/r",
 			icon: History,
 			list: [
-				{ label: "Administración", url: "/admin", icon: FileText },
 				{ label: "Coordinación", url: "/coordinacion", icon: FileText },
+				{ label: "Formación", url: "/formacion", icon: FileText },
+				{ label: "Usuarios", url: "/usuarios", icon: FileText },
+				{ label: "Administración", url: "/admin", icon: FileText },
 			],
 		},
 		{
 			label: "Admin",
 			url: "/a",
 			icon: Shield,
-			list: [{ label: "Administradores", url: "/administradores", icon: UserCog }],
+			list: [
+				{ label: "Administradores", url: "/administradores", icon: UserCog },
+				{ label: "Coordinadores", url: "/coordinadores", icon: ClipboardCheck },
+			],
 		},
 	];
 
