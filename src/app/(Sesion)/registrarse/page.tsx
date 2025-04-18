@@ -20,7 +20,7 @@ export default function Register_Page() {
 				{/* Contenedor  */}
 				<div className="m-4 flex w-full justify-center">
 					{/* Tarjeta */}
-					<div className="w-full rounded-xl bg-white/90 p-8 shadow-lg backdrop-blur-sm transition-shadow duration-300 ease-in-out hover:shadow-xl md:w-md">
+					<div className="w-full rounded-xl bg-white/90 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out hover:shadow-xl md:w-md">
 						{/* Contenido */}
 						<div className="flex flex-col items-center gap-8">
 							{/* Logo & Título */}
@@ -33,7 +33,9 @@ export default function Register_Page() {
 									height={100}
 									priority
 								/>
-								<h1 className="text-xl font-bold text-gray-800 select-none md:text-2xl lg:text-3xl xl:text-4xl">Registro</h1>
+								<h1 className="text-xl font-bold text-gray-800 transition-all duration-300 ease-in-out select-none md:text-2xl lg:text-3xl xl:text-4xl">
+									Registro
+								</h1>
 							</div>
 
 							{/* Formulario */}
@@ -62,11 +64,11 @@ export default function Register_Page() {
 							<div className="flex w-full flex-col items-center gap-4">
 								<div className="flex w-full items-center gap-2">
 									<hr className="w-full border-t border-gray-200" />
-									<span className="text-xs text-gray-500 select-none lg:text-sm">O</span>
+									<span className="text-xs text-gray-500 transition-all duration-300 ease-in-out select-none lg:text-sm">O</span>
 									<hr className="w-full border-t border-gray-200" />
 								</div>
 
-								<p className="text-secondary-600 text-xs select-none lg:text-sm">
+								<p className="text-secondary-600 text-xs transition-all duration-300 ease-in-out select-none lg:text-sm">
 									¿Ya tienes una cuenta?{" "}
 									<Link
 										href="/acceder"
