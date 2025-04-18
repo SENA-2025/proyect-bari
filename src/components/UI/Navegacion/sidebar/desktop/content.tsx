@@ -38,14 +38,14 @@ export default function SidebarContent() {
 				<div className="size-full p-4">
 					<Suspense
 						fallback={
-							<div className="flex size-full flex-col gap-4">
+							<div className="flex size-full flex-col gap-3">
 								{Array(5)
 									.fill(0)
 									.map((_, i) => (
-										<div className="flex w-full flex-col gap-3" key={i}>
+										<div className="flex w-full flex-col gap-2" key={i}>
 											<div className="h-8 w-full animate-pulse rounded-lg bg-gray-200"></div>
 
-											<div className="flex flex-col gap-2">
+											<div className="flex flex-col gap-1">
 												{Array(3)
 													.fill(0)
 													.map((_, j) => (
