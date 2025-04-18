@@ -130,14 +130,17 @@ export default function Login_Form() {
 				{/* Contraseña */}
 				<div className="flex flex-col gap-1">
 					<div className="flex items-center justify-between">
-						<label className="text-xs font-medium text-gray-700 select-none md:text-sm lg:text-base" htmlFor="password">
+						<label
+							className="text-xs font-medium text-gray-700 transition-all duration-300 ease-in-out select-none md:text-sm lg:text-base"
+							htmlFor="password"
+						>
 							Contraseña
 						</label>
 
 						<Link
 							href="/restablecer-clave"
 							prefetch={false}
-							className="text-tertiary-600 hover:text-primary-400 text-xs transition-colors duration-300 ease-in-out select-none lg:text-sm"
+							className="text-tertiary-600 hover:text-primary-400 text-xs transition-all duration-300 ease-in-out select-none lg:text-sm"
 						>
 							¿Olvidaste tu contraseña?
 						</Link>
@@ -164,7 +167,7 @@ export default function Login_Form() {
 							type="button"
 							onClick={toggleShowPassword}
 							aria-label={userData.showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
-							className="absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-gray-500 hover:text-gray-700 focus:outline-none"
+							className="absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-gray-500 transition-colors duration-300 ease-in-out hover:text-gray-700 focus:outline-none"
 							tabIndex={-1}
 						>
 							{userData.showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
