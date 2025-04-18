@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 
 // Metadata
 export const metadata: Metadata = {
-	title: "Staff",
+	title: {
+		default: "Staff",
+		template: "%s | Staff - SENA",
+	},
 };
 
 // Layout
