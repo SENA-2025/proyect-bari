@@ -6,7 +6,10 @@ interface DocumentNumberProps {
 export default function DocumentNumber_Input({ value, onChange }: DocumentNumberProps) {
 	return (
 		<div className="flex flex-col gap-1">
-			<label className="text-xs font-medium text-gray-700 select-none md:text-sm lg:text-base" htmlFor="document_number">
+			<label
+				className="text-xs font-medium text-gray-700 transition-all duration-300 ease-in-out select-none md:text-sm lg:text-base"
+				htmlFor="document_number"
+			>
 				Número de Documento
 			</label>
 
