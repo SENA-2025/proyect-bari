@@ -25,14 +25,13 @@ export default function SidebarDesktop() {
 	}, []);
 
 	if (windowWidth === 0) return null;
+	if (debouncedWidth < 1024) return null;
 
 	return (
-		<aside className={`h-full transition-all duration-300 ease-in-out ${debouncedWidth < 1024 ? "w-0" : "z-10 w-16 bg-white shadow-lg"}`}>
-			{debouncedWidth >= 1024 && (
-				<Suspense fallback={null}>
-					<Content />
-				</Suspense>
-			)}
+		<aside className="hidden lg:block">
+			<Suspense fallback={null}>
+				<Content />
+			</Suspense>
 		</aside>
 	);
 }
