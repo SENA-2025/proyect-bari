@@ -8,12 +8,15 @@ import { Suspense, useEffect, useState } from "react";
 const Menu = dynamic(() => import("@/components/UI/Navegacion/sidebar/desktop/menu"), { ssr: false });
 
 export default function SidebarContent() {
-	const [collapsed, setCollapsed] = useState(true);
+	const [collapsed, setCollapsed] = useState<boolean | undefined>(undefined);
 
 	useEffect(() => {
 		const stored = localStorage.getItem("sidebar-collapsed");
+
 		if (stored !== null) {
 			setCollapsed(stored === "true");
+		} else {
+			setCollapsed(true);
 		}
 	}, []);
 
@@ -24,26 +27,55 @@ export default function SidebarContent() {
 	};
 
 	return (
-		<div className="relative z-10 h-full bg-white shadow-lg">
-			{/* Menu */}
-			<div className="flex size-full flex-col items-center justify-start gap-4 p-4">
-				<Suspense fallback={null}>
-					{/* TODO: Añadir un fallback */}
-					<Menu collapse={collapsed} />
-				</Suspense>
-			</div>
+		<div
+			className={
+				"z-10 h-full bg-white shadow-lg transition-all duration-300 ease-in-out " +
+				(collapsed === undefined ? "w-0" : collapsed ? "w-16" : "w-64")
+			}
+		>
+			<div className="relative size-full">
+				{/* Menu */}
+				<div className="size-full p-4">
+					<Suspense
+						fallback={
+							<div className="flex size-full flex-col gap-4">
+								{Array(5)
+									.fill(0)
+									.map((_, i) => (
+										<div className="flex w-full flex-col gap-3" key={i}>
+											<div className="h-8 w-full animate-pulse rounded-lg bg-gray-200"></div>
 
-			{/* Button */}
-			<div className="absolute top-0 right-0 bottom-0 flex items-center justify-end">
-				<button
-					onClick={toggleCollapsed}
-					className="group -mr-6 flex h-12 w-6 cursor-pointer items-center justify-center rounded-r-md bg-white shadow-md transition-all duration-300 ease-in-out"
-				>
-					<ChevronRight
-						className={`text-secondary-600 transition-all duration-300 ease-in-out ${collapsed ? "group-hover:rotate-180" : "rotate-180 group-hover:rotate-0"}`}
-						size={16}
-					/>
-				</button>
+											<div className="flex flex-col gap-2">
+												{Array(3)
+													.fill(0)
+													.map((_, j) => (
+														<div className="h-8 w-full animate-pulse rounded-lg bg-gray-100" key={j}></div>
+													))}
+											</div>
+										</div>
+									))}
+							</div>
+						}
+					>
+						<Menu collapse={collapsed} />
+					</Suspense>
+				</div>
+
+				{/* Button */}
+				<div className="absolute top-0 right-0 bottom-0 flex items-center justify-end">
+					<button
+						onClick={toggleCollapsed}
+						className="group -mr-6 flex h-12 w-6 cursor-pointer items-center justify-center rounded-r-md bg-white shadow-md transition-all duration-300 ease-in-out"
+					>
+						<ChevronRight
+							className={
+								"text-secondary-600 transition-all duration-300 ease-in-out " +
+								(collapsed ? "group-hover:rotate-180" : "rotate-180 group-hover:rotate-0")
+							}
+							size={16}
+						/>
+					</button>
+				</div>
 			</div>
 		</div>
 	);
