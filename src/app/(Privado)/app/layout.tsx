@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 // Componentes
 const Header = dynamic(() => import("@/components/UI/Navegacion/header"));
-const Sidebar = dynamic(() => import("@/components/UI/Navegacion/sidebar"));
+const Sidebar = dynamic(() => import("@/components/UI/Navegacion/sidebar/desktop"));
 const Footer = dynamic(() => import("@/components/UI/Navegacion/footer"));
 const AccessRefresher = dynamic(() => import("@/components/(Privado)/AccessRefresher"));
 
