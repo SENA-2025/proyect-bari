@@ -86,7 +86,7 @@ export default function Register_Form() {
 					duration: 2000,
 					icon: <TriangleAlert className="size-5 shrink-0 text-orange-500" />,
 					className:
-						"z-50 flex items-center gap-2 bg-white text-gray-800 border border-orange-300 shadow-md rounded-lg px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm xl:text-base font-medium select-none mx-2 lg:mx-4 mb-4",
+						"z-50 flex items-center gap-2 bg-white text-gray-800 border transition-all duration-300 ease-in-out border-orange-300 shadow-md rounded-lg px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm xl:text-base font-medium select-none mx-2 lg:mx-4 mb-4",
 				});
 			}
 
@@ -103,7 +103,7 @@ export default function Register_Form() {
 	}, [state.id]);
 
 	return (
-		<Form action={formAction} className="flex size-full flex-col gap-6">
+		<Form action={formAction} className="flex size-full flex-col gap-6 select-none">
 			{/* Entrada de Datos */}
 			<fieldset className="flex flex-col gap-4">
 				{/* Tipo de Documento */}
@@ -244,8 +244,8 @@ export default function Register_Form() {
 				type="submit"
 				disabled={isPending}
 				className={
-					"bg-tertiary-600 hover:bg-primary-400 focus:ring-primary-400/50 h-10 w-full transform rounded-lg text-xs font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none md:text-sm lg:text-base" +
-					`${isPending ? " cursor-progress" : " cursor-pointer"}`
+					"bg-tertiary-600 hover:bg-primary-400 focus:ring-primary-400/50 h-10 w-full transform rounded-lg text-xs font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none md:text-sm lg:text-base " +
+					(isPending ? "cursor-wait" : "cursor-pointer")
 				}
 			>
 				{isPending ? (
