@@ -245,7 +245,7 @@ export default function Register_Form() {
 							tabIndex={-1}
 						>
 							Términos y condiciones
-							<ExternalLink size={20} />
+							<ExternalLink size={16} />
 						</a>
 					</label>
 				</div>
