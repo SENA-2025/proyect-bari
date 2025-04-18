@@ -25,21 +25,14 @@ export default function SidebarDesktop() {
 	}, []);
 
 	if (windowWidth === 0) return null;
-	if (debouncedWidth < 1024) return null;
 
 	return (
-		<Suspense
-			fallback={
-				<div className="z-10 flex h-full w-16 flex-col gap-2 bg-white px-2 py-4 shadow-lg">
-					{Array(3)
-						.fill(0)
-						.map((_, index) => (
-							<div className="h-12 w-full animate-pulse rounded-lg bg-gray-200" key={index}></div>
-						))}
-				</div>
-			}
-		>
-			<Content />
-		</Suspense>
+		<aside className={`h-full transition-all duration-300 ease-in-out ${debouncedWidth < 1024 ? "w-0" : "z-10 w-16 bg-white shadow-lg"}`}>
+			{debouncedWidth >= 1024 && (
+				<Suspense fallback={null}>
+					<Content />
+				</Suspense>
+			)}
+		</aside>
 	);
 }
