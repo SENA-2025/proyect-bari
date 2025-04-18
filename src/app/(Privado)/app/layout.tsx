@@ -32,14 +32,20 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 						{/* Contenido Principal */}
 						<div className="flex size-full flex-col justify-between">
 							{/* Hijo */}
-							<div className="m-4 size-full">
-								{cookieStore.has("_sid") ? (
-									children
-								) : (
-									<Suspense fallback={null}>
-										<AccessRefresher />
-									</Suspense>
-								)}
+							<div className="size-full p-5">
+								<div className="size-full">
+									{cookieStore.has("_sid") ? (
+										children
+									) : (
+										<div className="flex size-full items-center justify-center bg-gray-50">
+											<div className="flex w-full flex-col items-center justify-center gap-4">
+												<div className="border-t-primary-400 text-primary-400 flex h-20 w-20 animate-spin items-center justify-center rounded-full border-4 border-transparent text-4xl">
+													<div className="border-t-secondary-600 text-secondary-600 flex h-16 w-16 animate-spin items-center justify-center rounded-full border-4 border-transparent text-2xl"></div>
+												</div>
+											</div>
+										</div>
+									)}
+								</div>
 							</div>
 
 							{/* Footer */}
@@ -50,6 +56,13 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 					</div>
 				</div>
 			</div>
+
+			{/* Regenerar: Access Token */}
+			{!cookieStore.has("_sid") && (
+				<Suspense fallback={null}>
+					<AccessRefresher />
+				</Suspense>
+			)}
 		</div>
 	);
 }
