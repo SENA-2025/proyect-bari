@@ -5,3 +5,9 @@
 	--color-secondary-600: #8b94a3;
 	--color-tertiary-600: #06ba63;
 }
+
+/* Oculta el icono de mostrar contraseña en Edge */
+input::-ms-reveal,
+input::-ms-clear {
+	display: none;
+}

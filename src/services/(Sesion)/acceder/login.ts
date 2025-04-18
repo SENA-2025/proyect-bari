@@ -7,6 +7,7 @@ import { request } from "undici";
 import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
+import { setAccessCookie, setRefreshCookie } from "@/lib/cookies";
 import loginSchema from "@/schemas/(Sesion)/acceder/login.schema";
 
 // Tipos
@@ -32,7 +33,12 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 
 		// Validar IP
 		if (!userIp || !net.isIP(userIp)) {
-			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+			return { id: uuidv4(), error: true, message: "Error interno. Prueba con otro navegador." };
+		}
+
+		// Validar User-Agent
+		if (!userAgent) {
+			return { id: uuidv4(), error: true, message: "Error interno. Prueba con otro navegador." };
 		}
 
 		// Validar User-Agent
@@ -53,14 +59,26 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 			body: JSON.stringify({
 				...data,
 				user_agent: userAgent,
-				user_ip: userIp,
+				ip: userIp,
 			}),
 		});
 
 		// Validar Respuesta
-		if (statusCode === 200) {
-			const responseBody = await body.json();
-			console.log(responseBody);
+		if ([200, 202].includes(statusCode)) {
+			const responseBody = (await body.json()) as {
+				data: {
+					accessToken: string;
+					accessExpiration: number;
+					refreshToken: string;
+					refreshExpiration: number;
+				};
+			};
+
+			// Establecer Cookies
+			await setAccessCookie(responseBody.data.accessToken, responseBody.data.accessExpiration);
+			await setRefreshCookie(responseBody.data.refreshToken, responseBody.data.refreshExpiration);
+
+			return { id: uuidv4(), error: false, message: statusCode === 200 ? "OK" : "Datos Faltantes" };
 		} else if (statusCode === 423) {
 			// Cambio de contraseña requerido
 			return { id: uuidv4(), error: false, message: "Cambio de contraseña requerido." };

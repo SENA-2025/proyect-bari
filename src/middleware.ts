@@ -2,11 +2,18 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-	// Obtener la URL de la solicitud
-	const getUrl = request.nextUrl.pathname.toLowerCase();
+	// Request URL
+	const reqUrl = request.nextUrl.pathname.toLowerCase();
+	const reqUrls = reqUrl.split("/").filter(url => url !== "");
+
+	// Sesión: Validar el acceso
+	if (reqUrl === "/") {
+		return NextResponse.redirect(new URL("/app", request.url));
+	}
 
 	// Generar un nonce aleatorio
 	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+	// Construir el CSP
 	const CSP = `
 		default-src 'self';
 		connect-src 'self';
@@ -31,9 +38,6 @@ export function middleware(request: NextRequest) {
 	requestHeaders.set("x-nonce", nonce);
 	requestHeaders.set("Content-Security-Policy", CSP_Header);
 
-	// Validacion de Autenticacion
-	// TODO: Implementar validacion de autenticacion
-
 	// Respuesta de Next.js
 	const response = NextResponse.next({ request: { headers: requestHeaders } });
 
@@ -50,13 +54,49 @@ export function middleware(request: NextRequest) {
 	response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
 	response.headers.set("Cross-Origin-Embedder-Policy", "require-corp");
 
+	// Cookies --------- -----------------
+
+	// Validar la longitud
+	if (request.cookies.has("__srfk") || request.cookies.has("_sid")) {
+		// Refresh token
+		const refreshToken = request.cookies.get("__srfk")?.value;
+		if (refreshToken && refreshToken.length < 200) {
+			response.cookies.delete("__srfk");
+		}
+
+		// Access token
+		const accessToken = request.cookies.get("_sid")?.value;
+		if (accessToken && accessToken.length < 250) {
+			response.cookies.delete("_sid");
+		}
+	}
+
+	// Validar la existencia
+	if (["acceder", "registrarse"].includes(reqUrls.shift() || "")) {
+		if (request.cookies.has("__srfk")) {
+			// Redirigir a la página de inicio si ya hay sesión
+			return NextResponse.redirect(new URL("/app", request.url));
+		} else {
+			if (request.cookies.has("_sid")) {
+				response.cookies.delete("_sid");
+			}
+		}
+	} else {
+		if (!request.cookies.has("__srfk")) {
+			// Redirigir a la página de inicio de sesión si no hay sesión
+			return NextResponse.redirect(new URL("/acceder", request.url));
+		}
+	}
+
+	// --------------------------------
+
 	return response;
 }
 
 export const config = {
 	matcher: [
 		{
-			source: "/((?!_next/static|_next/image|favicon.ico|robots.txt).*)",
+			source: "/((?!_next/static|_next/image|favicon.ico|logo.webp|robots.txt).*)",
 			missing: [
 				{ type: "header", key: "next-router-prefetch" },
 				{ type: "header", key: "purpose", value: "prefetch" },

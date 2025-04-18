@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 // Metadata
 export const metadata: Metadata = {
@@ -40,10 +41,10 @@ const poppins = Poppins({
 });
 
 // Componentes
-const Toaster = dynamic(() => import("@/components/toaster"));
+const Toaster = dynamic(() => import("@/components/UI/toaster"));
 
 // Layout
-export default function Root_Layout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="es-CO">
 			<body className={`${poppins.className} antialiased`}>
@@ -51,7 +52,9 @@ export default function Root_Layout({ children }: Readonly<{ children: React.Rea
 					<div className="w-full grow">{children}</div>
 				</main>
 
-				<Toaster />
+				<Suspense fallback={null}>
+					<Toaster />
+				</Suspense>
 			</body>
 		</html>
 	);
