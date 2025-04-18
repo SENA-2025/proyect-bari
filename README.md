@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 Panel Web - Proyecto SENA
 
-## Getting Started
+Este es un proyecto desarrollado con [Next.js](https://nextjs.org), diseñado para gestionar y administrar diferentes módulos del sistema del SENA. La aplicación está estructurada para ser escalable, modular y fácil de mantener.
 
-First, run the development server:
+---
+
+## 🚀 Comenzando
+
+### 🛠️ Pasos para configurar el proyecto
+
+1️⃣ **Clonar el repositorio**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/SENA-2025/web-panel.git
+cd web-panel
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2️⃣ **Instalar dependencias**  
+Usa tu gestor de paquetes favorito:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3️⃣ **Ejecutar el servidor de desarrollo**
 
-## Learn More
+```bash
+node --run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Abre [http://localhost:3170](http://localhost:3170) en tu navegador para ver la aplicación en funcionamiento.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📂 Estructura del Proyecto
 
-## Deploy on Vercel
+El proyecto está organizado de la siguiente manera:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/                # Páginas y layouts principales
+├── components/         # Componentes reutilizables
+├── lib/                # Funciones y utilidades compartidas
+├── middleware.ts       # Middleware de la aplicación
+├── schemas/            # Validaciones y esquemas
+├── services/           # Lógica de negocio y servicios
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🗂 Directorios Clave
+
+- **`app/`**: Contiene las páginas principales y layouts organizados por módulos.
+- **`components/`**: Componentes reutilizables como formularios, navegación y notificaciones.
+- **`lib/`**: Funciones auxiliares como manejo de cookies y autenticación.
+- **`schemas/`**: Esquemas de validación para formularios y datos.
+- **`services/`**: Lógica de negocio y conexión con APIs externas.
+
+---
+
+## 🌟 Características
+
+- **Framework**: Construido con [Next.js](https://nextjs.org) para un rendimiento óptimo.
+- **Estilos**: Utiliza CSS modular para personalización y consistencia.
+- **Autenticación**: Implementación de autenticación segura con manejo de cookies.
+- **Modularidad**: Estructura organizada para facilitar la escalabilidad.
+
+---
+
+## 📖 Documentación
+
+### Fuentes de aprendizaje:
+
+- [Documentación oficial de Next.js](https://nextjs.org/docs)
+- [Tutorial interactivo de Next.js](https://nextjs.org/learn)
+
+### Despliegue:
+
+El proyecto puede ser desplegado fácilmente en [Vercel](https://vercel.com). Consulta la [documentación de despliegue](https://nextjs.org/docs/app/building-your-application/deploying) para más detalles.
+
+---
+
+## 🛠 Tecnologías Utilizadas
+
+- **Next.js**: Framework principal.
+- **TypeScript**: Tipado estático para mayor robustez.
+- **CSS Modules**: Estilización modular.
+
+---
+
+## ⚠️ Nota Importante
+
+Este es un proyecto **privado** desarrollado exclusivamente para el SENA. No está permitido su uso, distribución o modificación sin autorización previa.
