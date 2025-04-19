@@ -4,6 +4,9 @@ import { ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
 
+// Utilidades
+import { cn } from "@/lib/utils";
+
 // Componentes
 const Menu = dynamic(() => import("@/components/UI/Navegacion/sidebar/desktop/menu"), { ssr: false });
 
@@ -28,10 +31,10 @@ export default function SidebarContent() {
 
 	return (
 		<div
-			className={
-				"z-10 h-full bg-white shadow-lg transition-all duration-300 ease-in-out " +
-				(collapsed === undefined ? "w-0" : collapsed ? "w-16" : "w-64")
-			}
+			className={cn(
+				"z-10 h-full bg-white shadow-lg transition-all duration-300 ease-in-out",
+				collapsed === undefined ? "w-0" : collapsed ? "w-16" : "w-64"
+			)}
 		>
 			<div className="relative size-full">
 				{/* Menu */}
@@ -68,10 +71,10 @@ export default function SidebarContent() {
 						className="group -mr-6 flex h-12 w-6 cursor-pointer items-center justify-center rounded-r-md bg-white shadow-md transition-all duration-300 ease-in-out"
 					>
 						<ChevronRight
-							className={
-								"text-secondary-600 transition-all duration-300 ease-in-out " +
-								(collapsed ? "group-hover:rotate-180" : "rotate-180 group-hover:rotate-0")
-							}
+							className={cn(
+								"text-secondary-600 transition-all duration-300 ease-in-out",
+								collapsed ? "group-hover:rotate-180" : "rotate-180 group-hover:rotate-0"
+							)}
 							size={16}
 						/>
 					</button>

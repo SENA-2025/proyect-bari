@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+// Utilidades
+import { cn } from "@/lib/utils";
+
 interface MenuItem {
 	label: string;
 	url: string;
@@ -23,9 +26,10 @@ interface TemplateMenuProps {
 export default function TemplateMenu(props: TemplateMenuProps) {
 	return (
 		<nav
-			className={
-				"transition-all duration-300 ease-in-out select-none " + (props.collapse === undefined ? "w-0 opacity-0" : "size-full opacity-100")
-			}
+			className={cn(
+				"transition-all duration-300 ease-in-out select-none",
+				props.collapse === undefined ? "w-0 opacity-0" : "size-full opacity-100"
+			)}
 		>
 			<ul className="flex size-full flex-col gap-3">
 				{/* Menu */}
@@ -34,10 +38,10 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 						{/* Categoria */}
 						<div
 							title={props.collapse ? section.label : ""}
-							className={
-								"flex items-center justify-start transition-all duration-300 ease-in-out " +
-								(props.collapse ? "rounded-md bg-gradient-to-r from-lime-600/20 to-lime-400/20 p-2" : "uppercase")
-							}
+							className={cn(
+								"flex items-center justify-start transition-all duration-300 ease-in-out",
+								props.collapse ? "rounded-md bg-gradient-to-r from-lime-600/20 to-lime-400/20 p-2" : "uppercase"
+							)}
 						>
 							{props.collapse && <section.icon className="text-tertiary-600 transition-all duration-300 ease-in-out" size={20} />}
 							{!props.collapse && (
@@ -58,18 +62,18 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 										{/* Item */}
 										<Link
 											href={createUrl}
-											className={
-												"flex w-full items-center justify-start gap-2 rounded-md p-2 text-sm transition-all duration-300 ease-in-out " +
-												(isActive
+											className={cn(
+												"flex w-full items-center justify-start gap-2 rounded-md p-2 text-sm transition-all duration-300 ease-in-out",
+												isActive
 													? "from-primary-400/20 to-tertiary-600/20 text-tertiary-600 cursor-default bg-gradient-to-r"
-													: "text-gray-700 hover:bg-gray-100")
-											}
+													: "text-gray-700 hover:bg-gray-100"
+											)}
 										>
 											<item.icon
-												className={"shrink-0 transition-all duration-300 ease-in-out " + (!isActive && "text-gray-500")}
+												className={cn("shrink-0 transition-all duration-300 ease-in-out", !isActive && "text-gray-500")}
 												size={16}
 											/>
-											<span className={"transition-all duration-300 ease-in-out " + (props.collapse ? "hidden" : "truncate")}>
+											<span className={cn("transition-all duration-300 ease-in-out", props.collapse ? "hidden" : "truncate")}>
 												{item.label}
 											</span>
 										</Link>
