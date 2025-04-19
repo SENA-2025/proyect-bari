@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation";
 import { Suspense, useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
+// Utilidades
+import { cn } from "@/lib/utils";
+
 // Componentes
 const DocumentType = dynamic(() => import("@/components/UI/Formularios/(Sesion)/document-type"));
 const DocumentNumber = dynamic(() => import("@/components/UI/Formularios/(Sesion)/document-number"));
@@ -180,10 +183,10 @@ export default function Login_Form() {
 			<button
 				type="submit"
 				disabled={isPending}
-				className={
-					"bg-tertiary-600 hover:bg-primary-400 focus:ring-primary-400/50 h-10 w-full transform rounded-lg text-xs font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none md:text-sm lg:text-base " +
-					(isPending ? "cursor-wait" : "cursor-pointer")
-				}
+				className={cn(
+					"bg-tertiary-600 hover:bg-primary-400 focus:ring-primary-400/50 h-10 w-full transform rounded-lg text-xs font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none md:text-sm lg:text-base",
+					isPending ? "cursor-wait" : "cursor-pointer"
+				)}
 			>
 				{isPending ? (
 					<div className="flex items-center justify-center gap-2">
