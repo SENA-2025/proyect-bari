@@ -40,7 +40,7 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 							title={props.collapse ? section.label : ""}
 							className={cn(
 								"flex items-center justify-start transition-all duration-300 ease-in-out",
-								props.collapse ? "rounded-md bg-gradient-to-r from-lime-600/20 to-lime-400/20 p-2" : "uppercase"
+								props.collapse ? "w-fit rounded-md bg-gradient-to-r from-lime-600/20 to-lime-400/20 p-2" : "uppercase"
 							)}
 						>
 							{props.collapse && <section.icon className="text-tertiary-600 transition-all duration-300 ease-in-out" size={20} />}
