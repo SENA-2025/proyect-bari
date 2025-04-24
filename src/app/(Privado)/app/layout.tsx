@@ -58,11 +58,9 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 			</div>
 
 			{/* Regenerar: Access Token */}
-			{!cookieStore.has("_sid") && (
-				<Suspense fallback={null}>
-					<AccessRefresher />
-				</Suspense>
-			)}
+			<Suspense fallback={null}>
+				<AccessRefresher accessToken={cookieStore.get("_sid")?.value || ""} />
+			</Suspense>
 		</div>
 	);
 }
