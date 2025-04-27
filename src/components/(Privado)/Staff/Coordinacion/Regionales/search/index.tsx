@@ -48,7 +48,7 @@ export default function SearchInput() {
 
 	return (
 		<div className="group relative flex w-full items-center">
-			<div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+			<div className="pointer-events-none absolute inset-y-0 left-0 flex shrink-0 items-center pl-3">
 				<Search className="group-focus-within:text-primary-400 text-gray-400 transition-all duration-300 ease-in-out" size={20} />
 			</div>
 
