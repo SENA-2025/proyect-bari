@@ -14,7 +14,7 @@ export default function RegionalesButtons() {
 			</Suspense>
 
 			{/* Otras acciones */}
-			<div className="bg- flex items-center justify-center gap-2 transition-all duration-300 ease-in-out">
+			<div className="flex items-center justify-center gap-2 transition-all duration-300 ease-in-out">
 				{/* Crear */}
 				<Suspense fallback={null}>
 					<Create />
