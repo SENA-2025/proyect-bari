@@ -6,13 +6,18 @@ import { useEffect, useMemo, useState } from "react";
 export default function CurrentDate({ initialDate }: { initialDate: string }) {
 	const [dateTime, setDateTime] = useState({ date: "", time: "" });
 
+	// Opciones de formato para la fecha y hora
+	// Se utilizan useMemo para evitar que se recalculen en cada renderizado
+	// y así mejorar el rendimiento
 	const dateOptions = useMemo<Intl.DateTimeFormatOptions>(() => ({ weekday: "long", year: "numeric", month: "long", day: "numeric" }), []);
 	const timeOptions = useMemo<Intl.DateTimeFormatOptions>(() => ({ hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true }), []);
 
+	// Efecto para actualizar la fecha y hora
 	useEffect(() => {
 		const initialTimestamp = new Date(initialDate).getTime();
 		const start = performance.now();
 
+		// Función para actualizar la fecha y hora
 		const updateDateTime = () => {
 			const now = new Date(initialTimestamp + (performance.now() - start));
 
