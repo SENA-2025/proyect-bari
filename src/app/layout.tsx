@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
+import { Poppins } from "next/font/google";
 import { Suspense } from "react";
 
 // Utilidades
@@ -37,7 +38,6 @@ export const viewport: Viewport = {
 };
 
 // Fuente(s)
-import { Poppins } from "next/font/google";
 const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
