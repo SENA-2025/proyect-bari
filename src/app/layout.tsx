@@ -4,6 +4,9 @@ import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
+// Utilidades
+import { cn } from "@/lib/utils";
+
 // Metadata
 export const metadata: Metadata = {
 	metadataBase: new URL(process.env.APP_WEB_URL as string),
@@ -47,7 +50,7 @@ const Toaster = dynamic(() => import("@/components/UI/toaster"));
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="es-CO">
-			<body className={`${poppins.className} flex min-h-screen w-full antialiased`}>
+			<body className={cn(poppins.className, "antialiased", "flex min-h-screen w-full")}>
 				<main className="flex-1">{children}</main>
 
 				<Suspense fallback={null}>
