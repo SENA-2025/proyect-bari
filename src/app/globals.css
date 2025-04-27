@@ -11,3 +11,10 @@ input::-ms-reveal,
 input::-ms-clear {
 	display: none;
 }
+
+/* Oculta el icono de eliminar texto en el input de búsqueda */
+input[type="search"]::-webkit-search-cancel-button {
+	appearance: none;
+	-webkit-appearance: none;
+	display: none;
+}
