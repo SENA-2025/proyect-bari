@@ -1,8 +1,8 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { usePathname, useRouter,useSearchParams } from "next/navigation";
-import { useCallback, useEffect,useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 
 export default function SearchButton() {
@@ -47,7 +47,7 @@ export default function SearchButton() {
 	};
 
 	return (
-		<div className="group relative flex items-center">
+		<div className="group relative flex w-full items-center">
 			<div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
 				<Search className="group-focus-within:text-primary-400 text-gray-400 transition-all duration-300 ease-in-out" size={20} />
 			</div>
