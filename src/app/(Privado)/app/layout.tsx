@@ -32,7 +32,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 						{/* Contenido Principal */}
 						<div className="flex size-full flex-col justify-between">
 							{/* Hijo */}
-							<div className="size-full p-5">
+							<div className="size-full">
 								<div className="size-full">
 									{cookieStore.has("_sid") ? (
 										children
