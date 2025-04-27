@@ -60,7 +60,7 @@ export default function SearchButton() {
 				spellCheck="false"
 				value={query}
 				onChange={handleChange}
-				className="focus:ring-primary-400 block w-full appearance-none rounded-lg border border-gray-300 bg-white py-2 pr-3 pl-9 text-sm leading-5 placeholder-gray-500 transition-all duration-300 ease-in-out focus:border-transparent focus:ring-2 focus:outline-none"
+				className="focus:ring-primary-400 block w-full appearance-none rounded-lg border border-gray-300 bg-white py-2 pr-3 pl-9 text-sm leading-5 placeholder-gray-500 transition-all duration-300 ease-in-out placeholder:select-none focus:border-transparent focus:ring-2 focus:outline-none"
 			/>
 		</div>
 	);
