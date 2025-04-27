@@ -47,10 +47,8 @@ const Toaster = dynamic(() => import("@/components/UI/toaster"));
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="es-CO">
-			<body className={`${poppins.className} antialiased`}>
-				<main className="flex min-h-screen max-w-full">
-					<div className="w-full grow">{children}</div>
-				</main>
+			<body className={`${poppins.className} flex min-h-screen w-full antialiased`}>
+				<main className="flex-1">{children}</main>
 
 				<Suspense fallback={null}>
 					<Toaster />
