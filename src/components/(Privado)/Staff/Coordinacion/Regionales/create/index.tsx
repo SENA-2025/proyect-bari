@@ -41,10 +41,26 @@ export default function CreateButton() {
 			{/* Modal */}
 			{open && (
 				<div className="fixed inset-0 z-40 flex items-center justify-center bg-gray-500/20 backdrop-blur-sm transition-all duration-300 ease-in-out">
-					<div className="m-4" ref={modalRef}>
-						<Suspense fallback={null}>
-							<Form />
-						</Suspense>
+					<div className="m-4 w-full transition-all duration-300 ease-in-out md:w-96" ref={modalRef}>
+						<div className="relative overflow-hidden rounded-xl bg-white shadow-lg">
+							<div className="bg-primary-400 h-1.5 w-full"></div>
+
+							<div className="flex w-full flex-col items-center justify-center gap-4 p-4">
+								<div className="flex w-full items-center justify-start gap-2">
+									<div className="bg-primary-400/10 rounded-full p-2.5">
+										<Plus className="text-tertiary-600" size={20} />
+									</div>
+
+									<span className="text-lg font-semibold text-gray-900 transition-all duration-300 ease-in-out select-none lg:text-xl">
+										Nueva Regional
+									</span>
+								</div>
+
+								<Suspense fallback={null}>
+									<Form />
+								</Suspense>
+							</div>
+						</div>
 					</div>
 				</div>
 			)}
