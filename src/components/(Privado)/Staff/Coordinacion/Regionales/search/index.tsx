@@ -11,13 +11,13 @@ export default function SearchInput() {
 	const { replace } = useRouter();
 
 	// Estados
-	const [query, setQuery] = useState(() => searchParams.get("s")?.toString().trim().slice(0, 60) || "");
+	const [query, setQuery] = useState(() => searchParams.get("s")?.toString().trim().slice(0, 50) || "");
 	const [debouncedQuery] = useDebounce(query, 300);
 
 	// Efecto para actualizar la URL
 	const updateSearch = useCallback(
 		(value: string) => {
-			const sanitized = value.replace(/\s+/g, " ").trim().slice(0, 60);
+			const sanitized = value.replace(/\s+/g, " ").trim().slice(0, 50);
 			const currentValue = searchParams.get("s")?.toString().trim() || "";
 
 			// Si el valor actual es igual al nuevo valor, no hacer nada
@@ -58,7 +58,7 @@ export default function SearchInput() {
 			<input
 				type="search"
 				placeholder="Buscar nombre o abreviatura..."
-				maxLength={60}
+				maxLength={50}
 				autoComplete="off"
 				spellCheck="false"
 				value={query}
