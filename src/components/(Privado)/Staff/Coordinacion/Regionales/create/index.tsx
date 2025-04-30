@@ -53,7 +53,7 @@ export default function CreateButton() {
 									</div>
 
 									<span className="text-lg font-semibold text-gray-900 transition-all duration-300 ease-in-out select-none lg:text-xl">
-										Nueva Regional
+										Crear Regional
 									</span>
 								</div>
 
