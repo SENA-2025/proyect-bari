@@ -13,56 +13,53 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 	const cookieStore = await cookies();
 
 	return (
-		<div className="size-full max-h-screen max-w-screen bg-gray-50">
-			{/* Layout */}
-			<div className="flex size-full flex-col">
+		<>
+			<div className="flex size-full max-h-screen flex-col bg-gray-50">
 				{/* Header */}
 				<Suspense fallback={null}>
 					<Header />
 				</Suspense>
 
 				{/* Contenido */}
-				<div className="h-full grow overflow-hidden">
-					<div className="flex size-full">
+				<div className="flex-1 overflow-hidden">
+					<div className="flex h-full">
 						{/* Sidebar */}
-						<Suspense fallback={null}>
-							<Sidebar />
-						</Suspense>
+						<div className="bg-amber-300">s</div>
 
-						{/* Contenido Principal */}
-						<div className="flex size-full flex-col justify-between">
-							{/* Hijo */}
-							<div className="size-full p-5">
-								<div className="size-full">
-									{cookieStore.has("_sid") ? (
-										children
-									) : (
-										<div className="flex size-full items-center justify-center">
-											<div className="flex w-full flex-col items-center justify-center gap-4">
-												<div className="border-t-primary-400 text-primary-400 flex h-20 w-20 animate-spin items-center justify-center rounded-full border-4 border-transparent text-4xl">
-													<div className="border-t-secondary-600 text-secondary-600 flex h-16 w-16 animate-spin items-center justify-center rounded-full border-4 border-transparent text-2xl"></div>
+						{/* Principal */}
+						<div className="flex-1">
+							<div className="flex size-full flex-col justify-between">
+								{/* Hijo */}
+								<div className="size-full overflow-hidden">
+									<div className="h-full overflow-y-auto">
+										{cookieStore.has("_sid") ? (
+											children
+										) : (
+											<div className="flex size-full items-center justify-center">
+												<div className="flex flex-col items-center justify-center gap-4">
+													<div className="border-t-primary-400 text-primary-400 flex h-20 w-20 animate-spin items-center justify-center rounded-full border-4 border-transparent text-4xl">
+														<div className="border-t-secondary-600 text-secondary-600 flex h-16 w-16 animate-spin items-center justify-center rounded-full border-4 border-transparent text-2xl"></div>
+													</div>
 												</div>
 											</div>
-										</div>
-									)}
+										)}
+									</div>
 								</div>
-							</div>
 
-							{/* Footer */}
-							<Suspense fallback={null}>
-								<Footer />
-							</Suspense>
+								{/* Footer */}
+								<Suspense fallback={null}>
+									<Footer />
+								</Suspense>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			{/* Regenerar: Access Token */}
-			{!cookieStore.has("_sid") && (
-				<Suspense fallback={null}>
-					<AccessRefresher />
-				</Suspense>
-			)}
-		</div>
+			<Suspense fallback={null}>
+				<AccessRefresher accessToken={cookieStore.get("_sid")?.value || ""} />
+			</Suspense>
+		</>
 	);
 }

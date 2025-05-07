@@ -22,7 +22,7 @@ export default function DocumentType_Select({ value, onChange }: DocumentTypePro
 					value={value}
 					onChange={onChange}
 					required
-					className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out focus:border-transparent focus:ring-2 focus:outline-none md:text-sm lg:text-base"
+					className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out select-none focus:border-transparent focus:ring-2 focus:outline-none md:text-sm lg:text-base"
 				>
 					<option value="" disabled hidden>
 						Selecciona un tipo

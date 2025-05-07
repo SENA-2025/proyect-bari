@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
 	return (
-		<header className="z-20 h-14 w-full bg-white shadow-sm transition-all duration-300 ease-in-out lg:h-16">
+		<header className="z-20 h-14 w-full shrink-0 bg-white shadow-sm transition-all duration-300 ease-in-out lg:h-16">
 			<div className="flex size-full items-center">
 				<div className="mx-4 flex items-center justify-between">
 					{/* Mobile Nav + Título */}

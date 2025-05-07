@@ -2,7 +2,11 @@ import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
+import { Poppins } from "next/font/google";
 import { Suspense } from "react";
+
+// Utilidades
+import { cn } from "@/lib/utils";
 
 // Metadata
 export const metadata: Metadata = {
@@ -34,7 +38,6 @@ export const viewport: Viewport = {
 };
 
 // Fuente(s)
-import { Poppins } from "next/font/google";
 const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -47,10 +50,8 @@ const Toaster = dynamic(() => import("@/components/UI/toaster"));
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="es-CO">
-			<body className={`${poppins.className} antialiased`}>
-				<main className="flex min-h-screen max-w-full">
-					<div className="w-full grow">{children}</div>
-				</main>
+			<body className={cn(poppins.className, "antialiased", "flex min-h-screen w-full")}>
+				<main className="flex-1">{children}</main>
 
 				<Suspense fallback={null}>
 					<Toaster />
