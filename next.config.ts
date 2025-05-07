@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
 	poweredByHeader: false, // No mostrar el encabezado de Next.js
 	generateEtags: false, // No generar ETags (Cache gestionada por Cloudflare)
 	experimental: {
-		optimizePackageImports: ["uuid", "zod", "react-hot-toast", "undici", "use-debounce", "clsx", "tailwind-merge", "@midudev/tailwind-animations"],
+		optimizePackageImports: ["uuid", "zod", "react-hot-toast", "undici", "use-debounce", "clsx", "tailwind-merge"],
 	},
 	images: {
 		remotePatterns: [],
