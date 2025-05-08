@@ -24,7 +24,7 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 				<div className="flex-1 overflow-hidden">
 					<div className="flex h-full">
 						{/* Sidebar */}
-						<div className="bg-amber-300">s</div>
+						<div className="hidden bg-amber-300">s</div>
 
 						{/* Principal */}
 						<div className="flex-1">
@@ -37,8 +37,8 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 										) : (
 											<div className="flex size-full items-center justify-center">
 												<div className="flex flex-col items-center justify-center gap-4">
-													<div className="border-t-primary-400 text-primary-400 flex h-20 w-20 animate-spin items-center justify-center rounded-full border-4 border-transparent text-4xl">
-														<div className="border-t-secondary-600 text-secondary-600 flex h-16 w-16 animate-spin items-center justify-center rounded-full border-4 border-transparent text-2xl"></div>
+													<div className="border-t-primary-400 text-primary-400 animate-spin-clockwise animate-iteration-count-infinite flex h-20 w-20 items-center justify-center rounded-full border-4 border-transparent text-4xl">
+														<div className="border-t-secondary-600 text-secondary-600 animate-spin-clockwise animate-iteration-count-infinite animate-duration-1000 flex h-16 w-16 items-center justify-center rounded-full border-4 border-transparent text-2xl"></div>
 													</div>
 												</div>
 											</div>
