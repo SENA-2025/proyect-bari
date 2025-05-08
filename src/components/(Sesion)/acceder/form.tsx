@@ -190,9 +190,9 @@ export default function Login_Form() {
 			>
 				{isPending ? (
 					<div className="flex items-center justify-center gap-2">
-						<div className="animate-bounce-fade-in animate-iteration-count-infinite animate-delay-1000 size-3 rounded-full bg-white"></div>
-						<div className="animate-bounce-fade-in animate-iteration-count-infinite animate-delay-500 size-3 rounded-full bg-white"></div>
-						<div className="animate-bounce-fade-in animate-iteration-count-infinite animate-delay-1000 size-3 rounded-full bg-white"></div>
+						<div className="animate-bounce-fade-in animate-iteration-count-infinite animate-delay-700 size-3 rounded-full bg-white"></div>
+						<div className="animate-bounce-fade-in animate-iteration-count-infinite animate-delay-300 size-3 rounded-full bg-white"></div>
+						<div className="animate-bounce-fade-in animate-iteration-count-infinite animate-delay-700 size-3 rounded-full bg-white"></div>
 					</div>
 				) : (
 					<span className="select-none">Inicia sesión</span>
