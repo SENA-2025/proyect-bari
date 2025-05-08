@@ -40,9 +40,9 @@ export default function CreateButton() {
 
 			{/* Modal */}
 			{open && (
-				<div className="fixed inset-0 z-40 flex items-center justify-center bg-gray-500/20 backdrop-blur-sm transition-all duration-300 ease-in-out">
+				<div className="fixed inset-0 z-40 flex items-center justify-center bg-gray-500/20 backdrop-blur-sm">
 					<div className="m-4 w-full transition-all duration-300 ease-in-out sm:w-1/2 md:w-96" ref={modalRef}>
-						<div className="relative overflow-hidden rounded-xl bg-white shadow-lg">
+						<div className={"animate-fade-in-up relative overflow-hidden rounded-xl bg-white shadow-lg"}>
 							<div className="bg-primary-400 h-1.5 w-full"></div>
 
 							<div className="flex w-full flex-col items-center justify-center gap-4 p-4">
