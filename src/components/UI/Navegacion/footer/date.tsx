@@ -43,7 +43,7 @@ export default function CurrentDate({ initialDate }: { initialDate: string }) {
 		<div className="flex items-center gap-2">
 			{/* Fecha */}
 			{dateTime.date && (
-				<div className="hidden items-center gap-1 text-gray-600 md:flex">
+				<div className="animate-fade-in hidden items-center gap-1 text-gray-600 md:flex">
 					<Calendar className="text-gray-400" size={14} />
 					<span className="text-xs transition-all duration-300 ease-in-out lg:text-sm">{dateTime.date}</span>
 				</div>
@@ -51,7 +51,7 @@ export default function CurrentDate({ initialDate }: { initialDate: string }) {
 
 			{/* Hora */}
 			{dateTime.time && (
-				<div className="bg-primary-400/10 flex items-center gap-1 rounded-full px-3 py-1">
+				<div className="bg-primary-400/10 animate-fade-in flex items-center gap-1 rounded-full px-3 py-1">
 					<Clock className="text-tertiary-600" size={14} />
 					<span className="text-xs text-gray-700 transition-all duration-300 ease-in-out lg:text-sm">{dateTime.time}</span>
 				</div>
