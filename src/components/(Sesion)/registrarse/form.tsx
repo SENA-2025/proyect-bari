@@ -263,7 +263,7 @@ export default function Register_Form() {
 					isPending ? "cursor-wait" : "cursor-pointer"
 				)}
 			>
-				{!isPending ? (
+				{isPending ? (
 					<div className="flex items-center justify-center gap-2">
 						<div className="animate-bounce-fade-in animate-iteration-count-infinite animate-delay-700 size-3 rounded-full bg-white"></div>
 						<div className="animate-bounce-fade-in animate-iteration-count-infinite animate-delay-300 size-3 rounded-full bg-white"></div>
