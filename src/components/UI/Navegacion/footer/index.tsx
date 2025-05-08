@@ -9,7 +9,7 @@ export default function Footer() {
 	const initialDate = new Date().toISOString();
 
 	return (
-		<footer className="animate-fade-in-up animate-duration-300 w-full shrink-0 border-t border-t-gray-200 bg-white py-3 shadow-sm">
+		<footer className="animate-fade-in-up animate-duration-500 w-full shrink-0 border-t border-t-gray-200 bg-white py-3 shadow-sm">
 			<div className="mx-4">
 				<div className="flex items-center justify-between select-none">
 					{/* Version */}
