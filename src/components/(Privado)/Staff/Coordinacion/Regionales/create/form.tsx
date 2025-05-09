@@ -2,9 +2,13 @@
 
 import Form from "next/form";
 
-export default function CreateForm() {
+type FormProps = {
+	onClose: () => void;
+};
+
+export default function CreateForm({ onClose }: FormProps) {
 	return (
-		<Form action={""} className="flex w-full flex-col items-center justify-center gap-4">
+		<Form action={""} className="animate-fade-in flex w-full flex-col items-center justify-center gap-4">
 			<fieldset className="flex w-full flex-col gap-2">
 				{/* Nombre */}
 				<div className="flex flex-col gap-1">
@@ -53,6 +57,7 @@ export default function CreateForm() {
 				{/* Cerrar */}
 				<button
 					type="button"
+					onClick={onClose}
 					className="cursor-pointer rounded-xl bg-gray-100 px-4 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-200 lg:text-base"
 				>
 					<span className="select-none">Cancelar</span>
