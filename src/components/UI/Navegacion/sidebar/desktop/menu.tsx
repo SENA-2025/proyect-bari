@@ -7,9 +7,9 @@ import { Suspense } from "react";
 // Componentes
 const StaffMenu = dynamic(() => import("@/components/UI/Navegacion/sidebar/menus/staff"));
 
-interface SidebarMenuProps {
+type SidebarMenuProps = {
 	collapse: boolean | undefined;
-}
+};
 
 export default function SidebarMenu({ collapse }: SidebarMenuProps) {
 	const pathname = usePathname();

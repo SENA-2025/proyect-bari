@@ -3,25 +3,25 @@ import Link from "next/link";
 // Utilidades
 import { cn } from "@/lib/utils";
 
-interface MenuItem {
+type MenuItem = {
 	label: string;
 	url: string;
 	icon: React.ElementType;
-}
+};
 
-interface MenuSection {
+type MenuSection = {
 	label: string;
 	url: string;
 	icon: React.ElementType;
 	list: MenuItem[];
-}
+};
 
-interface TemplateMenuProps {
+type TemplateMenuProps = {
 	collapse: boolean | undefined;
 	currentUrl: string;
 	mainUrl: string;
 	menu: MenuSection[];
-}
+};
 
 export default function TemplateMenu(props: TemplateMenuProps) {
 	return (

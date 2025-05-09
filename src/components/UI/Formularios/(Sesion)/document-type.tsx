@@ -1,9 +1,9 @@
 import { ChevronDown } from "lucide-react";
 
-interface DocumentTypeProps {
+type DocumentTypeProps = {
 	value: string;
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-}
+};
 
 export default function DocumentType_Select({ value, onChange }: DocumentTypeProps) {
 	return (
