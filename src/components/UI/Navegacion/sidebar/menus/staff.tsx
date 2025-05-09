@@ -27,10 +27,10 @@ import { Suspense } from "react";
 // Componentes
 const Template = dynamic(() => import("@/components/UI/Navegacion/sidebar/menus/template"));
 
-interface StaffMenuProps {
+type StaffMenuProps = {
 	collapse: boolean | undefined;
 	url: string;
-}
+};
 
 export default function StaffMenu({ collapse, url }: StaffMenuProps) {
 	const mainUrl = "/app/staff";

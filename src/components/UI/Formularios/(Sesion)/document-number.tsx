@@ -1,7 +1,7 @@
-interface DocumentNumberProps {
+type DocumentNumberProps = {
 	value: string;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
 export default function DocumentNumber_Input({ value, onChange }: DocumentNumberProps) {
 	return (
