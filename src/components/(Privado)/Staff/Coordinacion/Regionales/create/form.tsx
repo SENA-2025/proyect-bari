@@ -1,14 +1,27 @@
 "use client";
 
 import Form from "next/form";
+import { useActionState } from "react";
+import { toast } from "react-hot-toast";
+
+import type { ServiceType } from "@/services/(Privado)/Staff/Coordinacion/Regionales/create";
+import { ServiceCreate } from "@/services/(Privado)/Staff/Coordinacion/Regionales/create";
+
+const initialFormState: ServiceType = { error: false };
+function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
+	return ServiceCreate(formData);
+}
 
 type FormProps = {
 	onClose: () => void;
 };
 
 export default function CreateForm({ onClose }: FormProps) {
+	// -- Enviar Formulario
+	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
+
 	return (
-		<Form action={""} className="animate-fade-in flex w-full flex-col items-center justify-center gap-4">
+		<Form action={formAction} className="animate-fade-in flex w-full flex-col items-center justify-center gap-4">
 			<fieldset className="flex w-full flex-col gap-2">
 				{/* Nombre */}
 				<div className="flex flex-col gap-1">
@@ -57,6 +70,7 @@ export default function CreateForm({ onClose }: FormProps) {
 				{/* Cerrar */}
 				<button
 					type="button"
+					disabled={isPending}
 					onClick={onClose}
 					className="cursor-pointer rounded-xl bg-gray-100 px-4 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-200 lg:text-base"
 				>
@@ -66,6 +80,7 @@ export default function CreateForm({ onClose }: FormProps) {
 				{/* Guardar */}
 				<button
 					type="submit"
+					disabled={isPending}
 					className="bg-primary-400 hover:bg-tertiary-600 cursor-pointer rounded-xl px-4 py-2 text-sm transition-all duration-300 ease-in-out hover:text-white lg:text-base"
 				>
 					<span className="select-none">Crear</span>
