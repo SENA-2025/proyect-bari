@@ -19,7 +19,7 @@ const actionSchema = z
 			.min(6, "El correo debe tener al menos 6 caracteres.")
 			.max(254, "El correo debe tener máximo 254 caracteres.")
 			.email("Correo inválido.")
-			.transform(val => val.toLowerCase()),
+			.transform(value => value.toLowerCase()),
 		password: z
 			.string()
 			.trim()
