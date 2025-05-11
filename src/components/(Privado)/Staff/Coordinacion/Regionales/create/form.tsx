@@ -1,7 +1,7 @@
 "use client";
 
 import Form from "next/form";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 // Servicios
@@ -19,16 +19,17 @@ type FormProps = {
 };
 
 export default function CreateForm({ onClose }: FormProps) {
-	// -- Estado del Formulario
-	const [formValues, setFormValues] = useState({
-		name: "",
-		abbreviation: "",
-	});
+	// -- Valores del Formulario
+	const [name, setName] = useState("");
+	const [abbreviation, setAbbreviation] = useState("");
 
 	// -- Enviar Formulario
 	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
 
 	// -- Toast: Mensaje de Error y Éxito
+	useEffect(() => {
+		if (!state.eventId) return;
+	}, [state.eventId]);
 
 	return (
 		<Form action={formAction} className="animate-fade-in flex w-full flex-col items-center justify-center gap-4">
@@ -52,7 +53,8 @@ export default function CreateForm({ onClose }: FormProps) {
 						autoComplete="off"
 						pattern="^[a-zA-Z0-9 ]+$"
 						required
-						value={formValues.name}
+						value={name}
+						onChange={e => setName(e.target.value)}
 						disabled={isPending}
 						title="El nombre debe tener entre 3 y 50 caracteres, y solo puede contener letras, números y espacios."
 						className="focus:ring-primary-400/50 focus:border-primary-400 appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 uppercase transition-all duration-300 ease-in-out outline-none placeholder:select-none focus:ring-2 lg:text-base"
@@ -78,7 +80,8 @@ export default function CreateForm({ onClose }: FormProps) {
 						autoComplete="off"
 						pattern="^[a-zA-Z0-9]+$"
 						required
-						value={formValues.abbreviation}
+						value={abbreviation}
+						onChange={e => setAbbreviation(e.target.value)}
 						disabled={isPending}
 						title="Debe tener entre 2 y 6 caracteres. Solo se permiten letras y números, sin espacios."
 						className="focus:ring-primary-400/50 focus:border-primary-400 appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 uppercase transition-all duration-300 ease-in-out outline-none placeholder:select-none focus:ring-2 lg:text-base"
