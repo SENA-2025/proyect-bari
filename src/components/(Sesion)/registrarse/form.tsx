@@ -155,6 +155,7 @@ export default function Register_Form() {
 						maxLength={254}
 						placeholder="tu@correo.com"
 						disabled={isPending}
+						title="Ingresa un correo válido, como ejemplo@dominio.com"
 						className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs lowercase transition-all duration-300 ease-in-out placeholder:text-xs placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:outline-none md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base"
 					/>
 				</div>
@@ -181,6 +182,7 @@ export default function Register_Form() {
 							maxLength={38}
 							placeholder="••••••••"
 							disabled={isPending}
+							title="Debe tener entre 10 y 38 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un símbolo."
 							className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out placeholder:text-xs placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:outline-none md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base"
 						/>
 
@@ -218,6 +220,7 @@ export default function Register_Form() {
 						maxLength={38}
 						placeholder="••••••••"
 						disabled={isPending}
+						title="Debe coincidir exactamente con la contraseña ingresada."
 						className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out placeholder:text-xs placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:outline-none md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base"
 					/>
 				</div>
