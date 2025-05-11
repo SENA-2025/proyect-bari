@@ -4,9 +4,11 @@ import Form from "next/form";
 import { useActionState } from "react";
 import { toast } from "react-hot-toast";
 
+// Servicios
 import type { ServiceType } from "@/services/(Privado)/Staff/Coordinacion/Regionales/create";
 import { ServiceCreate } from "@/services/(Privado)/Staff/Coordinacion/Regionales/create";
 
+// Tipos
 const initialFormState: ServiceType = { error: false };
 function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
 	return ServiceCreate(formData);
@@ -37,9 +39,12 @@ export default function CreateForm({ onClose }: FormProps) {
 						name="name"
 						type="text"
 						placeholder="Ej: Norte de Santander"
+						minLength={3}
 						maxLength={50}
-						required
 						autoComplete="off"
+						pattern="^[a-zA-Z0-9 ]+$"
+						title="El nombre debe tener entre 3 y 50 caracteres, y solo puede contener letras, números y espacios."
+						required
 						className="focus:ring-primary-400/50 focus:border-primary-400 appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 uppercase transition-all duration-300 ease-in-out outline-none placeholder:select-none focus:ring-2 lg:text-base"
 					/>
 				</div>
@@ -58,9 +63,12 @@ export default function CreateForm({ onClose }: FormProps) {
 						name="abbreviation"
 						type="text"
 						placeholder="Ej: NS"
+						minLength={2}
 						maxLength={6}
-						required
 						autoComplete="off"
+						pattern="^[a-zA-Z0-9]+$"
+						title="Debe tener entre 2 y 6 caracteres. Solo se permiten letras y números, sin espacios."
+						required
 						className="focus:ring-primary-400/50 focus:border-primary-400 appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 uppercase transition-all duration-300 ease-in-out outline-none placeholder:select-none focus:ring-2 lg:text-base"
 					/>
 				</div>
