@@ -27,15 +27,16 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 // Componente
 export default function Register_Form() {
 	const router = useRouter();
-	const [userData, setUserData] = useState({
+
+	const [formValues, setFormValues] = useState({
 		document_type: "",
 		document_number: "",
 		email: "",
 		password: "",
 		confirm_password: "",
 		terms: false,
-		showPassword: false,
 	});
+	const [showPassword, setShowPassword] = useState(false);
 
 	// -- Enviar Formulario
 	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
@@ -44,7 +45,7 @@ export default function Register_Form() {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const { name, value } = e.target;
 
-		setUserData(prev => ({
+		setFormValues(prev => ({
 			...prev,
 			[name]: e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : value,
 		}));
@@ -52,16 +53,15 @@ export default function Register_Form() {
 
 	// -- Mostrar/Ocultar Contraseña
 	const toggleShowPassword = () => {
-		setUserData(prev => ({
-			...prev,
-			showPassword: !prev.showPassword,
-		}));
+		setShowPassword(prev => !prev);
 	};
 
 	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
+		if (!state.eventId) return;
+
 		if (state.error && state.message) {
-			setUserData(prev => ({
+			setFormValues(prev => ({
 				...prev,
 				document_type: "",
 			}));
@@ -71,14 +71,13 @@ export default function Register_Form() {
 
 		if (!state.error && state.message) {
 			// Limpiar Formulario
-			setUserData({
+			setFormValues({
 				document_type: "",
 				document_number: "",
 				email: "",
 				password: "",
 				confirm_password: "",
 				terms: false,
-				showPassword: false,
 			});
 
 			// Mostrar Mensaje
@@ -118,7 +117,7 @@ export default function Register_Form() {
 						</div>
 					}
 				>
-					<DocumentType value={userData.document_type} onChange={handleChange} />
+					<DocumentType value={formValues.document_type} onChange={handleChange} />
 				</Suspense>
 
 				{/* Número de Documento */}
@@ -130,7 +129,7 @@ export default function Register_Form() {
 						</div>
 					}
 				>
-					<DocumentNumber value={userData.document_number} onChange={handleChange} />
+					<DocumentNumber value={formValues.document_number} onChange={handleChange} />
 				</Suspense>
 
 				{/* Correo Electrónico */}
@@ -147,7 +146,7 @@ export default function Register_Form() {
 						name="email"
 						type="email"
 						inputMode="email"
-						value={userData.email}
+						value={formValues.email}
 						onChange={handleChange}
 						autoComplete="email"
 						required
@@ -173,8 +172,8 @@ export default function Register_Form() {
 						<input
 							id="password"
 							name="password"
-							type={userData.showPassword ? "text" : "password"}
-							value={userData.password}
+							type={showPassword ? "text" : "password"}
+							value={formValues.password}
 							onChange={handleChange}
 							autoComplete="new-password"
 							required
@@ -190,11 +189,11 @@ export default function Register_Form() {
 						<button
 							type="button"
 							onClick={toggleShowPassword}
-							aria-label={userData.showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
+							aria-label={showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
 							className="absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-gray-500 transition-colors duration-300 ease-in-out hover:text-gray-700 focus:outline-none"
 							tabIndex={-1}
 						>
-							{userData.showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+							{showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
 						</button>
 					</div>
 				</div>
@@ -211,8 +210,8 @@ export default function Register_Form() {
 					<input
 						id="confirm_password"
 						name="confirm_password"
-						type={userData.showPassword ? "text" : "password"}
-						value={userData.confirm_password}
+						type={showPassword ? "text" : "password"}
+						value={formValues.confirm_password}
 						onChange={handleChange}
 						autoComplete="new-password"
 						required
@@ -231,7 +230,7 @@ export default function Register_Form() {
 						id="terms"
 						name="terms"
 						type="checkbox"
-						checked={userData.terms}
+						checked={formValues.terms}
 						onChange={handleChange}
 						required
 						className="text-tertiary-600 focus:ring-primary-400 size-4 rounded border-gray-300"
