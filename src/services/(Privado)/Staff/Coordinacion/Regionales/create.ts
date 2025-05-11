@@ -1,9 +1,8 @@
 "use server";
 
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { ZodError } from "zod";
 
+import getClientInfo from "@/lib/(Privado)/client-info";
 import createSchema from "@/schemas/(Privado)/Staff/Coordinacion/Regionales/create.schema";
 
 // Tipos
@@ -16,19 +15,7 @@ export type ServiceType = {
 // Validación de Datos
 export async function ServiceCreate(formData: FormData): Promise<ServiceType> {
 	const currentUrl = "/app/staff/c/regionales";
-	const cookieStore = await cookies();
-
-	// Validar si existe el Refresh Token
-	if (!cookieStore.has("__srfk")) {
-		redirect("/acceder");
-	}
-
-	// Validar si existe el Access Token
-	if (!cookieStore.has("_sid")) {
-		redirect(currentUrl);
-	}
-
-	const accessToken = cookieStore.get("_sid")?.value;
+	const { accessToken } = await getClientInfo({ currentUrl });
 
 	try {
 		// Validar Datos
