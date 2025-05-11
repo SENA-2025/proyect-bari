@@ -4,7 +4,6 @@ import net from "node:net";
 
 import { headers } from "next/headers";
 import { request } from "undici";
-import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
 import { setAccessCookie, setRefreshCookie } from "@/lib/cookies";
@@ -12,7 +11,7 @@ import loginSchema from "@/schemas/(Sesion)/acceder/login.schema";
 
 // Tipos
 export type ServiceType = {
-	id?: string;
+	eventId?: number;
 	error: boolean;
 	message?: string;
 };
@@ -33,12 +32,12 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 
 		// Validar IP
 		if (!userIp || !net.isIP(userIp)) {
-			return { id: uuidv4(), error: true, message: "Error interno. Prueba con otro navegador." };
+			return { eventId: Date.now(), error: true, message: "Error interno. Prueba con otro navegador." };
 		}
 
 		// Validar User-Agent
 		if (!userAgent) {
-			return { id: uuidv4(), error: true, message: "Error interno. Prueba con otro navegador." };
+			return { eventId: Date.now(), error: true, message: "Error interno. Prueba con otro navegador." };
 		}
 
 		// Enviar Datos
@@ -73,29 +72,29 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 			await setAccessCookie(responseBody.data.accessToken, responseBody.data.accessExpiration);
 			await setRefreshCookie(responseBody.data.refreshToken, responseBody.data.refreshExpiration);
 
-			return { id: uuidv4(), error: false, message: statusCode === 200 ? "OK" : "Datos Faltantes" };
+			return { eventId: Date.now(), error: false, message: statusCode === 200 ? "OK" : "Datos Faltantes" };
 		} else if (statusCode === 423) {
 			// Cambio de contraseña requerido
-			return { id: uuidv4(), error: false, message: "Cambio de contraseña requerido." };
+			return { eventId: Date.now(), error: false, message: "Cambio de contraseña requerido." };
 		} else if (statusCode === 403) {
 			// Cuenta bloqueada
-			return { id: uuidv4(), error: true, message: "Acceso no permitido." };
+			return { eventId: Date.now(), error: true, message: "Acceso no permitido." };
 		}
 
 		// Error Interno
 		if (statusCode >= 500) {
-			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+			return { eventId: Date.now(), error: true, message: "Error interno. Inténtalo más tarde." };
 		}
 
 		// Otros Errores
-		return { id: uuidv4(), error: true, message: "Credenciales inválidas." };
+		return { eventId: Date.now(), error: true, message: "Credenciales inválidas." };
 	} catch (error) {
 		// Error de Validación
 		if (error instanceof ZodError) {
-			return { id: uuidv4(), error: true, message: "Credenciales inválidas." };
+			return { eventId: Date.now(), error: true, message: "Credenciales inválidas." };
 		}
 
 		// Error Interno
-		return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+		return { eventId: Date.now(), error: true, message: "Error interno. Inténtalo más tarde." };
 	}
 }
