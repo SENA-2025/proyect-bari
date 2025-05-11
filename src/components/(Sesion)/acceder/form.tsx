@@ -28,12 +28,13 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 // Componente
 export default function Login_Form() {
 	const router = useRouter();
-	const [userData, setUserData] = useState({
+
+	const [formValues, setFormValues] = useState({
 		document_type: "",
 		document_number: "",
 		password: "",
-		showPassword: false,
 	});
+	const [showPassword, setShowPassword] = useState(false);
 
 	// -- Enviar Formulario
 	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
@@ -42,7 +43,7 @@ export default function Login_Form() {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const { name, value } = e.target;
 
-		setUserData(prev => ({
+		setFormValues(prev => ({
 			...prev,
 			[name]: value,
 		}));
@@ -50,16 +51,15 @@ export default function Login_Form() {
 
 	// -- Mostrar/Ocultar Contraseña
 	const toggleShowPassword = () => {
-		setUserData(prev => ({
-			...prev,
-			showPassword: !prev.showPassword,
-		}));
+		setShowPassword(prev => !prev);
 	};
 
 	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
+		if (!state.eventId) return;
+
 		if (state.error && state.message) {
-			setUserData(prev => ({
+			setFormValues(prev => ({
 				...prev,
 				document_type: "",
 			}));
@@ -69,11 +69,10 @@ export default function Login_Form() {
 
 		if (!state.error && state.message) {
 			// Limpiar Formulario
-			setUserData({
+			setFormValues({
 				document_type: "",
 				document_number: "",
 				password: "",
-				showPassword: false,
 			});
 
 			// Mostrar Mensaje
@@ -115,7 +114,7 @@ export default function Login_Form() {
 						</div>
 					}
 				>
-					<DocumentType value={userData.document_type} onChange={handleChange} />
+					<DocumentType value={formValues.document_type} onChange={handleChange} />
 				</Suspense>
 
 				{/* Numero de Documento */}
@@ -127,7 +126,7 @@ export default function Login_Form() {
 						</div>
 					}
 				>
-					<DocumentNumber value={userData.document_number} onChange={handleChange} />
+					<DocumentNumber value={formValues.document_number} onChange={handleChange} />
 				</Suspense>
 
 				{/* Contraseña */}
@@ -153,8 +152,8 @@ export default function Login_Form() {
 						<input
 							id="password"
 							name="password"
-							type={userData.showPassword ? "text" : "password"}
-							value={userData.password}
+							type={showPassword ? "text" : "password"}
+							value={formValues.password}
 							onChange={handleChange}
 							autoComplete="current-password"
 							required
@@ -170,11 +169,11 @@ export default function Login_Form() {
 						<button
 							type="button"
 							onClick={toggleShowPassword}
-							aria-label={userData.showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
+							aria-label={showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
 							className="absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-gray-500 transition-colors duration-300 ease-in-out hover:text-gray-700 focus:outline-none"
 							tabIndex={-1}
 						>
-							{userData.showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+							{showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
 						</button>
 					</div>
 				</div>
