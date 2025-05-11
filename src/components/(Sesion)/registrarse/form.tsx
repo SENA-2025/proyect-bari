@@ -52,11 +52,6 @@ export default function Register_Form() {
 		}));
 	};
 
-	// -- Mostrar/Ocultar Contraseña
-	const toggleShowPassword = () => {
-		setShowPassword(prev => !prev);
-	};
-
 	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
 		if (!state.eventId) return;
@@ -189,7 +184,7 @@ export default function Register_Form() {
 						{/* Mostrar Contraseña */}
 						<button
 							type="button"
-							onClick={toggleShowPassword}
+							onClick={() => setShowPassword(!showPassword)}
 							aria-label={showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
 							className="absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-gray-500 transition-colors duration-300 ease-in-out hover:text-gray-700 focus:outline-none"
 							tabIndex={-1}
