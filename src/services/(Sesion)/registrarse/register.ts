@@ -1,7 +1,6 @@
 "use server";
 
 import { request } from "undici";
-import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
 import registerSchema from "@/schemas/(Sesion)/registrarse/register.schema";
