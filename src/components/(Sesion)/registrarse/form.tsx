@@ -28,53 +28,36 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 export default function Register_Form() {
 	const router = useRouter();
 
-	// -- Estado del Formulario
-	const [formValues, setFormValues] = useState({
-		document_type: "",
-		document_number: "",
-		email: "",
-		password: "",
-		confirm_password: "",
-		terms: false,
-	});
+	// -- Valores del Formulario
+	const [documentType, setDocumentType] = useState("");
+	const [documentNumber, setDocumentNumber] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const [terms, setTerms] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
 
 	// -- Enviar Formulario
 	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
-
-	// -- Actualizar Formulario
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-		const { name, value } = e.target;
-
-		setFormValues(prev => ({
-			...prev,
-			[name]: e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : value,
-		}));
-	};
 
 	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
 		if (!state.eventId) return;
 
 		if (state.error && state.message) {
-			setFormValues(prev => ({
-				...prev,
-				document_type: "",
-			}));
-
+			setDocumentType("");
 			toast.error(state.message);
 		}
 
 		if (!state.error && state.message) {
 			// Limpiar Formulario
-			setFormValues({
-				document_type: "",
-				document_number: "",
-				email: "",
-				password: "",
-				confirm_password: "",
-				terms: false,
-			});
+			setDocumentType("");
+			setDocumentNumber("");
+			setEmail("");
+			setPassword("");
+			setConfirmPassword("");
+			setTerms(false);
+			setShowPassword(false);
 
 			// Mostrar Mensaje
 			if (state.message === "Registro exitoso.") {
@@ -113,7 +96,7 @@ export default function Register_Form() {
 						</div>
 					}
 				>
-					<DocumentType value={formValues.document_type} onChange={handleChange} />
+					<DocumentType value={documentType} onChange={e => setDocumentType(e.target.value)} />
 				</Suspense>
 
 				{/* Número de Documento */}
@@ -125,7 +108,7 @@ export default function Register_Form() {
 						</div>
 					}
 				>
-					<DocumentNumber value={formValues.document_number} onChange={handleChange} />
+					<DocumentNumber value={documentNumber} onChange={e => setDocumentNumber(e.target.value)} />
 				</Suspense>
 
 				{/* Correo Electrónico */}
@@ -142,8 +125,8 @@ export default function Register_Form() {
 						name="email"
 						type="email"
 						inputMode="email"
-						value={formValues.email}
-						onChange={handleChange}
+						value={email}
+						onChange={e => setEmail(e.target.value)}
 						autoComplete="email"
 						required
 						minLength={6}
@@ -169,8 +152,8 @@ export default function Register_Form() {
 							id="password"
 							name="password"
 							type={showPassword ? "text" : "password"}
-							value={formValues.password}
-							onChange={handleChange}
+							value={password}
+							onChange={e => setPassword(e.target.value)}
 							autoComplete="new-password"
 							required
 							minLength={10}
@@ -207,8 +190,8 @@ export default function Register_Form() {
 						id="confirm_password"
 						name="confirm_password"
 						type={showPassword ? "text" : "password"}
-						value={formValues.confirm_password}
-						onChange={handleChange}
+						value={confirmPassword}
+						onChange={e => setConfirmPassword(e.target.value)}
 						autoComplete="new-password"
 						required
 						minLength={10}
@@ -226,8 +209,8 @@ export default function Register_Form() {
 						id="terms"
 						name="terms"
 						type="checkbox"
-						checked={formValues.terms}
-						onChange={handleChange}
+						checked={terms}
+						onChange={e => setTerms(e.target.checked)}
 						required
 						className="text-tertiary-600 focus:ring-primary-400 size-4 rounded border-gray-300"
 					/>
