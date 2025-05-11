@@ -11,7 +11,7 @@ type ClientInfoProps = {
 
 // Tipos
 type ClientInfo = {
-	token: string;
+	accessToken: string;
 };
 
 export default async function getClientInfo({ currentUrl }: ClientInfoProps): Promise<ClientInfo> {
@@ -47,5 +47,5 @@ export default async function getClientInfo({ currentUrl }: ClientInfoProps): Pr
 	}
 
 	// Retornar Datos
-	return { token: accessToken };
+	return { accessToken };
 }
