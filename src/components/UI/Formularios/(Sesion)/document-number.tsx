@@ -25,6 +25,7 @@ export default function DocumentNumber_Input({ value, onChange }: DocumentNumber
 				maxLength={20}
 				pattern="^[0-9]+$"
 				placeholder="123456"
+				title="Solo números. Debe tener entre 3 y 20 dígitos."
 				className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out placeholder:text-xs placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:outline-none md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base"
 			/>
 		</div>
