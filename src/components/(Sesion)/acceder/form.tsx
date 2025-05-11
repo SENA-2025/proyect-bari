@@ -100,7 +100,7 @@ export default function Login_Form() {
 
 		return undefined;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [state.id]);
+	}, [state.eventId]);
 
 	return (
 		<Form action={formAction} className="flex size-full flex-col gap-6 select-none">
