@@ -27,11 +27,11 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 
 		// Obtener Headers
 		const requestHeaders = await headers();
-		const userAgent = requestHeaders.get("user-agent");
+		const userAgent = requestHeaders.get("user-agent")?.trim();
 		const userIp = requestHeaders.get("cf-connecting-ip") || requestHeaders.get("x-forwarded-for") || requestHeaders.get("x-real-ip");
 
 		// Validar IP
-		if (!userIp || !net.isIP(userIp)) {
+		if (!userIp?.trim() || !net.isIP(userIp.trim())) {
 			return { eventId: Date.now(), error: true, message: "Error interno. Prueba con otro navegador." };
 		}
 
@@ -52,8 +52,8 @@ export async function ServiceLogin(formData: FormData): Promise<ServiceType> {
 			},
 			body: JSON.stringify({
 				...data,
-				user_agent: userAgent,
-				ip: userIp,
+				user_agent: userAgent.trim(),
+				ip: userIp.trim(),
 			}),
 		});
 
