@@ -43,8 +43,9 @@ export default function CreateForm({ onClose }: FormProps) {
 						maxLength={50}
 						autoComplete="off"
 						pattern="^[a-zA-Z0-9 ]+$"
-						title="El nombre debe tener entre 3 y 50 caracteres, y solo puede contener letras, números y espacios."
 						required
+						disabled={isPending}
+						title="El nombre debe tener entre 3 y 50 caracteres, y solo puede contener letras, números y espacios."
 						className="focus:ring-primary-400/50 focus:border-primary-400 appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 uppercase transition-all duration-300 ease-in-out outline-none placeholder:select-none focus:ring-2 lg:text-base"
 					/>
 				</div>
@@ -67,8 +68,9 @@ export default function CreateForm({ onClose }: FormProps) {
 						maxLength={6}
 						autoComplete="off"
 						pattern="^[a-zA-Z0-9]+$"
-						title="Debe tener entre 2 y 6 caracteres. Solo se permiten letras y números, sin espacios."
 						required
+						disabled={isPending}
+						title="Debe tener entre 2 y 6 caracteres. Solo se permiten letras y números, sin espacios."
 						className="focus:ring-primary-400/50 focus:border-primary-400 appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 uppercase transition-all duration-300 ease-in-out outline-none placeholder:select-none focus:ring-2 lg:text-base"
 					/>
 				</div>
