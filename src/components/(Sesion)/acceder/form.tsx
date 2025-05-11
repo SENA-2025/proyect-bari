@@ -29,47 +29,30 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 export default function Login_Form() {
 	const router = useRouter();
 
-	// -- Estado del Formulario
-	const [formValues, setFormValues] = useState({
-		document_type: "",
-		document_number: "",
-		password: "",
-	});
+	// -- Valores del Formulario
+	const [documentType, setDocumentType] = useState("");
+	const [documentNumber, setDocumentNumber] = useState("");
+	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 
 	// -- Enviar Formulario
 	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
-
-	// -- Actualizar Formulario
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-		const { name, value } = e.target;
-
-		setFormValues(prev => ({
-			...prev,
-			[name]: value,
-		}));
-	};
 
 	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
 		if (!state.eventId) return;
 
 		if (state.error && state.message) {
-			setFormValues(prev => ({
-				...prev,
-				document_type: "",
-			}));
-
+			setDocumentType("");
 			toast.error(state.message);
 		}
 
 		if (!state.error && state.message) {
 			// Limpiar Formulario
-			setFormValues({
-				document_type: "",
-				document_number: "",
-				password: "",
-			});
+			setDocumentType("");
+			setDocumentNumber("");
+			setPassword("");
+			setShowPassword(false);
 
 			// Mostrar Mensaje
 			if (state.message === "OK") {
@@ -110,7 +93,7 @@ export default function Login_Form() {
 						</div>
 					}
 				>
-					<DocumentType value={formValues.document_type} onChange={handleChange} />
+					<DocumentType value={documentType} onChange={e => setDocumentType(e.target.value)} />
 				</Suspense>
 
 				{/* Numero de Documento */}
@@ -122,7 +105,7 @@ export default function Login_Form() {
 						</div>
 					}
 				>
-					<DocumentNumber value={formValues.document_number} onChange={handleChange} />
+					<DocumentNumber value={documentNumber} onChange={e => setDocumentNumber(e.target.value)} />
 				</Suspense>
 
 				{/* Contraseña */}
@@ -149,8 +132,8 @@ export default function Login_Form() {
 							id="password"
 							name="password"
 							type={showPassword ? "text" : "password"}
-							value={formValues.password}
-							onChange={handleChange}
+							value={password}
+							onChange={e => setPassword(e.target.value)}
 							autoComplete="current-password"
 							required
 							minLength={10}
