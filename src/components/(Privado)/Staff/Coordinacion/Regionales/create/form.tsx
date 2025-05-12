@@ -19,6 +19,8 @@ type FormProps = {
 };
 
 export default function CreateForm({ onClose }: FormProps) {
+	const [toastId, setToastId] = useState<string | null>(null);
+
 	// -- Valores del Formulario
 	const [name, setName] = useState("");
 	const [abbreviation, setAbbreviation] = useState("");
@@ -26,9 +28,26 @@ export default function CreateForm({ onClose }: FormProps) {
 	// -- Enviar Formulario
 	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
 
+	// -- Toast: Mensaje de Cargando
+	useEffect(() => {
+		if (!isPending) return;
+
+		const id = toast.loading("Creando Regional...");
+		setToastId(id);
+	}, [isPending]);
+
 	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
 		if (!state.eventId) return;
+		if (!toastId) return;
+
+		// Error
+		if (state.error && state.message) {
+			toast.error(state.message, { id: toastId });
+			setToastId(null);
+		}
+
+		// Éxito
 	}, [state.eventId]);
 
 	return (
