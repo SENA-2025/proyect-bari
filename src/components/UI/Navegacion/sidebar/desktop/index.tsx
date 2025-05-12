@@ -9,14 +9,15 @@ const Content = dynamic(() => import("@/components/UI/Navegacion/sidebar/desktop
 
 export default function SidebarDesktop() {
 	const [windowWidth, setWindowWidth] = useState(0);
+	const [mounted, setMounted] = useState(false);
 	const [debouncedWidth] = useDebounce(windowWidth, 200);
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			setWindowWidth(window.innerWidth);
+			setMounted(true);
 
 			const handleResize = () => setWindowWidth(window.innerWidth);
-
 			window.addEventListener("resize", handleResize);
 			return () => window.removeEventListener("resize", handleResize);
 		}
@@ -24,8 +25,7 @@ export default function SidebarDesktop() {
 		return undefined;
 	}, []);
 
-	if (windowWidth === 0) return null;
-	if (debouncedWidth < 1024) return null;
+	if (!mounted || debouncedWidth < 1024) return null;
 
 	return (
 		<aside className="hidden lg:block">
