@@ -4,7 +4,8 @@ import { Calendar, Clock } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 export default function CurrentDate({ initialDate }: { initialDate: string }) {
-	const [dateTime, setDateTime] = useState({ date: "", time: "" });
+	const [date, setDate] = useState("");
+	const [time, setTime] = useState("");
 
 	// Opciones de formato para la fecha y hora
 	// Se utilizan useMemo para evitar que se recalculen en cada renderizado
@@ -24,10 +25,8 @@ export default function CurrentDate({ initialDate }: { initialDate: string }) {
 			const newDate = now.toLocaleDateString("es-CO", dateOptions);
 			const newTime = now.toLocaleTimeString("es-CO", timeOptions);
 
-			setDateTime(prev => {
-				if (prev.date === newDate && prev.time === newTime) return prev;
-				return { date: newDate, time: newTime };
-			});
+			setDate(prev => (prev !== newDate ? newDate : prev));
+			setTime(prev => (prev !== newTime ? newTime : prev));
 		};
 
 		updateDateTime(); // first render
@@ -42,18 +41,18 @@ export default function CurrentDate({ initialDate }: { initialDate: string }) {
 	return (
 		<div className="flex items-center gap-2">
 			{/* Fecha */}
-			{dateTime.date && (
+			{date && (
 				<div className="animate-fade-in hidden items-center gap-1 text-gray-600 md:flex">
 					<Calendar className="text-gray-400" size={14} />
-					<span className="text-xs transition-all duration-300 ease-in-out lg:text-sm">{dateTime.date}</span>
+					<span className="text-xs transition-all duration-300 ease-in-out lg:text-sm">{date}</span>
 				</div>
 			)}
 
 			{/* Hora */}
-			{dateTime.time && (
+			{time && (
 				<div className="bg-primary-400/10 animate-fade-in flex items-center gap-1 rounded-full px-3 py-1">
 					<Clock className="text-tertiary-600" size={14} />
-					<span className="text-xs text-gray-700 transition-all duration-300 ease-in-out lg:text-sm">{dateTime.time}</span>
+					<span className="text-xs text-gray-700 transition-all duration-300 ease-in-out lg:text-sm">{time}</span>
 				</div>
 			)}
 		</div>

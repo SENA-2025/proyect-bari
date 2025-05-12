@@ -1,14 +1,13 @@
 "use server";
 
 import { request } from "undici";
-import { v4 as uuidv4 } from "uuid";
 import { ZodError } from "zod";
 
 import registerSchema from "@/schemas/(Sesion)/registrarse/register.schema";
 
 // Tipos
 export type ServiceType = {
-	id?: string;
+	eventId?: number;
 	error: boolean;
 	message?: string;
 };
@@ -37,25 +36,25 @@ export async function ServiceRegister(formData: FormData): Promise<ServiceType> 
 
 		// Validar Respuesta
 		if (statusCode === 201) {
-			return { id: uuidv4(), error: false, message: "Registro exitoso." };
+			return { eventId: Date.now(), error: false, message: "Registro exitoso." };
 		} else if (statusCode === 409) {
-			return { id: uuidv4(), error: false, message: "El registro ya existe." };
+			return { eventId: Date.now(), error: false, message: "El registro ya existe." };
 		}
 
 		// Error Interno
 		if (statusCode >= 500) {
-			return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+			return { eventId: Date.now(), error: true, message: "Error interno. Inténtalo más tarde." };
 		}
 
 		// Otros Errores
-		return { id: uuidv4(), error: true, message: "Datos inválidos." };
+		return { eventId: Date.now(), error: true, message: "Datos inválidos." };
 	} catch (error) {
 		// Error de Validación
 		if (error instanceof ZodError) {
-			return { id: uuidv4(), error: true, message: error.issues.shift()?.message || "Datos inválidos." };
+			return { eventId: Date.now(), error: true, message: error.issues.shift()?.message || "Datos inválidos." };
 		}
 
 		// Error Interno
-		return { id: uuidv4(), error: true, message: "Error interno. Inténtalo más tarde." };
+		return { eventId: Date.now(), error: true, message: "Error interno. Inténtalo más tarde." };
 	}
 }

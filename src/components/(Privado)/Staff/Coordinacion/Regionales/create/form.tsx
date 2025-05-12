@@ -1,14 +1,57 @@
 "use client";
 
 import Form from "next/form";
+import { useActionState, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+
+// Servicios
+import type { ServiceType } from "@/services/(Privado)/Staff/Coordinacion/Regionales/create";
+import { ServiceCreate } from "@/services/(Privado)/Staff/Coordinacion/Regionales/create";
+
+// Tipos
+const initialFormState: ServiceType = { error: false };
+function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> {
+	return ServiceCreate(formData);
+}
 
 type FormProps = {
 	onClose: () => void;
 };
 
 export default function CreateForm({ onClose }: FormProps) {
+	const [toastId, setToastId] = useState<string | null>(null);
+
+	// -- Valores del Formulario
+	const [name, setName] = useState("");
+	const [abbreviation, setAbbreviation] = useState("");
+
+	// -- Enviar Formulario
+	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
+
+	// -- Toast: Mensaje de Cargando
+	useEffect(() => {
+		if (!isPending) return;
+
+		const id = toast.loading("Creando Regional...");
+		setToastId(id);
+	}, [isPending]);
+
+	// -- Toast: Mensaje de Error y Éxito
+	useEffect(() => {
+		if (!state.eventId) return;
+		if (!toastId) return;
+
+		// Error
+		if (state.error && state.message) {
+			toast.error(state.message, { id: toastId });
+			setToastId(null);
+		}
+
+		// Éxito
+	}, [state.eventId]);
+
 	return (
-		<Form action={""} className="animate-fade-in flex w-full flex-col items-center justify-center gap-4">
+		<Form action={formAction} className="animate-fade-in flex w-full flex-col items-center justify-center gap-4">
 			<fieldset className="flex w-full flex-col gap-2">
 				{/* Nombre */}
 				<div className="flex flex-col gap-1">
@@ -24,9 +67,15 @@ export default function CreateForm({ onClose }: FormProps) {
 						name="name"
 						type="text"
 						placeholder="Ej: Norte de Santander"
+						minLength={3}
 						maxLength={50}
-						required
 						autoComplete="off"
+						pattern="^[a-zA-Z0-9 ]+$"
+						required
+						value={name}
+						onChange={e => setName(e.target.value)}
+						disabled={isPending}
+						title="El nombre debe tener entre 3 y 50 caracteres, y solo puede contener letras, números y espacios."
 						className="focus:ring-primary-400/50 focus:border-primary-400 appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 uppercase transition-all duration-300 ease-in-out outline-none placeholder:select-none focus:ring-2 lg:text-base"
 					/>
 				</div>
@@ -45,9 +94,15 @@ export default function CreateForm({ onClose }: FormProps) {
 						name="abbreviation"
 						type="text"
 						placeholder="Ej: NS"
+						minLength={2}
 						maxLength={6}
-						required
 						autoComplete="off"
+						pattern="^[a-zA-Z0-9]+$"
+						required
+						value={abbreviation}
+						onChange={e => setAbbreviation(e.target.value)}
+						disabled={isPending}
+						title="Debe tener entre 2 y 6 caracteres. Solo se permiten letras y números, sin espacios."
 						className="focus:ring-primary-400/50 focus:border-primary-400 appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 uppercase transition-all duration-300 ease-in-out outline-none placeholder:select-none focus:ring-2 lg:text-base"
 					/>
 				</div>
@@ -57,6 +112,7 @@ export default function CreateForm({ onClose }: FormProps) {
 				{/* Cerrar */}
 				<button
 					type="button"
+					disabled={isPending}
 					onClick={onClose}
 					className="cursor-pointer rounded-xl bg-gray-100 px-4 py-2 text-sm text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-200 lg:text-base"
 				>
@@ -66,6 +122,7 @@ export default function CreateForm({ onClose }: FormProps) {
 				{/* Guardar */}
 				<button
 					type="submit"
+					disabled={isPending}
 					className="bg-primary-400 hover:bg-tertiary-600 cursor-pointer rounded-xl px-4 py-2 text-sm transition-all duration-300 ease-in-out hover:text-white lg:text-base"
 				>
 					<span className="select-none">Crear</span>

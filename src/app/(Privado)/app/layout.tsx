@@ -24,7 +24,9 @@ export default async function AppLayout({ children }: Readonly<{ children: React
 				<div className="flex-1 overflow-hidden">
 					<div className="flex h-full">
 						{/* Sidebar */}
-						<div className="hidden bg-amber-300">s</div>
+						<Suspense fallback={null}>
+							<Sidebar />
+						</Suspense>
 
 						{/* Principal */}
 						<div className="flex-1">

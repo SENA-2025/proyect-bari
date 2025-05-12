@@ -27,59 +27,37 @@ function adapter(_state: ServiceType, formData: FormData): Promise<ServiceType> 
 // Componente
 export default function Register_Form() {
 	const router = useRouter();
-	const [userData, setUserData] = useState({
-		document_type: "",
-		document_number: "",
-		email: "",
-		password: "",
-		confirm_password: "",
-		terms: false,
-		showPassword: false,
-	});
+
+	// -- Valores del Formulario
+	const [documentType, setDocumentType] = useState("");
+	const [documentNumber, setDocumentNumber] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const [terms, setTerms] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 
 	// -- Enviar Formulario
 	const [state, formAction, isPending] = useActionState<ServiceType, FormData>(adapter, initialFormState);
 
-	// -- Actualizar Formulario
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-		const { name, value } = e.target;
-
-		setUserData(prev => ({
-			...prev,
-			[name]: e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : value,
-		}));
-	};
-
-	// -- Mostrar/Ocultar Contraseña
-	const toggleShowPassword = () => {
-		setUserData(prev => ({
-			...prev,
-			showPassword: !prev.showPassword,
-		}));
-	};
-
 	// -- Toast: Mensaje de Error y Éxito
 	useEffect(() => {
-		if (state.error && state.message) {
-			setUserData(prev => ({
-				...prev,
-				document_type: "",
-			}));
+		if (!state.eventId) return;
 
+		if (state.error && state.message) {
+			setDocumentType("");
 			toast.error(state.message);
 		}
 
 		if (!state.error && state.message) {
 			// Limpiar Formulario
-			setUserData({
-				document_type: "",
-				document_number: "",
-				email: "",
-				password: "",
-				confirm_password: "",
-				terms: false,
-				showPassword: false,
-			});
+			setDocumentType("");
+			setDocumentNumber("");
+			setEmail("");
+			setPassword("");
+			setConfirmPassword("");
+			setTerms(false);
+			setShowPassword(false);
 
 			// Mostrar Mensaje
 			if (state.message === "Registro exitoso.") {
@@ -103,7 +81,7 @@ export default function Register_Form() {
 
 		return undefined;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [state.id]);
+	}, [state.eventId]);
 
 	return (
 		<Form action={formAction} className="flex size-full flex-col gap-6 select-none">
@@ -118,7 +96,7 @@ export default function Register_Form() {
 						</div>
 					}
 				>
-					<DocumentType value={userData.document_type} onChange={handleChange} />
+					<DocumentType value={documentType} onChange={e => setDocumentType(e.target.value)} />
 				</Suspense>
 
 				{/* Número de Documento */}
@@ -130,7 +108,7 @@ export default function Register_Form() {
 						</div>
 					}
 				>
-					<DocumentNumber value={userData.document_number} onChange={handleChange} />
+					<DocumentNumber value={documentNumber} onChange={e => setDocumentNumber(e.target.value)} />
 				</Suspense>
 
 				{/* Correo Electrónico */}
@@ -147,14 +125,15 @@ export default function Register_Form() {
 						name="email"
 						type="email"
 						inputMode="email"
-						value={userData.email}
-						onChange={handleChange}
+						value={email}
+						onChange={e => setEmail(e.target.value)}
 						autoComplete="email"
 						required
 						minLength={6}
 						maxLength={254}
 						placeholder="tu@correo.com"
 						disabled={isPending}
+						title="Ingresa un correo válido, como ejemplo@dominio.com"
 						className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs lowercase transition-all duration-300 ease-in-out placeholder:text-xs placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:outline-none md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base"
 					/>
 				</div>
@@ -172,27 +151,28 @@ export default function Register_Form() {
 						<input
 							id="password"
 							name="password"
-							type={userData.showPassword ? "text" : "password"}
-							value={userData.password}
-							onChange={handleChange}
+							type={showPassword ? "text" : "password"}
+							value={password}
+							onChange={e => setPassword(e.target.value)}
 							autoComplete="new-password"
 							required
 							minLength={10}
 							maxLength={38}
 							placeholder="••••••••"
 							disabled={isPending}
+							title="Debe tener entre 10 y 38 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un símbolo."
 							className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out placeholder:text-xs placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:outline-none md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base"
 						/>
 
 						{/* Mostrar Contraseña */}
 						<button
 							type="button"
-							onClick={toggleShowPassword}
-							aria-label={userData.showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
+							onClick={() => setShowPassword(prev => !prev)}
+							aria-label={showPassword ? "Ocultar Contraseña" : "Mostrar Contraseña"}
 							className="absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-gray-500 transition-colors duration-300 ease-in-out hover:text-gray-700 focus:outline-none"
 							tabIndex={-1}
 						>
-							{userData.showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+							{showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
 						</button>
 					</div>
 				</div>
@@ -209,15 +189,16 @@ export default function Register_Form() {
 					<input
 						id="confirm_password"
 						name="confirm_password"
-						type={userData.showPassword ? "text" : "password"}
-						value={userData.confirm_password}
-						onChange={handleChange}
+						type={showPassword ? "text" : "password"}
+						value={confirmPassword}
+						onChange={e => setConfirmPassword(e.target.value)}
 						autoComplete="new-password"
 						required
 						minLength={10}
 						maxLength={38}
 						placeholder="••••••••"
 						disabled={isPending}
+						title="Debe coincidir exactamente con la contraseña ingresada."
 						className="focus:ring-primary-400 w-full appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs transition-all duration-300 ease-in-out placeholder:text-xs placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:outline-none md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base"
 					/>
 				</div>
@@ -228,8 +209,8 @@ export default function Register_Form() {
 						id="terms"
 						name="terms"
 						type="checkbox"
-						checked={userData.terms}
-						onChange={handleChange}
+						checked={terms}
+						onChange={e => setTerms(e.target.checked)}
 						required
 						className="text-tertiary-600 focus:ring-primary-400 size-4 rounded border-gray-300"
 					/>

@@ -27,11 +27,11 @@ export default async function refreshAccessCookie() {
 
 	// Obtener Headers
 	const requestHeaders = await headers();
-	const userAgent = requestHeaders.get("user-agent");
+	const userAgent = requestHeaders.get("user-agent")?.trim();
 	const userIp = requestHeaders.get("cf-connecting-ip") || requestHeaders.get("x-forwarded-for") || requestHeaders.get("x-real-ip");
 
 	// Validar IP
-	if (!userIp || !net.isIP(userIp)) {
+	if (!userIp?.trim() || !net.isIP(userIp.trim())) {
 		cookieStore.delete("__srfk");
 		redirect("/acceder");
 	}
@@ -56,8 +56,8 @@ export default async function refreshAccessCookie() {
 				"User-Agent": "NextJS - Lib/Auth.ts (Node.js " + process.version + ")",
 			},
 			body: JSON.stringify({
-				user_agent: userAgent,
-				ip: userIp,
+				user_agent: userAgent.trim(),
+				ip: userIp.trim(),
 			}),
 		});
 

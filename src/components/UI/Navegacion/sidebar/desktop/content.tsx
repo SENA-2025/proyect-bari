@@ -32,36 +32,18 @@ export default function SidebarContent() {
 	return (
 		<div
 			className={cn(
-				"z-10 h-full bg-white shadow-lg transition-all duration-300 ease-in-out",
+				"animate-fade-in-right z-10 h-full bg-white shadow-lg transition-all duration-300 ease-in-out",
 				collapsed === undefined ? "w-0" : collapsed ? "w-16" : "w-64"
 			)}
 		>
 			<div className="relative size-full">
 				{/* Menu */}
-				<div className="size-full p-4">
-					<Suspense
-						fallback={
-							<div className="flex size-full flex-col gap-3">
-								{Array(5)
-									.fill(0)
-									.map((_, i) => (
-										<div className="flex w-full flex-col gap-2" key={i}>
-											<div className="h-8 w-full animate-pulse rounded-lg bg-gray-200"></div>
-
-											<div className="flex flex-col gap-1">
-												{Array(3)
-													.fill(0)
-													.map((_, j) => (
-														<div className="h-8 w-full animate-pulse rounded-lg bg-gray-100" key={j}></div>
-													))}
-											</div>
-										</div>
-									))}
-							</div>
-						}
-					>
-						<Menu collapse={collapsed} />
-					</Suspense>
+				<div className="size-full">
+					<div className="h-full p-4">
+						<Suspense fallback={null}>
+							<Menu collapse={collapsed} />
+						</Suspense>
+					</div>
 				</div>
 
 				{/* Button */}
