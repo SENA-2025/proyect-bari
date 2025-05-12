@@ -38,10 +38,12 @@ export default function SidebarContent() {
 		>
 			<div className="relative size-full">
 				{/* Menu */}
-				<div className="size-full p-4">
-					<Suspense fallback={null}>
-						<Menu collapse={collapsed} />
-					</Suspense>
+				<div className="size-full">
+					<div className="h-full p-4">
+						<Suspense fallback={null}>
+							<Menu collapse={collapsed} />
+						</Suspense>
+					</div>
 				</div>
 
 				{/* Button */}
