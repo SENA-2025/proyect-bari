@@ -1,13 +1,13 @@
-import { User } from "lucide-react";
+import { ClipboardCheck } from "lucide-react";
 import type { Metadata } from "next";
 
 // Metadata
 export const metadata: Metadata = {
-	title: "Usuarios",
+	title: "Coordinadores",
 };
 
 // Pagina
-export default function UsuariosPage() {
+export default function CoordinadoresPage() {
 	return (
 		<div className="size-full p-5">
 			{/* Cabecera */}
@@ -17,13 +17,13 @@ export default function UsuariosPage() {
 					<div className="flex flex-col items-center justify-center gap-2 transition-all duration-300 ease-in-out lg:flex-row">
 						{/* Icono */}
 						<div className="from-primary-400 to-tertiary-600 rounded-lg bg-gradient-to-r p-2">
-							<User className="size-5 text-white transition-all duration-300 ease-in-out lg:size-6" />
+							<ClipboardCheck className="size-5 text-white transition-all duration-300 ease-in-out lg:size-6" />
 						</div>
 
 						{/* Título */}
 						<div className="flex flex-col items-center justify-center transition-all duration-300 ease-in-out select-none lg:items-start">
-							<h1 className="text-xl font-bold text-gray-900 transition-all duration-300 ease-in-out lg:text-2xl">Usuarios</h1>
-							<p className="text-sm text-gray-500">Visualiza información de los usuarios SENA</p>
+							<h1 className="text-xl font-bold text-gray-900 transition-all duration-300 ease-in-out lg:text-2xl">Coordinadores</h1>
+							<p className="text-sm text-gray-500">Conoce los coordinadores SENA</p>
 						</div>
 					</div>
 
