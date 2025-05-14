@@ -33,13 +33,13 @@ export default function SidebarContent() {
 		<div
 			className={cn(
 				"animate-fade-in-right z-10 h-full bg-white shadow-lg transition-all duration-300 ease-in-out",
-				collapsed === undefined ? "w-0" : collapsed ? "w-16" : "w-64"
+				collapsed === undefined ? "w-0" : collapsed ? "w-18" : "w-64"
 			)}
 		>
 			<div className="relative size-full">
 				{/* Menu */}
-				<div className="size-full">
-					<div className="h-full p-4">
+				<div className="scroll-container-hidden h-full">
+					<div className="py-4">
 						<Suspense fallback={null}>
 							<Menu collapse={collapsed} />
 						</Suspense>
