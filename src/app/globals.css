@@ -19,3 +19,14 @@ input[type="search"]::-webkit-search-cancel-button {
 	-webkit-appearance: none;
 	display: none;
 }
+
+/* Scroll Y - Oculto */
+.scroll-container-hidden {
+	overflow-y: auto;
+	overflow-x: hidden;
+	scrollbar-width: thin;
+	scrollbar-color: transparent transparent;
+}
+.scroll-container-hidden:hover {
+	scrollbar-color: #9ca3af transparent;
+}
