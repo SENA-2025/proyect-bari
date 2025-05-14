@@ -31,16 +31,16 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 				props.collapse === undefined ? "w-0 opacity-0" : "size-full opacity-100"
 			)}
 		>
-			<ul className="flex size-full flex-col gap-3">
+			<ul className={cn("flex flex-col gap-3", !props.collapse && "px-2")}>
 				{/* Menu */}
 				{props.menu.map((section, i) => (
-					<li key={i} className="flex w-full flex-col gap-2">
+					<li key={i} className="flex flex-col items-center justify-center gap-2">
 						{/* Categoria */}
 						<div
 							title={props.collapse ? section.label : ""}
 							className={cn(
 								"flex items-center justify-start transition-all duration-300 ease-in-out",
-								props.collapse ? "w-fit rounded-md bg-gradient-to-r from-lime-600/20 to-lime-400/20 p-2" : "uppercase"
+								props.collapse ? "w-fit rounded-md bg-gradient-to-r from-lime-600/20 to-lime-400/20 p-2" : "w-full uppercase"
 							)}
 						>
 							{props.collapse && <section.icon className="text-tertiary-600 transition-all duration-300 ease-in-out" size={20} />}
@@ -52,13 +52,16 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 						</div>
 
 						{/* Items */}
-						<ul className="flex w-full flex-col gap-1">
+						<ul className="flex w-full flex-col items-center justify-center gap-1">
 							{section.list.map((item, j) => {
 								const createUrl = props.mainUrl + section.url + item.url;
 								const isActive = props.currentUrl === createUrl;
 
 								return (
-									<li key={j} className="group relative flex w-full items-center justify-center">
+									<li
+										key={j}
+										className={cn("group relative flex items-center justify-center", props.collapse ? "w-fit" : "w-full")}
+									>
 										{/* Item */}
 										<Link
 											href={createUrl}
