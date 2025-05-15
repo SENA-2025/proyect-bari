@@ -16,11 +16,11 @@ import {
 	Landmark,
 	Layers,
 	LayoutDashboard,
+	School,
 	Shield,
 	User,
 	UserCog,
 	Users,
-	School,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
