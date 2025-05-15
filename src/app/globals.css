@@ -25,6 +25,7 @@ input[type="search"]::-webkit-search-cancel-button {
 	overflow-y: auto;
 	overflow-x: hidden;
 	scrollbar-width: thin;
+	scrollbar-gutter: stable;
 	scrollbar-color: transparent transparent;
 }
 .scroll-container-hidden:hover {
