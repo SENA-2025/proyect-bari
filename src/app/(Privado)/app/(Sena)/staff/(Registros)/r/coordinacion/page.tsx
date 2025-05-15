@@ -23,7 +23,7 @@ export default function CoordinacionPage() {
 						{/* Título */}
 						<div className="flex flex-col items-center justify-center transition-all duration-300 ease-in-out select-none lg:items-start">
 							<h1 className="text-xl font-bold text-gray-900 transition-all duration-300 ease-in-out lg:text-2xl">Coordinación</h1>
-							<p className="text-sm text-gray-500">Registra y administra información de coordinación del SENA</p>
+							<p className="text-sm text-gray-500">Registros de coordinación del SENA</p>
 						</div>
 					</div>
 
