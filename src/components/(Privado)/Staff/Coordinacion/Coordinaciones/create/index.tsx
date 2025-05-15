@@ -30,7 +30,7 @@ export default function CreateButton() {
 	return (
 		<>
 			<button
-				title="Crear Regional"
+				title="Crear Coordinacion"
 				onClick={() => setOpen(true)}
 				className="bg-tertiary-600 hover:bg-primary-400 group flex cursor-pointer items-center justify-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 ease-in-out hover:scale-[1.02] hover:text-black/70"
 			>
@@ -53,7 +53,7 @@ export default function CreateButton() {
 									</div>
 
 									<span className="text-lg font-semibold text-gray-900 transition-all duration-300 ease-in-out select-none lg:text-xl">
-										Crear nueva coordinacion
+										Crear Coordinacion
 									</span>
 								</div>
 
