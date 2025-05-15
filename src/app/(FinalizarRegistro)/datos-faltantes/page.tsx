@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 };
 
 // Componentes
-const VerifyData = dynamic(() => import("@/components/(FinalizarRegistro)/datos-faltantes/verify"));
+
+// const VerifyData = dynamic(() => import("@/components/(FinalizarRegistro)/datos-faltantes/verify"));
 
 export default function DataMissing_Page() {
 	return (
@@ -24,7 +25,7 @@ export default function DataMissing_Page() {
 							</div>
 						}
 					>
-						<VerifyData />
+						{/* <VerifyData /> */}
 					</Suspense>
 				</div>
 			</div>
