@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { Suspense, useEffect, useRef, useState } from "react";
 
 // Componentes
-// const Form = dynamic(() => import("@/components/(Privado)/Staff/Coordinacion/Centros/create/form"), { ssr: false });
+// const Form = dynamic(() => import("@/components/(Privado)/Staff/Coordinacion/Aprendices/create/form"), { ssr: false });
 
 export default function CreateButton() {
 	const [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function CreateButton() {
 				className="bg-tertiary-600 hover:bg-primary-400 group flex cursor-pointer items-center justify-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 ease-in-out hover:scale-[1.02] hover:text-black/70"
 			>
 				<Plus className="shrink-0 transition-all duration-300 ease-in-out group-hover:rotate-90" size={16} />
-				<span className="whitespace-nowrap transition-all duration-300 ease-in-out select-none">Crear Centro</span>
+				<span className="whitespace-nowrap transition-all duration-300 ease-in-out select-none">Crear usuario</span>
 			</button>
 
 			{/* Modal */}
@@ -53,7 +53,7 @@ export default function CreateButton() {
 									</div>
 
 									<span className="text-lg font-semibold text-gray-900 transition-all duration-300 ease-in-out select-none lg:text-xl">
-										Crear nuevo centro
+										Crear nuevo usuario
 									</span>
 								</div>
 
