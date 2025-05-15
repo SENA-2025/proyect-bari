@@ -1,13 +1,13 @@
-import { Landmark } from "lucide-react";
+import { School } from "lucide-react";
 import type { Metadata } from "next";
 
 // Metadata
 export const metadata: Metadata = {
-	title: "Centros",
+	title: "Aprendices",
 };
 
 // Pagina
-export default function CentrosPage() {
+export default function AprendicesPage() {
 	return (
 		<div className="size-full p-5">
 			{/* Cabecera */}
@@ -17,7 +17,7 @@ export default function CentrosPage() {
 					<div className="flex flex-col items-center justify-center gap-2 transition-all duration-300 ease-in-out lg:flex-row">
 						{/* Icono */}
 						<div className="from-primary-400 to-tertiary-600 rounded-lg bg-gradient-to-r p-2">
-							<Landmark className="size-5 text-white transition-all duration-300 ease-in-out lg:size-6" />
+							<School className="size-5 text-white transition-all duration-300 ease-in-out lg:size-6" />
 						</div>
 
 						{/* Título */}
