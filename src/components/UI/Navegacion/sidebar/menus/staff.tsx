@@ -20,6 +20,7 @@ import {
 	User,
 	UserCog,
 	Users,
+	School,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
@@ -52,6 +53,7 @@ export default function StaffMenu({ collapse, url }: StaffMenuProps) {
 				{ label: "Sedes", url: "/sedes", icon: Building },
 				{ label: "Coordinaciones", url: "/coordinaciones", icon: Briefcase },
 				{ label: "Instructores", url: "/instructores", icon: GraduationCap },
+				{ label: "Aprendices", url: "/aprendices", icon: School },
 			],
 		},
 		{
