@@ -4,8 +4,7 @@ import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
 // Componentes
-const Buttons = dynamic(() => import("@/components/(Privado)/Staff/Coordinacion/sedes/buttons"));
-
+const Buttons = dynamic(() => import("@/components/(Privado)/Staff/Coordinacion/Sedes/buttons"));
 
 // Metadata
 export const metadata: Metadata = {
@@ -29,14 +28,14 @@ export default function SedesPage() {
 						{/* Título */}
 						<div className="flex flex-col items-center justify-center transition-all duration-300 ease-in-out select-none lg:items-start">
 							<h1 className="text-xl font-bold text-gray-900 transition-all duration-300 ease-in-out lg:text-2xl">Sedes</h1>
-							<p className="text-sm text-gray-500">Explora las sedes SENA</p>
+							<p className="text-sm text-gray-500">Gestiona las sedes del SENA</p>
 						</div>
 					</div>
 
 					{/* Botones */}
 					<Suspense fallback={null}>
 						<Buttons />
-					</Suspense>	
+					</Suspense>
 				</div>
 			</div>
 
