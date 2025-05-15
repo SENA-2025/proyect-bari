@@ -28,7 +28,7 @@ export default function AprendicesPage() {
 						{/* Título */}
 						<div className="flex flex-col items-center justify-center transition-all duration-300 ease-in-out select-none lg:items-start">
 							<h1 className="text-xl font-bold text-gray-900 transition-all duration-300 ease-in-out lg:text-2xl">Aprendices</h1>
-							<p className="text-sm text-gray-500">Conoce los aprendices de formación SENA</p>
+							<p className="text-sm text-gray-500">Gestiona los aprendices del SENA</p>
 						</div>
 					</div>
 
