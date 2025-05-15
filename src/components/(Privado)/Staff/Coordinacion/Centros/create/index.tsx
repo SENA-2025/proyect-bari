@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { Suspense, useEffect, useRef, useState } from "react";
 
 // Componentes
-// const Form = dynamic(() => import("@/components/(Privado)/Staff/Coordinacion/Centros/create/form"), { ssr: false });
+// const Form = dynamic(() => import("@/components/(Privado)/Staff/Coordinacion/Regionales/create/form"), { ssr: false });
 
 export default function CreateButton() {
 	const [open, setOpen] = useState(false);
@@ -53,7 +53,7 @@ export default function CreateButton() {
 									</div>
 
 									<span className="text-lg font-semibold text-gray-900 transition-all duration-300 ease-in-out select-none lg:text-xl">
-										Crear nuevo centro
+										Crear Centro
 									</span>
 								</div>
 
