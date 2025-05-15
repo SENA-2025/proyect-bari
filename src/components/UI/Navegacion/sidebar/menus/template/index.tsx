@@ -60,6 +60,7 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 								return (
 									<li
 										key={j}
+										title={props.collapse ? item.label : ""}
 										className={cn("group relative flex items-center justify-center", props.collapse ? "w-fit" : "w-full")}
 									>
 										{/* Item */}
@@ -80,15 +81,6 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 												{item.label}
 											</span>
 										</Link>
-
-										{/* Tooltip */}
-										{props.collapse && (
-											<div className="pointer-events-none absolute top-0 bottom-0 left-0 z-50 flex -translate-x-3 translate-y-0 items-center justify-start opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-0 group-hover:opacity-100">
-												<span className="ml-10 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm whitespace-nowrap text-gray-800 shadow-md transition-all duration-300 ease-in-out">
-													{item.label}
-												</span>
-											</div>
-										)}
 									</li>
 								);
 							})}
