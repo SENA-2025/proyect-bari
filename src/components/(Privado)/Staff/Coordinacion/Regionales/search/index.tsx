@@ -52,7 +52,7 @@ export default function SearchInput() {
 
 			<input
 				type="search"
-				placeholder="Buscar nombre o abreviatura..."
+				placeholder="Buscar información de regionales"
 				maxLength={50}
 				autoComplete="off"
 				spellCheck="false"
