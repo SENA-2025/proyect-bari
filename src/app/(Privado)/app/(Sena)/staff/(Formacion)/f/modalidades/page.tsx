@@ -34,8 +34,8 @@ export default function ModalidadesPage() {
 
 					{/* Botones */}
 					<Suspense fallback={null}>
-				<Buttons />
-			</Suspense>
+						<Buttons />
+					</Suspense>
 				</div>
 			</div>
 

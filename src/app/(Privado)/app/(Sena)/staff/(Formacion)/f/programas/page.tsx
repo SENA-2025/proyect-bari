@@ -36,8 +36,8 @@ export default function ProgramasPage() {
 
 					{/* Botones */}
 					<Suspense fallback={null}>
-				<Buttons />
-			</Suspense>
+						<Buttons />
+					</Suspense>
 				</div>
 			</div>
 

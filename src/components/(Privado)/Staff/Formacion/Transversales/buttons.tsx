@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 // Componentes
 const Search = dynamic(() => import("@/components/(Privado)/Staff/Formacion/Transversales/search"));
-const Create = dynamic(() => import("@/components/(Privado)/Staff/Formacion/Transversales/create")); 
+const Create = dynamic(() => import("@/components/(Privado)/Staff/Formacion/Transversales/create"));
 
 export default function CentrosButtons() {
 	return (

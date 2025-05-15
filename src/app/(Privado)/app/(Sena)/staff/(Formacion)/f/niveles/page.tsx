@@ -34,8 +34,8 @@ export default function NivelesPage() {
 
 					{/* Botones */}
 					<Suspense fallback={null}>
-				<Buttons />
-			</Suspense>
+						<Buttons />
+					</Suspense>
 				</div>
 			</div>
 

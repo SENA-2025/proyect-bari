@@ -2,8 +2,8 @@ import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
 // Componentes
-const Search = dynamic(() => import("@/components/(Privado)/Staff/Gestion/Usuarios/search")); 
-const Create = dynamic(() => import("@/components/(Privado)/Staff/Gestion/Usuarios/create")); 
+const Search = dynamic(() => import("@/components/(Privado)/Staff/Gestion/Usuarios/search"));
+const Create = dynamic(() => import("@/components/(Privado)/Staff/Gestion/Usuarios/create"));
 
 export default function CentrosButtons() {
 	return (
