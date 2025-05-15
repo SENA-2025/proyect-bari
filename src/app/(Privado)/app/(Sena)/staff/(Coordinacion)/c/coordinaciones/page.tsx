@@ -28,7 +28,7 @@ export default function CoordinacionesPage() {
 						{/* Título */}
 						<div className="flex flex-col items-center justify-center transition-all duration-300 ease-in-out select-none lg:items-start">
 							<h1 className="text-xl font-bold text-gray-900 transition-all duration-300 ease-in-out lg:text-2xl">Coordinaciones</h1>
-							<span className="text-sm text-gray-500">Gestiona las coordinaciones del SENA</span>
+							<p className="text-sm text-gray-500">Gestiona las coordinaciones del SENA</p>
 						</div>
 					</div>
 
