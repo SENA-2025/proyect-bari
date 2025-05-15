@@ -1,5 +1,10 @@
 import { BarChart2 } from "lucide-react";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+//Componentes
+const Buttons = dynamic(() => import("@/components/(Privado)/Staff/Formacion/Niveles/buttons"));
 
 // Metadata
 export const metadata: Metadata = {
@@ -28,9 +33,9 @@ export default function NivelesPage() {
 					</div>
 
 					{/* Botones */}
-					{/* <Suspense fallback={null}>
+					<Suspense fallback={null}>
 				<Buttons />
-			</Suspense> */}
+			</Suspense>
 				</div>
 			</div>
 
