@@ -20,6 +20,7 @@ export default function DocumentNumber_Input({ value, onChange }: DocumentNumber
 				inputMode="numeric"
 				value={value}
 				onChange={onChange}
+				autoComplete="off"
 				required
 				minLength={3}
 				maxLength={20}
