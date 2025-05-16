@@ -7,7 +7,7 @@ const Create = dynamic(() => import("@/components/(Privado)/Staff/Coordinacion/I
 
 export default function InstructoresButtons() {
 	return (
-		<div className="animate-fade-in flex w-full flex-col-reverse items-center justify-center gap-2 transition-all duration-300 ease-in-out lg:w-fit lg:flex-row">
+		<div className="flex w-full flex-col-reverse items-center justify-center gap-2 transition-all duration-300 ease-in-out lg:w-fit lg:flex-row">
 			{/* Busqueda */}
 			<Suspense fallback={null}>
 				<Search />
