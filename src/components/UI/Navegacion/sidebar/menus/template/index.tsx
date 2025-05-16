@@ -73,12 +73,7 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 												className={cn("shrink-0 transition-all duration-300 ease-in-out", !isActive && "text-gray-500")}
 												size={16}
 											/>
-											<span
-												className={cn(
-													"transition-all duration-300 ease-in-out",
-													props.collapse ? "hidden" : "truncate capitalize"
-												)}
-											>
+											<span className={cn("transition-all duration-300 ease-in-out", props.collapse ? "hidden" : "truncate")}>
 												{item.label}
 											</span>
 										</Link>
