@@ -38,8 +38,8 @@ export default function SidebarContent() {
 		>
 			<div className="relative size-full">
 				{/* Menu */}
-				<div className="scroll-container-hidden h-full">
-					<div className="py-4 pl-2">
+				<div className="size-full py-4 pl-2">
+					<div className="scroll-container-hidden h-full">
 						<Suspense fallback={null}>
 							<Menu collapse={collapsed} />
 						</Suspense>
