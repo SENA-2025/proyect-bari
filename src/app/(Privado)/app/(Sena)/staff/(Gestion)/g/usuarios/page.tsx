@@ -28,7 +28,7 @@ export default function UsuariosPage() {
 						{/* Título */}
 						<div className="flex flex-col items-center justify-center transition-all duration-300 ease-in-out select-none lg:items-start">
 							<h1 className="text-xl font-bold text-gray-900 transition-all duration-300 ease-in-out lg:text-2xl">Usuarios</h1>
-							<p className="text-sm text-gray-500">Visualiza información de los usuarios SENA</p>
+							<p className="text-sm text-gray-500">Gestiona la información de los usuarios del SENA</p>
 						</div>
 					</div>
 
