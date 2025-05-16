@@ -33,7 +33,13 @@ export default function NivelesPage() {
 					</div>
 
 					{/* Botones */}
-					<Suspense fallback={null}>
+					<Suspense
+						fallback={
+							<div className="w-full lg:w-1/4">
+								<div className="h-8 w-full animate-pulse rounded-lg bg-gray-200"></div>
+							</div>
+						}
+					>
 						<Buttons />
 					</Suspense>
 				</div>
