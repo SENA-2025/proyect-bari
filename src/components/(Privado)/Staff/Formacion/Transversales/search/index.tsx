@@ -42,7 +42,7 @@ export default function SearchInput() {
 	}, [debouncedQuery, updateSearch]);
 
 	return (
-		<div className="group relative flex w-full items-center transition-all duration-300 ease-in-out sm:w-2/3 lg:w-72">
+		<div className="group relative flex w-full items-center transition-all duration-300 ease-in-out sm:w-2/3 lg:w-64">
 			<div className="pointer-events-none absolute inset-y-0 left-0 flex shrink-0 items-center pl-3">
 				<Search
 					className="group-focus-within:text-primary-400 group-hover:text-primary-400 text-gray-400 transition-all duration-300 ease-in-out group-hover:rotate-12"
@@ -52,7 +52,7 @@ export default function SearchInput() {
 
 			<input
 				type="search"
-				placeholder="Buscar información de transversales"
+				placeholder="Buscar..."
 				maxLength={50}
 				autoComplete="off"
 				spellCheck="false"
