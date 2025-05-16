@@ -50,8 +50,9 @@
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
+			"@tailwindcss/oxide",
 			"sharp",
-			"@tailwindcss/oxide"
+			"unrs-resolver"
 		]
 	}
 }
