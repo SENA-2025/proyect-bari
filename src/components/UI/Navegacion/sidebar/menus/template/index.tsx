@@ -31,7 +31,7 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 				props.collapse === undefined ? "w-0 opacity-0" : "size-full opacity-100"
 			)}
 		>
-			<ul className={cn("flex flex-col gap-3", !props.collapse && "px-2")}>
+			<ul className={cn("flex flex-col gap-3", !props.collapse && "px-1.5")}>
 				{/* Menu */}
 				{props.menu.map((section, i) => (
 					<li key={i} className="flex flex-col items-center justify-center gap-2">
@@ -39,7 +39,7 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 						<div
 							title={props.collapse ? section.label : ""}
 							className={cn(
-								"flex items-center justify-start transition-all duration-300 ease-in-out",
+								"flex transition-all duration-300 ease-in-out",
 								props.collapse ? "w-fit rounded-md bg-gradient-to-r from-lime-600/20 to-lime-400/20 p-2" : "w-full uppercase"
 							)}
 						>
@@ -58,11 +58,7 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 								const isActive = props.currentUrl === createUrl;
 
 								return (
-									<li
-										key={j}
-										title={props.collapse ? item.label : ""}
-										className={cn("group relative flex items-center justify-center", props.collapse ? "w-fit" : "w-full")}
-									>
+									<li key={j} title={props.collapse ? item.label : ""} className={props.collapse ? "w-fit" : "w-full"}>
 										{/* Item */}
 										<Link
 											href={createUrl}
@@ -77,7 +73,12 @@ export default function TemplateMenu(props: TemplateMenuProps) {
 												className={cn("shrink-0 transition-all duration-300 ease-in-out", !isActive && "text-gray-500")}
 												size={16}
 											/>
-											<span className={cn("transition-all duration-300 ease-in-out", props.collapse ? "hidden" : "truncate")}>
+											<span
+												className={cn(
+													"transition-all duration-300 ease-in-out",
+													props.collapse ? "hidden" : "truncate capitalize"
+												)}
+											>
 												{item.label}
 											</span>
 										</Link>
