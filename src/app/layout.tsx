@@ -22,6 +22,11 @@ export const metadata: Metadata = {
 		index: false,
 		follow: false,
 		nocache: true,
+		noarchive: true,
+		noimageindex: true,
+		notranslate: true,
+		nositelinkssearchbox: true,
+		nosnippet: true,
 	},
 };
 
