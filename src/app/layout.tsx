@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 		default: process.env.APP_WEB_TITLE + " - " + process.env.APP_WEB_DESCRIPTION_SHORT,
 	},
 	description: process.env.APP_WEB_DESCRIPTION_LONG,
-	category: "Educación",
 	icons: {
 		icon: "/favicon.ico",
 	},
