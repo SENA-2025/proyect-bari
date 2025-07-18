@@ -18,7 +18,6 @@ const actionSchema = z
 			.max(6, "La abreviatura debe tener máximo 6 caracteres.")
 			.regex(/^[a-zA-Z0-9]+$/, "La abreviatura solo puede contener letras y números.")
 			.transform(value => value.toUpperCase()),
-	})
-	.strict("Completa todos los campos.");
+	});
 
 export default actionSchema;
