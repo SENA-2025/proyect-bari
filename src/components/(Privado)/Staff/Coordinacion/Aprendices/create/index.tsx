@@ -1,8 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
-// (REMOVED "suspense" FROM IMPORT TO PREVENT BUILD ISSUES)import { Suspense, useEffect, useRef, useState } from "react";
-import {useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 // Componentes

@@ -1,8 +1,6 @@
 "use client";
 
 import { Plus } from "lucide-react";
-//  (REMOVED "dynamic" FROM IMPORT TO PREVENT BUILD ISSUES)import dynamic from "next/dynamic";
-// (REMOVED "susppense" FROM IMPORT TO PREVENT BUILD ISSUES)i import { Suspense, useEffect, useRef, useState } from "react";
 import { useEffect, useRef, useState } from "react";
 
 // Componentes

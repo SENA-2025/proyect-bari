@@ -19,6 +19,6 @@ const actionSchema = z
 			.regex(/^[a-zA-Z0-9]+$/, "La abreviatura solo puede contener letras y números.")
 			.transform(value => value.toUpperCase()),
 	})
-	.strict("Completa todos los campos.");
+	.strict();
 
 export default actionSchema;

@@ -1,8 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import dynamic from "next/dynamic";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Componentes
 // const Form = dynamic(() => import("@/components/(Privado)/Staff/Coordinacion/Sedes/create/form"), { ssr: false });
