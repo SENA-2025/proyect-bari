@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
 	compiler: {
 		removeConsole: process.env.NODE_ENV === "production",
 	},
+	typescript: {
+		// Ignora los errores de TypeScript durante el build de producción.
+		// Permite generar el build incluso si existen errores de tipos.
+		// Útil para despliegues rápidos si se confía en que los errores no rompen la app.
+		ignoreBuildErrors: false,
+	},
 };
 
 export default nextConfig;
