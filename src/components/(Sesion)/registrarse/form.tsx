@@ -127,7 +127,7 @@ export default function Register_Form() {
 						inputMode="email"
 						value={email}
 						onChange={e => setEmail(e.target.value)}
-						autoComplete="email"
+						autoComplete="off"
 						required
 						minLength={6}
 						maxLength={254}

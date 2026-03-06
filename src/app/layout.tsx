@@ -14,14 +14,15 @@ export const metadata: Metadata = {
 		default: process.env.APP_WEB_TITLE + " - " + process.env.APP_WEB_DESCRIPTION_SHORT,
 	},
 	description: process.env.APP_WEB_DESCRIPTION_LONG,
-	category: "Educación",
-	icons: {
-		icon: "/favicon.ico",
-	},
 	robots: {
 		index: false,
 		follow: false,
 		nocache: true,
+		noarchive: true,
+		noimageindex: true,
+		notranslate: true,
+		nositelinkssearchbox: true,
+		nosnippet: true,
 	},
 };
 
@@ -30,8 +31,6 @@ export const viewport: Viewport = {
 	themeColor: "#FFFFFF",
 	width: "device-width",
 	initialScale: 1,
-	maximumScale: 1,
-	userScalable: false,
 	interactiveWidget: "resizes-visual",
 };
 

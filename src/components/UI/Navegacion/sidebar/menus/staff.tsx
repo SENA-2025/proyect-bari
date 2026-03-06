@@ -16,6 +16,7 @@ import {
 	Landmark,
 	Layers,
 	LayoutDashboard,
+	School,
 	Shield,
 	User,
 	UserCog,
@@ -52,6 +53,7 @@ export default function StaffMenu({ collapse, url }: StaffMenuProps) {
 				{ label: "Sedes", url: "/sedes", icon: Building },
 				{ label: "Coordinaciones", url: "/coordinaciones", icon: Briefcase },
 				{ label: "Instructores", url: "/instructores", icon: GraduationCap },
+				{ label: "Aprendices", url: "/aprendices", icon: School },
 			],
 		},
 		{
@@ -61,7 +63,7 @@ export default function StaffMenu({ collapse, url }: StaffMenuProps) {
 			list: [
 				{ label: "Modalidades", url: "/modalidades", icon: Layers },
 				{ label: "Niveles", url: "/niveles", icon: BarChart2 },
-				{ label: "Programas de formación", url: "/programas", icon: BookMarked },
+				{ label: "Programas de Formación", url: "/programas", icon: BookMarked },
 				{ label: "Fichas", url: "/fichas", icon: ClipboardList },
 				{ label: "Transversales", url: "/transversales", icon: GitBranch },
 			],

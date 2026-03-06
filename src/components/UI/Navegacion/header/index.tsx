@@ -8,7 +8,7 @@ export default function Header() {
 					{/* Mobile Nav + Título */}
 					<div className="flex items-center justify-center">
 						<Link href="/app">
-							<span className="from-tertiary-600 to-primary-400 bg-gradient-to-r bg-clip-text text-lg font-bold text-transparent transition-all duration-300 ease-in-out select-none md:text-xl lg:text-2xl xl:text-3xl">
+							<span className="from-tertiary-600 to-primary-400 bg-gradient-to-r bg-clip-text text-lg font-bold text-transparent uppercase transition-all duration-300 ease-in-out select-none md:text-xl lg:text-2xl xl:text-3xl">
 								{process.env.APP_WEB_TITLE}
 							</span>
 						</Link>

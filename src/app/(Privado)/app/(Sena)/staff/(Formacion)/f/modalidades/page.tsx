@@ -1,5 +1,10 @@
 import { Layers } from "lucide-react";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+//Componentes
+const Buttons = dynamic(() => import("@/components/(Privado)/Staff/Formacion/Modalidades/buttons"));
 
 // Metadata
 export const metadata: Metadata = {
@@ -23,14 +28,20 @@ export default function ModalidadesPage() {
 						{/* Título */}
 						<div className="flex flex-col items-center justify-center transition-all duration-300 ease-in-out select-none lg:items-start">
 							<h1 className="text-xl font-bold text-gray-900 transition-all duration-300 ease-in-out lg:text-2xl">Modalidades</h1>
-							<p className="text-sm text-gray-500">Gestiona las modalidades de formación del SENA</p>
+							<p className="text-sm text-gray-500">Gestiona las modalidades del SENA</p>
 						</div>
 					</div>
 
 					{/* Botones */}
-					{/* <Suspense fallback={null}>
-				<Buttons />
-			</Suspense> */}
+					<Suspense
+						fallback={
+							<div className="w-full lg:w-1/4">
+								<div className="h-8 w-full animate-pulse rounded-lg bg-gray-200"></div>
+							</div>
+						}
+					>
+						<Buttons />
+					</Suspense>
 				</div>
 			</div>
 
