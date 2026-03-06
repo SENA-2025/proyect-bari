@@ -1,7 +1,6 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import dynamic from "next/dynamic";
 import { Suspense, useEffect, useRef, useState } from "react";
 
 // Componentes
